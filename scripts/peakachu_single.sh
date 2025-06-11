@@ -40,17 +40,28 @@ fi
 while read -r file depth; do
     echo "Processing ${file} at ${depth}..."
     if [ -f ${file}-peakachu-$((reso / 1000))kb-scores.bedpe ];then
-        echo "${file}-peakachu-$((reso / 1000))kb-scores.bedpe exists, skip..."
+        echo "${file}-peakachu-$((reso /conda  1000))kb-scores.bedpe exists, skip..."
         continue
     else
+		weight=/cluster/home/futing/Project/GBM/HiC/10loop/peakachu/peakachu/high-confidence.${depth}.$((reso / 1000))kb.w6.pkl
+		if [ ! -e ${weight} ];then
+			echo "Weight file ${weight} does not exist, please check!"
+			exit 1
+		fi
         peakachu score_genome -r ${reso} --clr-weight-name weight \
             -p "${coolfile}" \
             -O ${file}-peakachu-$((reso / 1000))kb-scores.bedpe \
-            -m /cluster/home/futing/Project/GBM/HiC/10loop/peakachu/peakachu/high-confidence.${depth}.$((reso / 1000))kb.w6.pkl
+            -m $weight
     fi
+
+	if [ $? -ne 0 ]; then
+		echo "***! Problem while running peakachu score_genome";
+		exit 1
+	fi
     peakachu pool -r ${reso} \
         -i ${file}-peakachu-$((reso / 1000))kb-scores.bedpe \
         -o ${file}-peakachu-$((reso / 1000))kb-loops.0.95.bedpe -t 0.95
+
 done < "./${name}_$((reso / 1000))kb_clean.txt"
 
 if [ $? -eq 0 ]; then

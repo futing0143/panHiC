@@ -2,11 +2,12 @@
 
 gse=$1
 cell=$2
+enzyme=$3
 # 全局变量
-queue="gpu"
+queue="normal"
 queue_time="5780"
-debugdir="/cluster/home/futing/Project/panCancer/CRC/$gse/$cell/debug"
-dir=/cluster/home/futing/Project/panCancer/CRC
+debugdir="/cluster2/home/futing/Project/panCancer/CRC/$gse/$cell/debug"
+dir=/cluster2/home/futing/Project/panCancer/CRC
 # 定义 submit_job 函数
 submit_job() {
     local name=$1
@@ -29,11 +30,11 @@ EOF
 #SBATCH -d afterok:29629
 
 # 提交任务
-# jid=$(submit_job "${cell}" "/cluster/home/futing/Project/panCancer/CRC/juicer.sh MboI ${dir}/${gse}/${cell}")
+# jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicer.sh MboI ${dir}/${gse}/${cell}")
 # echo "Job ID: $jid"
 
-# jid=$(submit_job "${cell}" "/cluster/home/futing/Project/panCancer/CRC/juicerv2.sh -d ${dir}/${gse}/${cell} -e MboI")
+# jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicerv2.sh -d ${dir}/${gse}/${cell} -e MboI")
 # echo "Job ID: $jid"
 
-jid=$(submit_job "${cell}" "/cluster/home/futing/Project/panCancer/CRC/juicerv2.sh -d ${dir}/${gse}/${cell} -e MboI -s post")
-echo "Job ID: $jid"
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme}")
+echo "${cell} Job ID: $jid"

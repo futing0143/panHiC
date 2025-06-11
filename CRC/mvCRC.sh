@@ -22,7 +22,7 @@ done < <(tail -n +2 "$file")
 # find . -type d -empty -delete
 
 # 检查post部分的输出
-output_file=/cluster/home/futing/Project/panCancer/CRC/check/CRC_meta_runpost_check2.txt
+output_file=/cluster/home/futing/Project/panCancer/CRC/check/CRC_meta_runpost_check3.txt
 check_file() {
 	local file="$1"
 
@@ -51,5 +51,5 @@ while read -r gse cell other;do
 	check_file $dir/anno/OnTAD/${cell}_50000.bed
 	check_file $dir/anno/peakachu/${cell}-peakachu-5kb-loops.0.95.bedpe
 	check_file $dir/anno/stripecaller/${cell}
-	check_file $dir/anno/stripenn/${cell}/result_filtered.tsv
+	check_file $dir/anno/stripenn/result_filtered.tsv
 done < "/cluster/home/futing/Project/panCancer/CRC/CRC_meta_runpost.txt"

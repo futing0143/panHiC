@@ -137,6 +137,7 @@ if [[ "$STAGE" == "post" || "$STAGE" == "all" ]]; then
 	#!/bin/bash -l
 	#SBATCH -p $queue
 	#SBATCH -t $queue_time
+	#SBATCH --mem=32G
 	#SBATCH --cpus-per-task=10
 	#SBATCH --output=$debugdir/$name-%j.log
 	#SBATCH -J "${name}"
@@ -148,7 +149,7 @@ if [[ "$STAGE" == "post" || "$STAGE" == "all" ]]; then
 	date
 	EOF
 	}
-	scripts=/cluster/home/futing/Project/panCancer/scripts
+	scripts=/cluster2/home/futing/Project/panCancer/scripts
 
 	if [ ! -f ${dir}/cool/${cell}_1000.cool ];then 
 		echo -e "...Cool files not found, skipping annotation generation.\n"

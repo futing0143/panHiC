@@ -5,7 +5,8 @@ import numpy as np
 
 script = '/cluster/home/futing/Project/panCancer/CRC/sbatch.sh'
 meta = pd.read_csv(
-    '/cluster/home/futing/Project/panCancer/CRC/CRC_meta_runpost.txt',
+    # '/cluster/home/futing/Project/panCancer/CRC/CRC_meta_runpost.txt',
+	'/cluster/home/futing/Project/panCancer/CRC/CRC_metap2.txt',
     header=None,          # 无列名
     names=['gse', 'cell', 'enzyme'],  # 手动指定列名
     sep=',',             # 如果是制表符分隔，改为 sep='\t'

@@ -8,7 +8,7 @@ name=$(awk -F '/' '{print $NF}' <<< ${dir})
 
 cd $dir # /cluster/home/futing/Project/panCancer/CRC/GSE178593/DLD-1
 source activate HiC
-if [ -z "$(ls -A $dir 2>/dev/null)" ]; then
+if [ -z "$(ls -A $dir/anno/stripecaller 2>/dev/null)" ]; then
     echo "$dir is empty. rm -rf ./anno/stripecaller"
 	rm -rf ./anno/stripecaller
 fi
