@@ -3,10 +3,13 @@
 gse=$1
 cell=$2
 enzyme=$3
+juicerstage=${4:-""}  # 新增参数，默认值为空
+
 # 全局变量
 queue="normal"
 queue_time="5780"
 debugdir="/cluster2/home/futing/Project/panCancer/CRC/$gse/$cell/debug"
+mkdir -p "$debugdir"
 dir=/cluster2/home/futing/Project/panCancer/CRC
 # 定义 submit_job 函数
 submit_job() {
@@ -29,12 +32,12 @@ EOF
 }
 #SBATCH -d afterok:29629
 
-# 提交任务
+# 提交任务sq
 # jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicer.sh MboI ${dir}/${gse}/${cell}")
 # echo "Job ID: $jid"
 
 # jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicerv2.sh -d ${dir}/${gse}/${cell} -e MboI")
 # echo "Job ID: $jid"
 
-jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme}")
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 echo "${cell} Job ID: $jid"

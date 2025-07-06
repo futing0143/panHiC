@@ -6,8 +6,8 @@ gse=${3:-GSE137188}
 # 全局变量
 queue="gpu"
 queue_time="5780"
-debugdir="/cluster/home/futing/Project/panCancer/CRC/$gse/$cell/debug"
-dir=/cluster/home/futing/Project/panCancer/CRC
+debugdir="/cluster2/home/futing/Project/panCancer/CRC/$gse/$cell/debug"
+dir=/cluster2/home/futing/Project/panCancer/CRC
 # 定义 submit_job 函数
 submit_job() {
     local name=$1
@@ -32,5 +32,5 @@ EOF
 
 # 提交任务
 
-jid=$(submit_job "${cell}_${tools}" "/cluster/home/futing/Project/panCancer/scripts/${tools}_single.sh ${dir}/${gse}/${cell}")
+jid=$(submit_job "${cell}_${tools}" "/cluster2/home/futing/Project/panCancer/scripts/${tools}_single.sh ${dir}/${gse}/${cell}")
 echo "${cell}_${tools} Job ID: $jid"
