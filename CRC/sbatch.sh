@@ -7,7 +7,7 @@ juicerstage=${4:-""}  # 新增参数，默认值为空
 
 # 全局变量
 queue="normal"
-queue_time="5780"
+queue_time="6600"
 debugdir="/cluster2/home/futing/Project/panCancer/CRC/$gse/$cell/debug"
 mkdir -p "$debugdir"
 dir=/cluster2/home/futing/Project/panCancer/CRC
@@ -39,5 +39,8 @@ EOF
 # jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicerv2.sh -d ${dir}/${gse}/${cell} -e MboI")
 # echo "Job ID: $jid"
 
-jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+# jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+# echo "${cell} Job ID: $jid"
+
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicer_single.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 echo "${cell} Job ID: $jid"

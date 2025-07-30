@@ -12,4 +12,4 @@ for i in SRR10093281 SRR10093282;do
 done
 
 
-sh /cluster2/home/futing/Project/panCancer/CRC/sbatch.sh GSE137188 14-328 MboI
+sh /cluster2/home/futing/Project/panCancer/CRC/sbatch.sh GSE137188 14-328 MboI "-S chimeric"

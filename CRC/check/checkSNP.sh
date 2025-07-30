@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output_file=/cluster2/home/futing/Project/panCancer/CRC/check/CRC_bam.txt
+output_file=/cluster2/home/futing/Project/panCancer/CRC/check/CRC_bam0712.txt
 meta_file=/cluster2/home/futing/Project/panCancer/CRC/meta/CRC_meta.txt
 
 check_file() {
@@ -38,3 +38,14 @@ while read -r gse cell other; do
     # 只有当文件夹中全是bam且没有sam时，才不输出
 
 done < "$meta_file"
+
+
+# 找到inter_30.hic，去除unalign.sh
+
+
+# find /cluster2/home/futing/Project/panCancer/CRC -name 'inter_30.hic' | while read -r file;do
+
+# 	gse=$(cut -f8 -d '/' <<< ${file})
+# 	cell=$(cut -f9 -d '/' <<< ${file})
+# 	echo -e "${gse}/t${cell}" >> /cluster2/home/futing/Project/panCancer/CRC/check/CRC_correct.txt
+# done

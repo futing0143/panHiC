@@ -1,6 +1,6 @@
 #!/bin/bash
 
-debugdir="/cluster2/home/futing/Project/panCancer/GC"
+debugdir="/cluster2/home/futing/Project/panCancer/PRAD"
 cd $debugdir
 
 
@@ -9,7 +9,7 @@ submit_job() {
     local name=$1
 sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
-#SBATCH -p normal
+#SBATCH -p gpu
 #SBATCH -t "5780"
 #SBATCH --cpus-per-task=20
 #SBATCH --output=$debugdir/debug/${name}_dump-%j.log
@@ -27,15 +27,14 @@ date
 EOF
 }
 
-for name in $(cat "undonep2.txt");do
+for name in $(cat "./meta/undone.txt");do
     source activate RNA
 	echo "Processing SRR: ${name}"
-	echo $name > tmpp2
-	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmpp2 ./ 20M
-	if [ -s ${name} ];then
-	# prefetch -p -X 60GB ${name}
-		jid=$(submit_job "${name}")
-		echo $jid >> dumpnum.txt
-	fi
+	echo $name > tmp
+	/cluster/home/futing/pipeline/Ascp/ascp.sh tmp ./ 20M
+	# if [ -s ${name} ];then
+	# # prefetch -p -X 60GB ${name}
+	# 	jid=$(submit_job "${name}")
+	# fi
 done
 

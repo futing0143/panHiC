@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # 01 移动所有文件
-file=/cluster/home/futing/Project/panCancer/CRC/04CRC_anno.csv
-cd /cluster/home/futing/Project/panCancer/CRC
+file=/cluster2/home/futing/Project/panCancer/CRC/meta/04CRC_anno.csv
+cd /cluster2/home/futing/Project/panCancer/CRC
 IFS=$','
 while read -r gse gsm srr cell other;do
     gse=$(echo "$gse" | tr -d '[:space:]')
@@ -12,10 +12,10 @@ while read -r gse gsm srr cell other;do
 		echo -e "...Creating directory: ${gse}/${cell}"
 		echo -e "...Moving files from ${srr} to ${gse}/${cell}\n"
 		mkdir -p ${gse}/${cell}
-		mv ${srr}/* ${gse}/${cell}/
+		mv ${srr}* ${gse}/${cell}/
 	else
 		echo "Directory already exists: ${gse}/${cell}"
-		mv ${srr}/* ${gse}/${cell}/
+		mv ${srr}* ${gse}/${cell}/
 	fi
 
 done < <(tail -n +2 "$file")

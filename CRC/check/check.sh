@@ -3,7 +3,7 @@
 
 
 # 检查post部分的输出
-output_file=/cluster2/home/futing/Project/panCancer/CRC/check/check_July06.txt
+output_file=/cluster2/home/futing/Project/panCancer/CRC/check/check_July07.txt
 >${output_file}
 check_file() {
 	local file="$1"

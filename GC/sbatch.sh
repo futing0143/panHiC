@@ -6,7 +6,7 @@ enzyme=$3
 juicerstage=${4:-""}  # 新增参数，默认值为空
 
 # 全局变量
-queue="gpu"
+queue="normal"
 queue_time="5780"
 dir=/cluster2/home/futing/Project/panCancer/GC
 debugdir="$dir/$gse/$cell/debug"

@@ -78,11 +78,14 @@ awk '
 while read -r file depth; do
     echo "Processing ${file} at ${depth}..."
     output_file="${file}-peakachu-${reso_kb}kb-scores.bedpe"
+    final_output="${file}-peakachu-${reso_kb}kb-loops.0.95.bedpe"
     
-    if [ -f "${output_file}" ]; then
-        echo "${output_file} exists, skip..."
-        continue
-    else
+    if [ -f "${final_output}" ]; then
+        echo "${final_output} exists, skip..."
+		continue
+    fi
+    
+    if [ ! -f "${output_file}" ]; then
         weight="/cluster/home/futing/Project/GBM/HiC/10loop/peakachu/peakachu/high-confidence.${depth}.${reso_kb}kb.w6.pkl"
         
         if [ ! -e "${weight}" ]; then
@@ -101,7 +104,7 @@ while read -r file depth; do
 
     peakachu pool -r "${reso}" \
         -i "${output_file}" \
-        -o "${file}-peakachu-${reso_kb}kb-loops.0.95.bedpe" -t 0.95 || {
+        -o "${final_output}" -t 0.95 || {
             echo "***! Problem while running peakachu pool"
             exit 1
         }

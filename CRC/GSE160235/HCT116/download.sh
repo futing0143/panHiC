@@ -25,7 +25,7 @@ date
 EOF
 }
 
-for name in $(cat HCT116.txt);do
+for name in SRR14326389 SRR14326391;do
 	echo "Processing SRR: ${name}"
 	# prefetch -p -X 60GB ${name}
 	echo ${name} > srr.txt

@@ -103,7 +103,7 @@ if [[ "$STAGE" == "juicer" || "$STAGE" == "all" ]]; then
     
     if [ ! -f "./aligned/inter_30.hic" ]; then
         echo "Starting Juicer processing..."
-		eval "/cluster/home/futing/software/juicer_CPU/scripts/juicer.sh \
+		eval "/cluster/home/futing/software/juicer_CPU/scripts/juicer2.sh \
 			-D /cluster/home/futing/software/juicer_CPU/ \
 			-d \"$dir\" -g hg38 -t 20 \
 			$juicerstage \

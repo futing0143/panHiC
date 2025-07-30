@@ -27,14 +27,15 @@ date
 EOF
 }
 
-for name in $(cat "srr.txt");do
+for name in $(cat "undone.txt");do
     source activate RNA
 	echo "Processing SRR: ${name}"
-	echo $name > tmp
-	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 20M
+	echo $name > tmpp2
+	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmpp2 ./ 20M
 	if [ -s ${name} ];then
 	# prefetch -p -X 60GB ${name}
 		jid=$(submit_job "${name}")
+		echo $jid >> dumpnum.txt
 	fi
 done
 
