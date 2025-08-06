@@ -31,10 +31,10 @@ for name in $(cat "srr.txt");do
     source activate RNA
 	echo "Processing SRR: ${name}"
 	echo $name > tmp
-	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 20M
-	if [ -s ${name} ];then
-	# prefetch -p -X 60GB ${name}
-		jid=$(submit_job "${name}")
-	fi
+	/cluster/home/futing/pipeline/Ascp/ascp.sh tmp ./ 20M
+	# if [ -s ${name} ];then
+	# # prefetch -p -X 60GB ${name}
+	# 	jid=$(submit_job "${name}")
+	# fi
 done
 

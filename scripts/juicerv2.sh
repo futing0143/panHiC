@@ -75,11 +75,13 @@ if [[ "$STAGE" != "juicer" && "$STAGE" != "post" && "$STAGE" != "all" ]]; then
 fi
 
 # 主执行逻辑
+OS_INFO=$(uname -a)
 echo "开始执行脚本..."
 echo "Stage: $STAGE"
 echo "Directory: $dir"
 echo "Enzyme: $enzyme"
 echo "Juicer stage: $juicerstage"
+echo "系统信息: $OS_INFO"
 echo ""
 
 
@@ -159,7 +161,7 @@ if [[ "$STAGE" == "post" || "$STAGE" == "all" ]]; then
     echo "Enzyme: $enzyme"
 
 	# define sbatch parameters
-	queue="gpu"
+	queue="normal"
 	queue_time="5780"
 	debugdir="${dir}/debug"
 	submit_job() {
@@ -170,7 +172,8 @@ if [[ "$STAGE" == "post" || "$STAGE" == "all" ]]; then
 	#SBATCH -p $queue
 	#SBATCH -t $queue_time
 	#SBATCH --mem=32G
-	#SBATCH --cpus-per-task=10
+	#SBATCH --cpus-per-task=4
+	#SBATCH --nodelist=node1
 	#SBATCH --output=$debugdir/$name-%j.log
 	#SBATCH -J "${name}"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly WKDIR="/cluster2/home/futing/Project/panCancer/PRAD"
+readonly WKDIR="/cluster2/home/futing/Project/panCancer/NSCLC/GSE179184"
 cd "${WKDIR}" || exit 1
 source activate RNA
 
@@ -15,7 +15,7 @@ parallel_execute() {
         return 1
     }
     
-    local log_file="${log_dir}/${name}-$(date +%Y%m%d_%H%M%S).log"
+    local log_file="${log_dir}/${name}-$(date +%Y%m%d).log"
     
     # 使用代码块统一重定向
     {
@@ -35,4 +35,4 @@ readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/dumperr.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/dump.txt"

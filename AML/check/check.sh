@@ -1,7 +1,7 @@
 #!/bin/bash
-
+cancer=AML
 # 检查post部分的输出
-output_file=/cluster2/home/futing/Project/panCancer/CRC/check/check_July07.txt
+output_file=/cluster2/home/futing/Project/panCancer/${cancer}/check/check_Aug06.txt
 >${output_file}
 check_file() {
 	local file="$1"
@@ -20,9 +20,9 @@ check_file() {
 	fi
 }
 
-IFS=$','
+IFS=$' '
 while read -r gse cell other;do
-	dir=/cluster2/home/futing/Project/panCancer/CRC/${gse}/${cell}
+	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
 	check_file ${dir}/aligned/inter_30.hic
 	check_file ${dir}/cool/${cell}.mcool
 	# check_file ${dir}/splits/*.fastq.gz.sam
@@ -35,19 +35,9 @@ while read -r gse cell other;do
 	check_file $dir/anno/stripecaller/${cell}.bed
 	check_file $dir/anno/stripenn/result_filtered.tsv
 	check_file $dir/anno/insul/${cell}_5000.tsv
-done < "/cluster2/home/futing/Project/panCancer/CRC/meta/CRC_meta.txt"
+done < "/cluster2/home/futing/Project/panCancer/${cancer}/meta/${cancer}_meta.txt"
 
-# 移动错误的 stripecaller 命名
-# IFS=$','
-# while read -r gse cell other;do
-# 	file=/cluster2/home/futing/Project/panCancer/CRC/${gse}/${cell}/anno/stripecaller
-# 	if [ -s $file ];then
-		
-# 		mv $file ${file}.bed
-# 		mkdir 
-# 		mv ${file}.bed ${file}/${cell}.bed
-# 	fi
-# done < "/cluster2/home/futing/Project/panCancer/CRC/meta/CRC_meta.txt"
+
 
 
 

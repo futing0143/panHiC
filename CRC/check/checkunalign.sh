@@ -10,7 +10,7 @@ check_file() {
     fi
 }
 
-output_file=/cluster2/home/futing/Project/panCancer/CRC/check/CRC_align0712.txt
+output_file=/cluster2/home/futing/Project/panCancer/CRC/check/CRC_align0804.txt
 filelist=/cluster2/home/futing/Project/panCancer/CRC/meta/CRC_meta.txt
 >${output_file}
 # IFS=$','

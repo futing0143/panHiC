@@ -48,4 +48,4 @@ readonly PARALLEL_JOBS=6
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} '${WKDIR}'" :::: "${WKDIR}/check/check_July28.txt"
+    "parallel_execute {1} {2} {3} '${WKDIR}'" :::: "${WKDIR}/check/check_Oct02.txt"

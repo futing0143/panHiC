@@ -1,0 +1,1 @@
+"https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE148079&format=file&file=GSE148079%5FTumor%5FT5%5FHiC%2Emcool" -o 

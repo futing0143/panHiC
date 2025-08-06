@@ -6,7 +6,7 @@ enzyme=$3
 juicerstage=${4:-""}  # 新增参数，默认值为空
 
 # 全局变量
-queue="gpu"
+queue="normal"
 queue_time="5780"
 debugdir="/cluster2/home/futing/Project/panCancer/PRAD/$gse/$cell/debug"
 mkdir -p "$debugdir"
@@ -19,8 +19,8 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
 #SBATCH -t $queue_time
-#SBATCH --nodelist=node3
-#SBATCH --cpus-per-task=20
+#SBATCH --nodelist=node5
+#SBATCH --cpus-per-task=10
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
 

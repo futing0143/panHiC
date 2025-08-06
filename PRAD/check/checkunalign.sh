@@ -10,7 +10,7 @@ check_file() {
     fi
 }
 cancer=PRAD
-output_file=/cluster2/home/futing/Project/panCancer/${cancer}/check/${cancer}_align0725.txt
+output_file=/cluster2/home/futing/Project/panCancer/${cancer}/check/${cancer}_align0806.txt
 filelist=/cluster2/home/futing/Project/panCancer/${cancer}/meta/${cancer}_meta.txt
 >${output_file}
 

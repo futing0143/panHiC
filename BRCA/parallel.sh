@@ -1,51 +1,38 @@
 #!/bin/bash
 
-readonly WKDIR="/cluster2/home/futing/Project/panCancer/CRC"
+readonly WKDIR="/cluster2/home/futing/Project/panCancer/BRCA/GSE167150/Norm_patient4"
 cd "${WKDIR}" || exit 1
-source activate HiC
+source activate RNA
 
 # 定义并行执行函数
 parallel_execute() {
-    local gse="$1"
-    local cell="$2"
-    local tools="$3"
-    local wkdir="$4"  # 显式传递的工作目录
+    local name="$1"
     
     # 确保日志目录存在
-    local log_dir="${wkdir}/${gse}/${cell}/debug"
+    local log_dir="${WKDIR}/debug"
     mkdir -p "${log_dir}" || {
         echo "Error: Failed to create log directory ${log_dir}" >&2
         return 1
     }
     
-    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d).log"
+    local log_file="${log_dir}/${name}-$(date +%Y%m%d_%H%M%S).log"
     
     # 使用代码块统一重定向
     {
         echo "Starting ${cell} at $(date)"
-        
-        case "${tools}" in
-            "cooltools")
-                sh "/cluster2/home/futing/Project/panCancer/scripts/dots_single.sh" \
-                    "${wkdir}/${gse}/${cell}"
-                ;;
-            "fithic")
-                echo "Skipping fithic by design"
-                ;;
-            *)
-                sh "/cluster2/home/futing/Project/panCancer/scripts/${tools}_single.sh" \
-                    "${wkdir}/${gse}/${cell}"
-                ;;
-        esac
-        
+		source activate RNA
+        export TMPDIR=${WKDIR}/debug
+		echo -e "parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip"
+		parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip
+
         echo "Finished ${cell} at $(date)"
     } >> "${log_file}" 2>&1
 }
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=6
+readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} '${WKDIR}'" :::: "${WKDIR}/check/check_July07.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/dumperr0711.txt"

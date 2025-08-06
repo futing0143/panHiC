@@ -3,7 +3,7 @@
 
 cancer=GC
 # 检查post部分的输出
-output_file=/cluster2/home/futing/Project/panCancer/${cancer}/check/check_July28.txt
+output_file=/cluster2/home/futing/Project/panCancer/${cancer}/check/check_Oct02.txt
 >${output_file}
 check_file() {
 	local file="$1"

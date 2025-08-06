@@ -10,7 +10,7 @@ check_file() {
     fi
 }
 cancer=GC
-output_file=/cluster2/home/futing/Project/panCancer/${cancer}/check/${cancer}_align0728.txt
+output_file=/cluster2/home/futing/Project/panCancer/${cancer}/check/${cancer}_align0802.txt
 filelist=/cluster2/home/futing/Project/panCancer/${cancer}/meta/${cancer}_meta.txt
 >${output_file}
 
