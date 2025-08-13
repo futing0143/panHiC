@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -p normal
 #SBATCH -t 8000
-#SBATCH --cpus-per-task=15
+#SBATCH --cpus-per-task=20
 #SBATCH --nodelist=node1
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/new/dump-%j.log
 #SBATCH -J "dump"
@@ -42,6 +42,6 @@ readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/01unline.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/01unline0812.txt"
 
 date

@@ -1,0 +1,2 @@
+SRR15654688
+wget -c "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=gse166570&targ=self&view=brief&form=text" -O GSE166570
