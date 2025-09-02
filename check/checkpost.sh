@@ -48,3 +48,14 @@ while read -r cancer gse cell other;do
 		# check_file $dir/anno/insul/${cell}_5000.tsv
 	# fi
 done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone08${d}.txt"
+
+# !!! 下载完了，没跑
+grep -F -w -v -f ./download/err_dir${d}.txt ./aligned/unrun${d}.txt
+# 没下载,没跑
+grep -F -f ./download/err_dir${d}.txt ./aligned/unrun${d}.txt
+# 没下载完，跑了 aligned
+grep -F -f aligned/aligndone${d}.txt ./download/err_dir${d}.txt
+grep -v -w -F -f ./aligned/unrun${d}.txt ./download/err_dir${d}.txt
+# !!! 下载完了，aligned，但没有hic
+grep -F -w -v -f ./download/err_dir${d}.txt <(cut -f1-3 ./post/unpost_${d}.txt)
+# 

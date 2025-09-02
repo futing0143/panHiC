@@ -3,10 +3,10 @@
 
 cd /cluster2/home/futing/Project/panCancer/check
 
-grep 'Processing ' sam2bam-11659.log \
+grep 'Processing ' sam2bam-10993.log \
    | sed 's/Processing //g' \
    | sed 's/\.\.\.//g' \
-   | awk 'BEGIN{OFS="\t";FS="/"}{print $1,$2,$3}' > sam2bam_done0829.txt
+   | awk 'BEGIN{OFS="\t";FS="/"}{print $1,$2,$3}' >> sam2bam_done0829.txt
 
 # grep -w -v -F -f sam2bam_done0827.txt ./hic/hicdone0827.txt > sam2bam_0827.txt
 

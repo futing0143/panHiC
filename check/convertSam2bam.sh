@@ -37,4 +37,4 @@ while read -r cancer gse cell;do
 		# 输出转换后的BAM文件路径
 		echo "Created BAM file: $bam_path"
 	done
-done < '/cluster2/home/futing/Project/panCancer/check/sam2bam_0827.txt'
+done < '/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_0831.txt'
