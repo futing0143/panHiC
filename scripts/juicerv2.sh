@@ -97,7 +97,7 @@ rename .R1 _R1 *fastq.gz
 rename .R2 _R2 *fastq.gz  
 
 mv *.fastq.gz ./fastq
-source activate juicer
+source activate /cluster/home/futing/miniforge-pypy3/envs/juicer
 
 # ------ Step 1: Run Juicer ------
 if [[ "$STAGE" == "juicer" || "$STAGE" == "all" ]]; then
@@ -125,7 +125,7 @@ if [[ "$STAGE" == "juicer" || "$STAGE" == "all" ]]; then
     
     if [ ! -f "./cool/${cell}.mcool" ]; then
         echo "Starting HiC to cool conversion..."
-        source activate HiC
+        source activate /cluster/home/futing/miniforge-pypy3/envs/HiC
         hicConvertFormat -m ./aligned/inter_30.hic \
             --inputFormat hic --outputFormat cool \
             -o ./cool/"${cell}".mcool

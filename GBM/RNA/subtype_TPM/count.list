@@ -1,0 +1,13 @@
+/cluster/home/tmp/GBM/RNA/20240830/result/expected_count/iPSC/gene-expected_count-matrix.txt	iPSC
+/cluster/home/tmp/GBM/RNA/20240830/result/expected_count/NHA/gene-expected_count-matrix.txt	NHA
+/cluster/home/tmp/GBM/RNA/20240830/result/expected_count/42MGBA/gene-expected_count-matrix.txt	X42MGBA
+/cluster/home/tmp/GBM/RNA/20240830/result/expected_count/H4/gene-expected_count-matrix.txt	H4
+/cluster/home/tmp/GBM/RNA/20240830/result/expected_count/SW1088/gene-expected_count-matrix.txt	SW1088
+/cluster/home/tmp/GBM/RNA/20240830/result/expected_count/U118/gene-expected_count-matrix.txt	U118
+/cluster/home/tmp/GBM/RNA/20240830/result/expected_count/U87/gene-expected_count-matrix.txt	U87
+/cluster/home/tmp/GBM/RNA/NPC/TPM-gene-count-matrix_NPC.txt	NPC
+/cluster/home/tmp/GBM/RNA/pHGG/gene-count-matrix.txt	pHGG
+/cluster/home/tmp/EGA/19to38/gene-count-EGA100.txt	EGA
+/cluster/home/tmp/GBM/RNA/GSE229965_all_GSCs_RNAcounts.txt	GSC28
+/cluster/home/tmp/GBM/RNA/U343/gene-count-matrix.txt	U343
+/cluster/home/tmp/GBM/RNA/A172/gene-count-matrix.txt	A172

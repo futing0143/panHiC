@@ -1,0 +1,16 @@
+list_csv=""
+list_name="gene"
+for i in ./rsem_out/*genes.results
+do
+	list_csv=${list_csv}"	"${i}
+	i_name1=${i#*/}
+	# i_name2=${i_name1#*/}
+	i_name2=$(basename "$i" .genes.results) #原始的是带有.genes.results的
+
+	list_name=${list_name}"	"${i_name2}
+	#echo ${list_name}
+done
+echo $list_name > ./gene-count-matrix.txt
+
+#python ./rsem-count-extract.py ${list_csv}
+python ./rsem-count-extract.py ${list_csv} >> ./gene-count-matrix.txt

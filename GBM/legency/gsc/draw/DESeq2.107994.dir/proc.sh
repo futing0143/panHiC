@@ -1,0 +1,2 @@
+##若是使用DESeq2做的差异表达分析，则该文件中的第1，7，11列是我们需要的。若是使用edgeR做的差异表达分析，则该文件中的第4，7列是我们需要的。
+sed '1d' meta_match_count.txt.DGC_vs_GSC.DESeq2.DE_results | awk 'sqrt($7*$7) > 1 && $11 < 0.05 {print $1"\t"$7"\t"$11}' | sort -k 2n > meta_match_count.txt.DGC_vs_GSC.DESeq2.DE_results1 

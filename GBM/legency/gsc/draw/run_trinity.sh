@@ -1,0 +1,1 @@
+perl /cluster/home/jialu/biosoft/trinityrnaseq-master/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /cluster/home/jialu/GBM/gsc/draw/meta_match_count.txt --method DESeq2 --samples_file /cluster/home/jialu/GBM/gsc/draw/sample_match.txt 

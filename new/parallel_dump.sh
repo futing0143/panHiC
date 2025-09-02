@@ -9,7 +9,7 @@
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/new"
 cd "${WKDIR}" || exit 1
-source activate RNA
+source activate /cluster2/home/futing/miniforge3/envs/RNA
 
 # 定义并行执行函数
 parallel_execute() {
@@ -42,6 +42,6 @@ readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/01unline0812.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/01undump.txt"
 
 date

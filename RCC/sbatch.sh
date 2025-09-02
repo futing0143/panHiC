@@ -6,8 +6,8 @@ enzyme=$3
 juicerstage=${4:-""}  # 新增参数，默认值为空
 cancer=RCC
 # 全局变量
-queue="normal"
-queue_time="8000"
+queue="gpu"
+queue_time="unlimited"
 dir=/cluster2/home/futing/Project/panCancer/${cancer}
 debugdir="$dir/$gse/$cell/debug"
 mkdir -p "$debugdir"
@@ -20,8 +20,8 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
 #SBATCH -t $queue_time
-#SBATCH --cpus-per-task=20
-#SBATCH --nodelist=node1
+#SBATCH --cpus-per-task=10
+#SBATCH --nodelist=node3
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
 
