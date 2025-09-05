@@ -37,6 +37,9 @@ plink2 --vcf $outsnp \
 	--make-pgen \
 	--out CRC53hard
 
+plink2 --vcf /cluster2/home/futing/Project/HiCQTL/merged/CRC53/genotype/CRC53hard/snp.out.anno.vcf.gz \
+	--chr 1-22 \
+	--out /cluster2/home/futing/Project/HiCQTL/merged/CRC53/genotype/CRC53hard/CRC53hard
 # 移除次要等位基因频率(MAF)<5%的SNP，移除缺失率>2%的SNP，移除偏离哈迪-温伯格平衡的SNP，移除样本缺失率>5%的个体
 plink2 \
 	--pfile CRC53hard \

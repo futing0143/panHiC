@@ -7,8 +7,13 @@ covFile='/cluster2/home/futing/Project/HiCQTL/merged/CRC53/covariate/covariate27
 genotypeFile='/cluster2/home/futing/Project/HiCQTL/merged/CRC53/genotype/CRC53hard/snp.out.anno.vcf.gz'
 exprFile='/cluster2/home/futing/Project/HiCQTL/merged/CRC53/phenotype/CRC53_Aug15_index.bed'
 
+genotypeFile='/cluster2/home/futing/Project/HiCQTL/tensorqtl/example/data/test.vcf.gz'
+covFile='/cluster2/home/futing/Project/HiCQTL/tensorqtl/example/data/GEUVADIS.445_samples.covariates.txt'
+exprFile='/cluster2/home/futing/Project/HiCQTL/tensorqtl/example/data/GEUVADIS.445_samples.expression.bed.gz'
+
 path='/cluster2/home/futing/Project/panCancer/ClipperQTL-master/example'
 path='/cluster2/home/futing/Project/HiCQTL/merged/CRC53/'
+path='/cluster2/home/futing/Project/HiCQTL/tensorqtl/example/data/'
 tabixProgram='~/miniforge3/envs/hic/bin/tabix'
 
 # ------ example

@@ -481,15 +481,25 @@ if [ "$first_stage" == "recalibrate_bases" ]; then
 
 		echo "...Recalibrating bases in bam." >&1
 						
-		seq 1 $threads | parallel --will-cite --joblog temp.log "gatk --java-options \"-Xmx10G -XX:+UseParallelGC -XX:ParallelGCThreads=4\" BaseRecalibrator -L split.{}.bed -I reads.sorted.bam -R $reference ${knownSitesArg} ${excludeIntervalsArg} -O recal_data_{}.table"
+		seq 1 $threads | parallel --will-cite --joblog temp.log \
+			"gatk --java-options \"-Xmx10G -XX:+UseParallelGC -XX:ParallelGCThreads=4\" \
+			BaseRecalibrator -L split.{}.bed \
+			-I reads.sorted.bam \
+			-R $reference \
+			${knownSitesArg} ${excludeIntervalsArg} -O recal_data_{}.table"
 		exitval=`awk 'NR>1{if($7!=0){c=1; exit}}END{print c+0}' temp.log`
 		
 		[ $exitval -eq 0 ] || { echo ":( Pipeline failed at gatk BaseRecalibator. See err stream for more info. Exiting! " | tee -a /dev/stderr && exit 1; }
 		
-		seq 1 $threads | parallel --will-cite --joblog temp.log "gatk ApplyBQSR --java-options \"-Xmx4G -Xmx4G -XX:+UseParallelGC -XX:ParallelGCThreads=4\" -R $reference \
+		seq 1 $threads | parallel --will-cite --joblog temp.log \
+			"gatk ApplyBQSR --java-options \"-Xmx4G -Xmx4G -XX:+UseParallelGC -XX:ParallelGCThreads=4\" \
+			-R $reference \
 			-I reads.sorted.bam --bqsr-recal-file recal_data_{}.table \
-			-L split.{}.bed --static-quantized-quals 10 \
-			--static-quantized-quals 20 --static-quantized-quals 30 -O reads.prepped_{}.bam"
+			-L split.{}.bed \
+			--static-quantized-quals 10 \
+			--static-quantized-quals 20 \
+			--static-quantized-quals 30 \
+			-O reads.prepped_{}.bam"
 		exitval=`awk 'NR>1{if($7!=0){c=1; exit}}END{print c+0}' temp.log`
 		
 		[ $exitval -eq 0 ] || { echo ":( Pipeline failed at gatk ApplyBQSR. See err stream for more info. Exiting! " | tee -a /dev/stderr && exit 1; }
@@ -520,10 +530,14 @@ if [ "$first_stage" == "genotype" ]; then
 
 	echo "...Calling haplotypes." >&1
 	echo "...$excludeIntervalsArg." >&1
-	seq 1 $threads | parallel --will-cite --joblog temp.log "gatk  --java-options \"-Xmx4G -XX:+UseParallelGC -XX:ParallelGCThreads=1\" HaplotypeCaller \
-		-R $reference -I reads.prepped_{}.bam -O raw_{}.vcf -L split.{}.bed \
+	seq 1 $threads | parallel --will-cite --joblog temp.log \
+		"gatk --java-options \"-Xmx4G -XX:+UseParallelGC -XX:ParallelGCThreads=1\" \
+		HaplotypeCaller \
+		-R $reference -I reads.prepped_{}.bam \
+		-O raw_{}.vcf -L split.{}.bed \
 		--dont-use-soft-clipped-bases true -pairHMM FASTEST_AVAILABLE \
-		--native-pair-hmm-threads 8 $excludeIntervalsArg \
+		--native-pair-hmm-threads 8 \
+		$excludeIntervalsArg \
 		--dbsnp $vcfDbsnp \
 		--disable-read-filter MappingQualityReadFilter --smith-waterman FASTEST_AVAILABLE --min-base-quality-score $mbq"
 	exitval=`awk 'NR>1{if($7!=0){c=1; exit}}END{print c+0}' temp.log`
