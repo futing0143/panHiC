@@ -3,12 +3,12 @@
 bam=$1  ## 样本ID
 outdir=$(dirname ${bam})
 sample=$(basename ${outdir})
-source activate /cluster/home/futing/miniforge-pypy3/envs/HiC.
+source activate /cluster/home/futing/miniforge-pypy3/envs/HiC
 cd $outdir
 # 一些软件和工具的路径, 根据实际
-trimmomatic=~/miniforge-pypy3/envs/HiC/bin/trimmomatic
-bwa=~/miniforge-pypy3/envs/HiC/bin/bwa
-samtools=~/miniforge-pypy3/envs/HiC/bin/samtools
+trimmomatic=/cluster/home/futing/miniforge-pypy3/envs/HiC/bin/trimmomatic
+bwa=/cluster/home/futing/miniforge-pypy3/envs/HiC/bin/bwa
+samtools=/cluster/home/futing/miniforge-pypy3/envs/HiC/bin/samtools
 gatk=/cluster/home/futing/software/gatk-4.6.2.0/gatk
 mapq=10
 threads=`parallel --number-of-cores`
@@ -41,6 +41,7 @@ if [ ! -f $outdir/bwa/${sample}.sorted.markdup.bam ];then
 fi
 
 if [ ! -f $outdir/bwa/${sample}.sorted.markdup.bam.bai ];then
+	echo -e "$(date) Indexing $outdir/bwa/${sample}.sorted.markdup.bam" >&1
 	time ${samtools} index \
 		${outdir}/bwa/${sample}.sorted.markdup.bam && echo "** ${sample}.sorted.markdup.bam.bai done **"
 fi
