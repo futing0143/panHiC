@@ -91,4 +91,4 @@ done < "${wkdir}/srr.txt"
 # EOF
 date
 
-sh /cluster2/home/futing/Project/panCancer/MCL/sbatch.sh GSE147123 Granta MboI
+sh /cluster2/home/futing/Project/panCancer/MCL/sbatch.sh GSE147123 Granta MboI "-S merge"

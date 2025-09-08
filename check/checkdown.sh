@@ -1,9 +1,10 @@
 #!/bin/bash
 set -euo pipefail
+d=$1
 
 checklist=/cluster2/home/futing/Project/panCancer/check/done_meta.txt
 input=/cluster2/home/futing/Project/panCancer/new/meta/undone_down_sim.txt # 四列的输入文件
-err_file="/cluster2/home/futing/Project/panCancer/check/download/err_dir0901.txt"
+err_file="/cluster2/home/futing/Project/panCancer/check/download/err_dir${d}.txt"
 > "$err_file"
 
 # 逐组处理 cancer gse cell

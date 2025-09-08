@@ -1,11 +1,11 @@
 #!/bin/bash
 d=$1
 # 检查post部分的输出
-output_file=/cluster2/home/futing/Project/panCancer/check/post/unpost_Aug${d}.txt
+output_file=/cluster2/home/futing/Project/panCancer/check/post/unpost_${d}.txt
 >${output_file}
-# unrun_file=/cluster2/home/futing/Project/panCancer/check/unrunpost08${d}.txt
+# unrun_file=/cluster2/home/futing/Project/panCancer/check/unrunpost${d}.txt
 # >${unrun_file}
-hic_file=/cluster2/home/futing/Project/panCancer/check/hic/hicdone08${d}.txt
+hic_file=/cluster2/home/futing/Project/panCancer/check/hic/hicdone${d}.txt
 >${hic_file}
 
 check_file() {
@@ -47,7 +47,7 @@ while read -r cancer gse cell other;do
 		# check_file $dir/anno/stripenn/result_filtered.tsv
 		# check_file $dir/anno/insul/${cell}_5000.tsv
 	# fi
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone08${d}.txt"
+done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt"
 
 # !!! 下载完了，没跑
 grep -F -w -v -f ./download/err_dir${d}.txt ./aligned/unrun${d}.txt
