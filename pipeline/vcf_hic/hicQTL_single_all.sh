@@ -42,4 +42,4 @@ $juicer -r ${fasta} \
 	-t 20 \
 	${cell}.sorted.bam
 	
-	# 
+	# 	--from-stage 'recalibrate_variants' \
