@@ -5,7 +5,8 @@
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2/bwa-%j.log
 #SBATCH -J "HepG2"
 
-cd /cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2
+wkdir=/cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2
+cd ${wkdir}
 mkdir -p ./{fastq,cool,anno,splits,HiC_tmp}
 rename _1 _R1 *fastq.gz
 rename _2 _R2 *fastq.gz
@@ -13,31 +14,31 @@ rename .R1 _R1 *fastq.gz
 rename .R2 _R2 *fastq.gz  
 mv *.fastq.gz ./fastq
 source activate juicer
-ln -s /cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2/fastq/* /cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2/splits
+ln -s ${wkdir}/fastq/* ${wkdir}/splits
 
 cd splits
 threadstring="-t 20"
-refSeq=/cluster/home/futing/software/juicer_CPU/references/hg38.fa
-juiceDir=/cluster/home/futing/software/juicer_CPU
+refSeq=/cluster2/home/futing/software/juicer_CPU/references/hg38.fa
+juiceDir=/cluster2/home/futing/software/juicer_CPU
 ext=".fastq.gz"
 ligation="AAGCTAGCTT"
 site="HindIII"
 site_file="${juiceDir}/restriction_sites/hg38_${site}.txt"
 usegzip=1
-tmpdir=/cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2/HiC_tmp
+tmpdir=${wkdir}/HiC_tmp
 # 01
-# while read -r name;do
-# 	name1=${name}_R1
-# 	name2=${name}_R2
-# 	source /cluster/home/futing/software/juicer_CPU/scripts/common/countligations.sh
-# 	echo "Running: bwa mem -SP5M $threadstring $refSeq $name1$ext $name2$ext > $name$ext.sam"
-# 	bwa mem -SP5M $threadstring $refSeq $name1$ext $name2$ext > "$name$ext.sam"
-# done < '/cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2/srr.txt'
+while read -r name;do
+	name1=${name}_R1
+	name2=${name}_R2
+	source /cluster2/home/futing/software/juicer_CPU/scripts/common/countligations.sh
+	echo "Running: bwa mem -SP5M $threadstring $refSeq $name1$ext $name2$ext > $name$ext.sam"
+	bwa mem -SP5M $threadstring $refSeq $name1$ext $name2$ext > "$name$ext.sam"
+done < "${wkdir}/srr.txt"
 # 02
 # name=SRR3586204
 # name1=${name}_R1
 # name2=${name}_R2
-# source /cluster/home/futing/software/juicer_CPU/scripts/common/countligations_single.sh
+# source /cluster2/home/futing/software/juicer_CPU/scripts/common/countligations_single.sh
 # echo "bwa mem -SP5M $threadstring $refSeq $name$ext > $name$ext.sam"
 # bwa mem -SP5M $threadstring $refSeq $name$ext > $name$ext.sam
 
@@ -76,4 +77,6 @@ while read -r name;do
     else
         rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
     fi
-done < '/cluster2/home/futing/Project/panCancer/HCC/GSE59395/HepG2/srr.txt'
+done < "${wkdir}/srr.txt"
+
+sh /cluster2/home/futing/Project/panCancer/HCC/sbatch.sh GSE59395 HepG2 HindIII "-S merge"

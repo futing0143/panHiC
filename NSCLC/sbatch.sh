@@ -7,7 +7,7 @@ juicerstage=${4:-""}  # 新增参数，默认值为空
 
 # 全局变量
 queue="normal"
-queue_time="8000"
+# queue_time="8000"
 dir=/cluster2/home/futing/Project/panCancer/NSCLC
 debugdir="$dir/$gse/$cell/debug"
 mkdir -p "$debugdir"
@@ -19,11 +19,11 @@ submit_job() {
 sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
-#SBATCH -t $queue_time
 #SBATCH --cpus-per-task=15
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
-
+ulimit -s unlimited
+ulimit -l unlimited
 
 
 date

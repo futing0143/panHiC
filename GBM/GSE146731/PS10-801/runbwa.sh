@@ -2,7 +2,7 @@
 #SBATCH -p gpu
 #SBATCH -t "5780"
 #SBATCH --cpus-per-task=10
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/GBM/GSE146731/PS10-801/countligation-%j.log
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/GBM/GSE146731/PS10-801/PS10-801-%j.log
 #SBATCH -J "PS10-801"
 
 cd /cluster2/home/futing/Project/panCancer/GBM/GSE146731/PS10-801

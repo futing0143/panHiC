@@ -15,13 +15,10 @@ check_file() {
 	cell=$(awk -F '/' '{print $9}' <<< ${dir})
 	gse=$(awk -F '/' '{print $8}' <<< ${dir})
 	cancer=$(awk -F '/' '{print $7}' <<< ${dir})
-	if [ ! -e "$file" ]; then
-		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$output_file"
-	# 检查文件是否为空
-	elif [ ! -s "$file" ]; then
+	if [ ! -e "$file" ] || [ ! -s "$file" ]; then
 		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$output_file"
 	else
-		echo -e "${cancer}\t$gse\t$cell" >> "$hic_file"
+		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$hic_file"
 
 	fi
 }
@@ -35,27 +32,41 @@ while read -r cancer gse cell other;do
 	# 	echo -e "${cancer}\t${gse}\t${cell}" >> "$unrun_file"
 	# else
 		check_file ${dir}/aligned/inter_30.hic
-		# check_file ${dir}/cool/${cell}.mcool
-		# # check_file ${dir}/splits/*.fastq.gz.sam
-		# check_file ${dir}/cool/${cell}_2700000.cool
-		# check_file $dir/anno/cooltools/dots.5000.tsv
-		# check_file $dir/anno/fithic/outputs/5000/${cell}.intraOnly/${cell}.fithic.bed
-		# check_file $dir/anno/mustache/${cell}_5kb_mustache.bedpe
-		# check_file $dir/anno/OnTAD/${cell}_50000.bed
-		# check_file $dir/anno/peakachu/${cell}-peakachu-5kb-loops.0.95.bedpe
-		# check_file $dir/anno/stripecaller/${cell}.bed
-		# check_file $dir/anno/stripenn/result_filtered.tsv
-		# check_file $dir/anno/insul/${cell}_5000.tsv
+		check_file ${dir}/cool/${cell}.mcool
+		# check_file ${dir}/splits/*.fastq.gz.sam
+		check_file ${dir}/cool/${cell}_2500000.cool
+		check_file $dir/anno/cooltools/dots.5000.tsv
+		check_file $dir/anno/fithic/outputs/5000/${cell}.intraOnly/${cell}.fithic.bed
+		check_file $dir/anno/mustache/${cell}_5kb_mustache.bedpe
+		check_file $dir/anno/OnTAD/${cell}_50000.bed
+		check_file $dir/anno/peakachu/${cell}-peakachu-5kb-loops.0.95.bedpe
+		check_file $dir/anno/stripecaller/${cell}.bed
+		check_file $dir/anno/stripenn/result_filtered.tsv
+		check_file $dir/anno/insul/${cell}_5000.tsv
 	# fi
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt"
+done < "/cluster2/home/futing/Project/panCancer/check/aligned/realalign${d}.txt"
 
-# !!! 下载完了，没跑
+: << 'EOF'
+# p1 下载完了，没跑
 grep -F -w -v -f ./download/err_dir${d}.txt ./aligned/unrun${d}.txt
-# 没下载,没跑
+
+# p2.1 没下载,没跑
 grep -F -f ./download/err_dir${d}.txt ./aligned/unrun${d}.txt
-# 没下载完，跑了 aligned
+# p2.2 没下载，跑了一半
 grep -F -f aligned/aligndone${d}.txt ./download/err_dir${d}.txt
-grep -v -w -F -f ./aligned/unrun${d}.txt ./download/err_dir${d}.txt
-# !!! 下载完了，aligned，但没有hic
-grep -F -w -v -f ./download/err_dir${d}.txt <(cut -f1-3 ./post/unpost_${d}.txt)
-# 
+# grep -v -w -F -f ./aligned/unrun${d}.txt ./download/err_dir${d}.txt
+
+# p2.1 下载完了 aligned有问题
+vim ./aligned/unalign${d}.txt
+
+# p2.2 下载完了，aligned，但没有hic
+# ! 从aligndone + 没有 hic 中去掉没下载的，需要挂final任务
+grep -F -w -v -f <(grep 'inter_30.hic' ./hic/hicdone${d}.txt | cut -f1-3) ./aligned/realalign${d}.txt > ./hic/hicundone${d}.txt
+
+
+
+# p3.1 从 hicdone 中去掉没下载的，找到没cool的
+
+grep -F -f <(grep '.mcool' ./post/unpost_${d}.txt | cut -f1-3) <(grep 'inter_30.hic' ./hic/hicdone${d}.txt | cut -f1-3)
+
+EOF

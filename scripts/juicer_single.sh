@@ -103,12 +103,12 @@ if [[ "$STAGE" == "juicer" || "$STAGE" == "all" ]]; then
     
     if [ ! -f "./aligned/inter_30.hic" ]; then
         echo "Starting Juicer processing..."
-		eval "/cluster/home/futing/software/juicer_CPU/scripts/juicer_single.sh \
-			-D /cluster/home/futing/software/juicer_CPU/ \
+		eval "/cluster2/home/futing/software/juicer_CPU/scripts/juicer_single.sh \
+			-D /cluster2/home/futing/software/juicer_CPU/ \
 			-d \"$dir\" -g hg38 -t 20 \
 			$juicerstage \
-			-p /cluster/home/futing/software/juicer_CPU/restriction_sites/hg38.genome \
-			-z /cluster/home/futing/software/juicer_CPU/references/hg38.fa -s \"$enzyme\""
+			-p /cluster2/home/futing/software/juicer_CPU/restriction_sites/hg38.genome \
+			-z /cluster2/home/futing/software/juicer_CPU/references/hg38.fa -s \"$enzyme\""
         
         if [ $? -ne 0 ]; then
             echo -e "Error: juicer.sh failed to run successfully. Exiting script.\n" >&2

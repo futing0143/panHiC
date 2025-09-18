@@ -9,7 +9,7 @@
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/"
 cd "${WKDIR}" || exit 1
-source activate HiC
+source activate /cluster/home/futing/miniforge-pypy3/envs/HiC
 
 # 定义并行执行函数
 parallel_execute() {
@@ -56,6 +56,6 @@ readonly PARALLEL_JOBS=6
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post_Aug15.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/unpost_0910.txt"
 
 date

@@ -14,7 +14,9 @@ rename .R1 _R1 *fastq.gz
 rename .R2 _R2 *fastq.gz  
 mv *.fastq.gz ./fastq
 source activate juicer
-ln -s ${wkdir}/fastq/* ${wkdir}/splits
+while read -r srr;do
+	ln -s ${wkdir}/fastq/${srr}* ${wkdir}/splits/
+done < "${wkdir}/srr.txt"
 
 cd splits
 threadstring="-t 20"
@@ -78,3 +80,5 @@ while read -r name;do
         rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
     fi
 done < "${wkdir}/srr.txt"
+
+sh /cluster2/home/futing/Project/panCancer/OV/sbatch.sh GSE201878 PEO1 HindIII "-S merge"

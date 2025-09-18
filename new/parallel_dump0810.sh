@@ -42,6 +42,6 @@ readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/01unline0831.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/p0915.txt"
 
 date
