@@ -1,12 +1,4 @@
-library(ggplot2)
-library(magrittr)
-library(RColorBrewer)
-library(knitr)#melt
-library(reshape2)
-library(extrafont)
-library(ggpubr)
-library(gridExtra)
-library(dplyr)
+pacman::p_load(readxl,magrittr,ggplot2,egg,ggpubr,janitor,gridExtra,reshape2,extrafont,RColorBrewer,dplyr,stringr)
 # Import fonts from the system
 font_import()
 loadfonts()

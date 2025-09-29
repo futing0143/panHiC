@@ -3,7 +3,7 @@
 gse=$1
 cell=$2
 enzyme=$3
-juicerstage=${4:-""}  # 新增参数，默认值为空
+juicerstage=${4:-""}  
 cancer=CESC
 # 全局变量
 queue="gpu"

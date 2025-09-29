@@ -83,4 +83,4 @@ while read -r name;do
     fi
 done < "${wkdir}/srr.txt"
 
-sh /cluster2/home/futing/Project/panCancer/BLCA/sbatch.sh GSE90003 U2OS DpnII "-S merge"
+sh /cluster2/home/futing/Project/panCancer/OS/sbatch.sh GSE90003 U2OS DpnII "-S merge"

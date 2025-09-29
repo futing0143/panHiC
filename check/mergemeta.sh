@@ -16,3 +16,15 @@ for cancer in CML CRC BRCA GC MB TALL AML PRAD NSCLC; do
 done
 
 cat cancer_meta.txt done_meta.txt | sort -u > panCan_meta.txt
+
+
+outputmeta=/cluster2/home/futing/Project/panCancer/check/hic/insul0918.txt
+awk -F',' 'BEGIN{FS=OFS="\t"}{
+    count[$3]++
+    if (count[$3]==1) {
+        uniq=$3
+    } else {
+        uniq=$3"_"count[$3]
+    }
+    print $0,uniq
+}' ${outputmeta} > tmp && mv tmp ${outputmeta}

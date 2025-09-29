@@ -1,10 +1,11 @@
 #!/bin/bash
 #SBATCH -p gpu
-#SBATCH -t 8000
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=24
 #SBATCH --nodelist=node3
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/check/post_parallel-%j.log
 #SBATCH -J "insul"
+ulimit -s unlimited
+ulimit -l unlimited
 
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/"
@@ -31,9 +32,10 @@ parallel_execute() {
     {
         echo "Starting ${cell} at $(date)"
         
-		sh "/cluster2/home/futing/Project/panCancer/scripts/insul_single.sh" \
-			"${wkdir}/${cancer}/${gse}/${cell}" 50000 800000
-
+		# sh "/cluster2/home/futing/Project/panCancer/scripts/insul_single.sh" \
+		# 	"${wkdir}/${cancer}/${gse}/${cell}" 50000 800000
+		sh "/cluster2/home/futing/Project/panCancer/scripts/fithic_single.sh" \
+			"${wkdir}/${cancer}/${gse}/${cell}" 10000
         echo "Finished ${cell} at $(date)"
     } >> "${log_file}" 2>&1
 }

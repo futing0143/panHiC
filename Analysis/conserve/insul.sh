@@ -6,7 +6,7 @@ output="cancer_327.bed"
 >$output
 
 # outputmeta="/cluster2/home/futing/Project/panCancer/QC/cancer_meta.txt"
-outputmeta="/cluster2/home/futing/Project/panCancer/check/hic/insul0910.txt"
+outputmeta="/cluster2/home/futing/Project/panCancer/check/hic/insul0918.txt"
 # grep 'insul' /cluster2/home/futing/Project/panCancer/check/hic/hicdone0910.txt | cut -f1-3 \
 # 	> $outputmeta
 
