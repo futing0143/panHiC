@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --cpus-per-task=15
+#SBATCH --cpus-per-task=20
 #SBATCH --output=/cluster2/home/futing/Project/HiCQTL/GVCF-%j.log
 #SBATCH --mem=250G 
 #SBATCH -J "allGVCF"
@@ -34,9 +34,22 @@ cd /cluster2/home/futing/Project/HiCQTL/
 # parallel -j $PARALLEL_JOBS --colsep ' ' --progress --eta \
 #   "parallel_execute {1}" :::: <(tail -n +2 '/cluster2/home/futing/Project/HiCQTL/CRCdone.txt')
 
-cat /cluster2/home/futing/Project/HiCQTL/cell_allp2.txt | while read -r cell;do
-	echo "Processing ${cell}...\n"
-	log_file="$debugdir/debug/${cell}-$(date +%Y%m%d_%H%M%S).log"
-	sh "/cluster2/home/futing/Project/HiCQTL/callSNP.sh" \
-       "/cluster2/home/futing/Project/HiCQTL/CRC_gvcf/${cell}/${cell}.sorted.bam">> "$log_file" 2>&1
-done
+# cat /cluster2/home/futing/Project/HiCQTL/cell_allp2.txt | while read -r cell;do
+# 	echo "Processing ${cell}...\n"
+# 	log_file="$debugdir/debug/${cell}-$(date +%Y%m%d_%H%M%S).log"
+# 	sh "/cluster2/home/futing/Project/HiCQTL/callSNP.sh" \
+#        "/cluster2/home/futing/Project/HiCQTL/CRC_gvcf/${cell}/${cell}.sorted.bam">> "$log_file" 2>&1
+# done
+date
+cell=11-52_Normal
+echo "Processing ${cell}...\n"
+log_file="$debugdir/debug/${cell}-$(date +%Y%m%d_%H%M%S).log"
+sh "/cluster2/home/futing/Project/HiCQTL/pipeline/gvcf_hic/callSNPv2.sh" \
+	"/cluster2/home/futing/Project/HiCQTL/CRC_gvcf/${cell}/${cell}.sorted.bam" "hap" >> "$log_file" 2>&1
+
+date
+cell=12-251_Normal
+echo "Processing ${cell}...\n"
+log_file="$debugdir/debug/${cell}-$(date +%Y%m%d_%H%M%S).log"
+sh "/cluster2/home/futing/Project/HiCQTL/pipeline/gvcf_hic/callSNPv2.sh" \
+	"/cluster2/home/futing/Project/HiCQTL/CRC_gvcf/${cell}/${cell}.sorted.bam" "comgvcf" >> "$log_file" 2>&1

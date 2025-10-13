@@ -10,29 +10,6 @@ source activate /cluster/home/futing/miniforge-pypy3/envs/HiC
 debugdir="/cluster2/home/futing/Project/HiCQTL/CRC_gvcf"
 mkdir -p "$debugdir/debug"
 cd /cluster2/home/futing/Project/HiCQTL/ 
-# 定义并行执行函数
-# parallel_execute() {
-# 	local cell=$1
-    
-#     # 为每个任务创建单独的日志文件
-#     local log_file="$debugdir/debug/${cell}-$(date +%Y%m%d_%H%M%S).log"
-    
-#     echo "Starting $cell at $(date)" > "$log_file"
-#     sh "/cluster2/home/futing/Project/HiCQTL/callSNP.sh" \
-#        "/cluster2/home/futing/Project/HiCQTL/CRC_gvcf/${cell}/${cell}.sorted.bam" >> "$log_file" 2>&1
-#     echo "Finished $cell at $(date)" >> "$log_file"
-# }
-
-# # 导出函数和环境变量以便parallel使用
-# export -f parallel_execute
-# export debugdir
-
-# # 设置并行度
-# PARALLEL_JOBS=3
-
-# # 使用:::传递参数
-# parallel -j $PARALLEL_JOBS --colsep ' ' --progress --eta \
-#   "parallel_execute {1}" :::: <(tail -n +2 '/cluster2/home/futing/Project/HiCQTL/CRCdone.txt')
 
 # cat /cluster2/home/futing/Project/HiCQTL/cell_comGVCF0908.txt | while read -r cell;do
 cat /cluster2/home/futing/Project/HiCQTL/pipeline/gvcf_hic/missing_merge0917.txt | while read -r cell;do

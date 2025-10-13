@@ -5,11 +5,11 @@ source activate /cluster/home/futing/miniforge-pypy3/envs/HiC
 trimmomatic=/cluster/home/futing/miniforge-pypy3/envs/HiC/bin/trimmomatic
 bwa=/cluster/home/futing/miniforge-pypy3/envs/HiC/bin/bwa
 samtools=/cluster/home/futing/miniforge-pypy3/envs/HiC/bin/samtools
-gatk=/cluster2/home/futing/software/gatk-4.6.2.0/gatk
+gatk=/cluster/home/futing/software/gatk-4.6.2.0/gatk
 
 #reference
-reference=/cluster2/home/futing/ref_genome/hg38_gencode/bwa/hg38.fa
-GATK_bundle=/cluster2/home/futing/ref_genome/hg38_gencode/GATK/bundle
+reference=/cluster/home/futing/ref_genome/hg38_gencode/bwa/hg38.fa
+GATK_bundle=/cluster/home/futing/ref_genome/hg38_gencode/GATK/bundle
 
 
 sample=$1
@@ -25,7 +25,7 @@ fi
 # ----- combine vcf
 # 定义染色体列表
 chrom=( chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM )
-
+fixchrom=( chrX chrY )
 # 处理每个染色体的函数
 process_chromosome() {
     local i=$1
@@ -91,7 +91,7 @@ export -f process_chromosome
 export gatk reference outdir outname sample
 
 # 使用 parallel 并行处理所有染色体
-printf "%s\n" "${chrom[@]}" | parallel -j 5 --joblog "$outdir/population/parallel_joblog.txt" process_chromosome {} 
+printf "%s\n" "${fixchrom[@]}" | parallel -j 2 --joblog "$outdir/population/parallel_joblog.txt" process_chromosome {} 
 
 echo "All chromosomes processed successfully!"
 

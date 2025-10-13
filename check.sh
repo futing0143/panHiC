@@ -17,7 +17,7 @@ while read -r cell; do
 	fi
 done < "$sample"
 
-# # 合并出了问题
+# 合并出了问题
 while read -r cell; do
 	tmp_count=`find ${outdir}/${cell}/gatk -maxdepth 1 -name "raw_*.g.vcf.gz" | wc -l`
 	tmp_count2=`find ${outdir}/${cell}/gatk -maxdepth 1 -name "raw_*.g.vcf.gz.tbi" | wc -l`	
@@ -38,6 +38,6 @@ while read -r cell; do
 	tmp_count2=`find ${outdir}/${cell}/gatk -maxdepth 1 -name "raw_*.g.vcf.gz.tbi" | wc -l`
 	
 	if [ ! $tmp_count -eq $tmp_count2 ]; then
-		echo "$cell" >> missing_tbi.txt
+		echo "$cell" >> missing_tbi${d}.txt
 	fi
 done < "$sample"
