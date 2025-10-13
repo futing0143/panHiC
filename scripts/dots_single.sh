@@ -3,7 +3,7 @@ dir=$1
 reso=${2:-5000}
 name=$(awk -F '/' '{print $NF}' <<< ${dir})
 
-source activate HiC
+source activate /cluster2/home/futing/miniforge3/envs/juicer
 mkdir -p $dir/anno/cooltools
 cd $dir/anno/cooltools # /cluster/home/futing/Project/panCancer/CRC/GSE178593/DLD-1
 file=${dir}/cool/${name}_${reso}.cool
@@ -13,7 +13,8 @@ echo -e "\nProcessing $name at $reso using cooltools call dots..."
 if [ -f ./${name}_view_hg38.tsv ];then
     echo "${name}_view_hg38.tsv exists, skip..."
 else
-    ~/miniforge-pypy3/envs/HiC/bin/python /cluster/home/futing/Project/GBM/HiC/10loop/cooltools/view_hg38.py \
+    /cluster2/home/futing/miniforge3/envs/juicer/bin/python \
+		/cluster2/home/futing/Project/panCancer/scripts/view_hg38.py \
         -i ${file} -n $name
 fi
 

@@ -1,11 +1,9 @@
 #!/bin/bash
-#SBATCH -p gpu
-#SBATCH --cpus-per-task=24
-#SBATCH --nodelist=node4
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/check/post_parallel-%j.log
-#SBATCH -J "PC"
-ulimit -s unlimited
-ulimit -l unlimited
+#SBATCH -p normal
+#SBATCH --cpus-per-task=20
+#SBATCH --nodelist=node1
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/check/loops_parallel-%j.log
+#SBATCH -J "loops_parallel"
 
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/"
@@ -33,10 +31,22 @@ parallel_execute() {
     {
         echo "Starting ${cell} at $(date)"
         
-		# sh "/cluster2/home/futing/Project/panCancer/scripts/insul_single.sh" \
-		# 	"${wkdir}/${cancer}/${gse}/${cell}" 50000 800000
-		sh "/cluster2/home/futing/Project/panCancer/scripts/PC_single.sh" \
-			"${wkdir}/${cancer}/${gse}/${cell}"
+        case "${tools}" in
+            "cooltools")
+                sh "/cluster2/home/futing/Project/panCancer/scripts/dots_single.sh" \
+                    "${wkdir}/${cancer}/${gse}/${cell}" 10000
+                ;;
+            "fithic")
+                # echo "Skipping fithic by design"
+				sh "/cluster2/home/futing/Project/panCancer/scripts/fithic_single.sh" \
+                    "${wkdir}/${cancer}/${gse}/${cell}" 10000 "" 0.15
+                ;;
+            *)
+                sh "/cluster2/home/futing/Project/panCancer/scripts/${tools}_single.sh" \
+                    "${wkdir}/${cancer}/${gse}/${cell}" 10000
+                ;;
+        esac
+        
         echo "Finished ${cell} at $(date)"
     } >> "${log_file}" 2>&1
 }
@@ -47,6 +57,6 @@ readonly PARALLEL_JOBS=6
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/PCundone1012.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/loops10k_1012.txt"
 
 date

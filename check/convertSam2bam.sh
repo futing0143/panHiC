@@ -10,7 +10,7 @@ ulimit -l unlimited
 # 定义包含SAM文件的根目录
 source activate /cluster2/home/futing/miniforge3/envs/hic
 # samtools install samtools -y
-d=0926
+d=1011
 convertfile="/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_${d}.txt"
 # grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/hic/hicdone${d}.txt | cut -f1-3 > $convertfile
 
@@ -55,7 +55,7 @@ convert_func() {
         exit 1
     fi
 
-    find "$root_directory" -type f -name "*.sam" -print0 |
+    find "$root_directory" -type f -name "*.fastq.gz.sam" -print0 |
     while IFS= read -r -d '' file; do
         file="${file%$'\r'}"
         bam_path="${file%.sam}.bam"

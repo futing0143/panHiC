@@ -57,6 +57,7 @@ done < "$filelist"
 
 
 # # 找到正确
+: << 'EOF'
 i=SRR11187362
 # splitdir=/cluster2/home/futing/Project/panCancer/AML/GSE165038/U937/splits
 dir=/cluster2/home/futing/Project/panCancer/ALL/GSE145997/ALL_PDX23
@@ -71,9 +72,20 @@ cat ${dir}/srr.txt | while read -r srr;do
 	fi
 done
 
+cat ${dir}/srr.txt | while read -r srr;do
+	splitdir=${dir}/splits
+	wctotal=`cat ${splitdir}/${srr}.fastq.gz_linecount.txt | awk '{sum+=$1}END{print sum/4}'`
+	check2=`cat ${splitdir}/${srr}.fastq.gz_norm.txt.res.txt | awk '{s2+=$2;}END{print s2}'`
+	echo $wctotal
+	echo $check2
+	if [ $wctotal != $check2 ];then
+		echo $srr
+	fi
+done
+
 # wctotal=`zcat ${splitdir}/${i}.fastq.gz_linecount.txt.gz | awk '{sum+=$1}END{print sum/4}'`
 # check2=`zcat ${splitdir}/${i}.fastq.gz_norm.txt.res.txt.gz | awk '{s2+=$2;}END{print s2}'`
 # echo $wctotal
 # echo $check2
-
+EOF
 grep -F -w -v -f ./download/err_dir${d}.txt ./aligned/aligndone${d}.txt > ./aligned/realalign${d}.txt

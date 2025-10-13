@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -p gpu
+#SBATCH -p normal
 #SBATCH -t 8000
 #SBATCH --cpus-per-task=20
-#SBATCH --nodelist=node3
+#SBATCH --nodelist=node1
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/check/post_parallel-%j.log
 #SBATCH -J "post_parallel"
 
@@ -56,6 +56,6 @@ readonly PARALLEL_JOBS=6
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/unpost_0910.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/unpost_1007.txt"
 
 date

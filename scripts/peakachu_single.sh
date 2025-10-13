@@ -17,7 +17,7 @@ if ! [[ "$reso" =~ ^[0-9]+$ ]] || [ "$reso" -le 0 ]; then
     exit 1
 fi
 
-source activate peakachu
+source activate /cluster2/home/futing/miniforge3/envs/peakachu
 coolfile="${dir}/cool/${name}_${reso}.cool"
 
 # 创建输出目录

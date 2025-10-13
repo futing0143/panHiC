@@ -42,3 +42,4 @@ cat ./meta/done0* | cut -f2 | sort -u > ./meta/done_srr0928.txt
 # while read -r a b c; do
 #     grep -P "^$a\t$b\t$c\t" '/cluster2/home/futing/Project/panCancer/new/meta/undone_down_sim.txt'
 # done < '/cluster2/home/futing/Project/panCancer/check/aligned/aligndone0928.txt' > '/cluster2/home/futing/Project/panCancer/new/delete0928.txt'
+grep -w -v -F -f /cluster2/home/futing/Project/panCancer/new/meta/done_srr0926.txt <(cut -f4 /cluster2/home/futing/Project/panCancer/new/meta/undone_down_sim.txt)

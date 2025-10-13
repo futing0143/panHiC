@@ -3,7 +3,7 @@ dir=$1
 reso=${2:-5000}
 name=$(awk -F '/' '{print $NF}' <<< ${dir})
 
-source activate HiC
+source activate /cluster2/home/futing/miniforge3/envs/mustache
 file=${dir}/cool/${name}_${reso}.cool
 mkdir -p $dir/anno/mustache
 cd $dir/anno/mustache # /cluster/home/futing/Project/panCancer/CRC/GSE178593/DLD-1

@@ -17,7 +17,7 @@ done
 
 cat cancer_meta.txt done_meta.txt | sort -u > panCan_meta.txt
 
-
+# 处理重复的细胞系
 outputmeta=/cluster2/home/futing/Project/panCancer/check/hic/insul0918.txt
 awk -F',' 'BEGIN{FS=OFS="\t"}{
     count[$3]++

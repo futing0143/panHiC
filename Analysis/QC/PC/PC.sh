@@ -6,9 +6,10 @@ output="cancer_327.bed"
 >$output
 
 # outputmeta="/cluster2/home/futing/Project/panCancer/QC/cancer_meta.txt"
+# 检查 PC 100k 完成
 input=/cluster2/home/futing/Project/panCancer/check/done_meta.txt
 undonefile=/cluster2/home/futing/Project/panCancer/check/post/PCundone0918.txt
-outputmeta="/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC0918.txt"
+outputmeta="/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC1012.txt"
 >$outputmeta
 >$undonefile
 
@@ -21,6 +22,13 @@ while read -r cancer gse cell other;do
 		echo -e "${cancer}\t${gse}\t${cell}" >> ${undonefile}
 	fi
 done < <(grep "\.cool" /cluster2/home/futing/Project/panCancer/check/hic/hicdone0918.txt | cut -f1-3)
+
+
+# 直接从post中找
+grep 'cis_100k.cis.vecs.tsv' /cluster2/home/futing/Project/panCancer/check/hic/hicdone1012.txt \
+	| cut -f1-3 \
+	> /cluster2/home/futing/Project/panCancer/Analysis/QC/PC/${outputmeta}
+
 
 awk -F',' 'BEGIN{FS=OFS="\t"}{
     count[$3]++

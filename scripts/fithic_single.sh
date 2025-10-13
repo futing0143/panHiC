@@ -8,7 +8,7 @@ ischr=${5:-yes} # whether hic startwith chr
 postprocess=${6:-no}
 name=$(awk -F '/' '{print $NF}' <<< ${dir})
 
-juicer_tools_jar=/cluster/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar
+juicer_tools_jar=/cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar
 hicdir=${dir}/aligned/inter_30.hic
 
 if [ -f ${hicdir} ];then
@@ -32,7 +32,7 @@ distLowThres=$((res*2))
 
 #---------------------- run fithic ----------------------#
 # 01 Create FitHiC fragments
-source activate HiC
+source activate /cluster2/home/futing/miniforge3/envs/juicer
 
 if [[ $postprocess == 'yes' ]];then
     echo -e "------------- Postprocess is yes, skip creating fragments ---------------- \n"
@@ -46,8 +46,8 @@ else
     if [ -f ${inF}/frags_${res}.gz ];then
         echo -e "frags_${res}.gz exists, skip creating fragments\n"
     else
-        ~/miniforge-pypy3/envs/HiC/bin/python /cluster/home/futing/software/fithic/fithic/utils/createFitHiCFragments-fixedsize.py \
-        --chrLens /cluster/home/futing/software/juicer_new/restriction_sites/hg38.genome \
+        /cluster2/home/futing/miniforge3/envs/juicer/bin/python /cluster2/home/futing/software/fithic/fithic/utils/createFitHiCFragments-fixedsize.py \
+        --chrLens /cluster2/home/futing/software/juicer_new/restriction_sites/hg38.genome \
         --outFile ${inF}/frags_${res}.gz --resolution ${res}
     fi
 
@@ -56,20 +56,20 @@ else
     if [[ $dump != 'no' ]];then
         if [[ $ischr != 'no' ]];then
             echo -e "Using chr...\n"
-            cut -f1 /cluster/home/futing/ref_genome/hg38.genome | while read chr;do
-                java -Xms16G -jar /cluster/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar \
+            cut -f1 /cluster2/home/futing/ref_genome/hg38.genome | while read chr;do
+                java -Xms16G -jar /cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar \
                     dump observed NONE ${hicdir} \
                     ${chr} ${chr} BP ${res} ${inI}/${chr}.VCobserved
-                /cluster/home/futing/software/fithic/fithic/utils/createFitHiCContacts-hic.sh ${inI}/${chr}.VCobserved \
+                /cluster2/home/futing/software/fithic/fithic/utils/createFitHiCContacts-hic.sh ${inI}/${chr}.VCobserved \
                     ${chr} ${chr} ${inI}/${chr}.gz ${res}
             done
         else
             echo -e "Not using chr...\n"
-            cut -f1 /cluster/home/futing/ref_genome/hg38_24_nochr.chrom.sizes | while read chr;do
-                java -Xms16G -jar /cluster/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar \
+            cut -f1 /cluster2/home/futing/ref_genome/hg38_24_nochr.chrom.sizes | while read chr;do
+                java -Xms16G -jar /cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar \
                     dump observed NONE ${hicdir} \
                     ${chr} ${chr} BP ${res} ${inI}/chr${chr}.VCobserved
-                /cluster/home/futing/software/fithic/fithic/utils/createFitHiCContacts-hic.sh ${inI}/chr${chr}.VCobserved \
+                /cluster2/home/futing/software/fithic/fithic/utils/createFitHiCContacts-hic.sh ${inI}/chr${chr}.VCobserved \
                     chr${chr} chr${chr} ${inI}/chr${chr}.gz ${res}
             done
         fi
@@ -92,7 +92,7 @@ else
         echo -e "${inB}/bias_${res}.gz exists, skip creating bias\n"
     else
         which python
-        /cluster/home/futing/miniforge-pypy3/envs/HiC/bin/python /cluster/home/futing/software/fithic/fithic/utils/HiCKRy.py -i ${inI}/${name}_${res}.txt.gz \
+        /cluster2/home/futing/miniforge3/envs/juicer/bin/python /cluster2/home/futing/software/fithic/fithic/utils/HiCKRy.py -i ${inI}/${name}_${res}.txt.gz \
             -f ${inF}/frags_${res}.gz -o ${inB}/bias_${res}.gz -x ${x}
     fi
 
@@ -109,10 +109,10 @@ echo -e "------------ 05 Postprocessing ${name} at ${res} -------------------\n"
 if [ -f ./outputs/${res}/${name}.intraOnly/${name}.merge.bed.gz ];then
     echo -e "./outputs/${res}/${name}.intraOnly/${name}.merge.bed.gz exists, skip postprocessing\n"
 else
-    sh /cluster/home/futing/software/fithic/fithic/utils/merge-filter-parallelized.sh \
+    sh /cluster2/home/futing/software/fithic/fithic/utils/merge-filter-parallelized.sh \
         ./outputs/${res}/${name}.intraOnly/${name}.spline_pass1.res${res}.significances.txt.gz \
         ${res} ./outputs/${res}/${name}.intraOnly/ 0.05 \
-        /cluster/home/futing/software/fithic/fithic/utils/ > ./outputs/${res}/${name}.intraOnly/${name}.merge.log
+        /cluster2/home/futing/software/fithic/fithic/utils/ > ./outputs/${res}/${name}.intraOnly/${name}.merge.log
 fi
 
 reso=$((res/2))
