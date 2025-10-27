@@ -12,16 +12,15 @@ calculate-cnv -H $1::resolutions/50000 -g hg38  -e ${enzeme} --output ${outputdi
 
 #sh cnv_circ.sh /cluster/home/jialu/GBM/HiC/otherGBM/GSM4417601_A172_b38d5.mcool MboI A172
 #for reso in 50000 10000 5000
-cat filename_merge | while read name
-do 
-mkdir uniform/${name}
-for reso in 50000 
-do
-calculate-cnv -H /cluster/home/jialu/GBM/HiC/otherGBM/mcoolfile/${reso}/${name}_${reso}.cool -g hg38  -e uniform --output uniform/${name}/${name}_${reso}.CNV-profile.bedGraph
-segment-cnv --cnv-file uniform/${name}/${name}_${reso}.CNV-profile.bedGraph --binsize ${reso}  --ploidy 2 --output uniform/${name}/${name}_${reso}.CNV-seg.bedGraph --nproc 4
-plot-cnv --cnv-profile uniform/${name}/${name}_${reso}.CNV-profile.bedGraph  --cnv-segment uniform/${name}/${name}_${reso}.CNV-seg.bedGraph --output-figure-name uniform/${name}/${name}_${reso}.CNV.genome-wide.png --dot-size 0.5 --dot-alpha 0.2 --line-width 1 --boundary-width 0.5 --label-size 7 --tick-label-size 6 --clean-mode            
-correct-cnv -H /cluster/home/jialu/GBM/HiC/otherGBM/mcoolfile/${reso}/${name}_${reso}.cool  --cnv-file uniform/${name}/${name}_${reso}.CNV-seg.bedGraph --nproc 4 -f
+cat filename_merge | while read name;do 
+	mkdir uniform/${name}
+	for reso in 50000 
+	do
+	calculate-cnv -H /cluster/home/jialu/GBM/HiC/otherGBM/mcoolfile/${reso}/${name}_${reso}.cool -g hg38  -e uniform --output uniform/${name}/${name}_${reso}.CNV-profile.bedGraph
+	segment-cnv --cnv-file uniform/${name}/${name}_${reso}.CNV-profile.bedGraph --binsize ${reso}  --ploidy 2 --output uniform/${name}/${name}_${reso}.CNV-seg.bedGraph --nproc 4
+	plot-cnv --cnv-profile uniform/${name}/${name}_${reso}.CNV-profile.bedGraph  --cnv-segment uniform/${name}/${name}_${reso}.CNV-seg.bedGraph --output-figure-name uniform/${name}/${name}_${reso}.CNV.genome-wide.png --dot-size 0.5 --dot-alpha 0.2 --line-width 1 --boundary-width 0.5 --label-size 7 --tick-label-size 6 --clean-mode            
+	correct-cnv -H /cluster/home/jialu/GBM/HiC/otherGBM/mcoolfile/${reso}/${name}_${reso}.cool  --cnv-file uniform/${name}/${name}_${reso}.CNV-seg.bedGraph --nproc 4 -f
 
-done
+	done
 done
 

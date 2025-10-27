@@ -44,11 +44,12 @@ while read -r cancer gse cell other;do
 		check_file $dir/anno/stripecaller/${cell}.bed
 		check_file $dir/anno/stripenn/result_filtered.tsv
 		check_file $dir/anno/insul/${cell}_5000.tsv
+		check_file ${dir}/anno/SV/${cell}.SV_calls.txt
 	# fi
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1012.txt"
+done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt"
 
-# p4.1 找到PC没跑的 PC 100k
-# 处理一下 unpost_${d}.txt 中的PC
+# p4.1 单独处理post
+# PC insul cooltools peakachu mustache (fithic OnTAD stripecaller stripenn)
 awk -F'\t' '{
     if ($0 ~ /cis_100k\.cis\.vecs\.tsv/) {
         $NF = "PC"
@@ -57,10 +58,14 @@ awk -F'\t' '{
     print
 }' ./post/unpost_${d}.txt > tmp && mv tmp ./post/unpost_${d}.txt
 
-awk 'BEGIN{FS=OFS="\t"}{if ($4=="PC") print $1,$2,$3}' ./post/unpost_${d}.txt \
-	>> /cluster2/home/futing/Project/panCancer/check/post/PCundone${d}.txt
-awk 'BEGIN{FS=OFS="\t"}{if ($4=="cooltools") print $1,$2,$3,"dots"}' ./post/unpost_${d}.txt \
-	> /cluster2/home/futing/Project/panCancer/check/post/dots5k${d}.txt
+# awk 'BEGIN{FS=OFS="\t"}{if ($4=="PC") print $1,$2,$3}' ./post/unpost_${d}.txt \
+# 	> /cluster2/home/futing/Project/panCancer/check/post/PCundone${d}.txt
+# awk 'BEGIN{FS=OFS="\t"}{if ($4=="cooltools") print $1,$2,$3,"dots"}' ./post/unpost_${d}.txt \
+# 	> /cluster2/home/futing/Project/panCancer/check/post/dots5k${d}.txt
+# awk 'BEGIN{FS=OFS="\t"}{if ($4=="insul") print $1,$2,$3,"insul"}' ./post/unpost_${d}.txt \
+# 	> /cluster2/home/futing/Project/panCancer/check/post/insul5k${d}.txt
+
+
 
 : << 'EOF'
 # p1 下载完了，没跑
@@ -90,7 +95,7 @@ grep -w -v -F -f ./sam2bam/sam2bam_${d}.txt panCan_meta.txt
 # ---- 查找补充运行 insul loops ----
 # insul 50k 800k
 # 挑选出没有 50k insul 的时候
-output_file=/cluster2/home/futing/Project/panCancer/check/post/insul50k_1012nig.txt
+output_file=/cluster2/home/futing/Project/panCancer/check/post/insul50k_${d}nig.txt
 IFS=$'\t'
 while read -r cancer gse cell other;do
 	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
@@ -103,11 +108,11 @@ while read -r cancer gse cell other;do
 		echo -e "${cancer}\t$gse\t$cell\t$tools exists" 
 
 	fi
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/realalign1012.txt"
+done < "/cluster2/home/futing/Project/panCancer/check/aligned/realalign${d}.txt"
 
 # 挑选出 loops 10k 没跑的
 
-output_file=/cluster2/home/futing/Project/panCancer/check/post/loops10k_1012.txt
+output_file=/cluster2/home/futing/Project/panCancer/check/post/loops10k_${d}.txt
 check_file() {
 	local file="$1"
 	# 检查文件是否存在

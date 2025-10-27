@@ -1,10 +1,10 @@
 
 # --------- 数量统计
-meta =read.csv('/cluster2/home/futing/Project/panCancer/check/hic/insul0910.txt',sep='\t',check.names = F,header=F)
-colnames(meta)=c('cancer','gse','cancer','ncancer')
+meta =read.csv('//cluster2/home/futing/Project/panCancer/Analysis/QC/ncancer/aligndone1016.txt',sep='\t',check.names = F,header=F)
+colnames(meta)=c('cancer','gse','cell','ncell')
 ncan=meta[,c(1,3)] %>% unique() %>% select(cancer) %>% table() %>% as.data.frame()
 colnames(ncan) = c('cancer','Freq')
-
+ncan[ncan$cancer=='GBM','Freq']=71
 ncan_sorted <- ncan[order(-ncan$Freq), ]
 ncan_sorted$cancer <- factor(ncan_sorted$cancer,levels=ncan_sorted$cancer)
 # scale_fill_manual(values=c("#16365F","#77A3BB","#F8F2ED","#D64F38"))+##红蓝色
@@ -19,12 +19,14 @@ p<-
             size = 3) +
   theme_bw() +
   annotate("text", 
-           x = Inf, y = Inf, 
+           x = Inf, y = Inf,
+           # x = -Inf, y = Inf,
            label = paste("Total:", total_samples),
            hjust = 1.1, vjust = 2,
            color = "red", size = 4, fontface = "bold") +
   ylim(0, max(ncan_sorted$Freq) * 1.1)+
   labs(x='Cancer',y='num of samples')+
+  # coord_flip()+
   theme(plot.background = element_rect(fill = NA, colour = NA),
         panel.border = element_rect(fill=NA,color=NA,linewidth = 1,linetype = 1),
         axis.line = element_line(colour="black",linewidth = 0.5),

@@ -13,7 +13,9 @@ mkdir -p ./{fastq,cool,anno,splits,HiC_tmp}
 # rename .R2 _R2 *fastq.gz  
 # mv *.fastq.gz ./fastq
 source activate juicer
-# ln -s ./fastq/* ./splits
+while read -r srr;do
+	ln -s ./fastq/${srr}*.fastq.gz ./splits/
+done < '/cluster2/home/futing/Project/panCancer/AA/GSE81879/AA86/srr.txt'
 
 cd splits
 threadstring="-t 20"

@@ -2,9 +2,9 @@
 #SBATCH -p gpu
 #SBATCH -t 8000
 #SBATCH --cpus-per-task=15
-#SBATCH --nodelist=node2
+#SBATCH --nodelist=node3
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/new/dump-%j.log
-#SBATCH -J "dump0810"
+#SBATCH -J "dump1025"
 
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/new"
@@ -38,10 +38,10 @@ parallel_execute() {
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=5
+readonly PARALLEL_JOBS=2
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/p0915.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/01dump1026.txt"
 
 date

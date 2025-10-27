@@ -10,7 +10,7 @@ source activate /cluster2/home/futing/miniforge3/envs/juicer
 # awk 'BEGIN{FS=OFS="\t"}{if ($4=="PC") print $1,$2,$3}' /cluster2/home/futing/Project/panCancer/check/post/unpost_1012nig.txt \
 # 	>> /cluster2/home/futing/Project/panCancer/check/post/PCundone1012nig.txt
 
-IFS=$"\t"
+IFS=$'\t'
 while read -r cancer gse cell;do
 	echo "Processing ${cancer} ${gse} ${cell}"
 	cd /cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}

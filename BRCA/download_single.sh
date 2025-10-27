@@ -28,13 +28,14 @@ date
 EOF
 }
 
-for name in $(cat "srr.txt");do
-    source activate RNA
+# for name in $(cat "srr.txt");do
+for name in SRR25419781;do
 	echo "Processing SRR: ${name}"
-	echo $name > tmp
-	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 20M
-	if [ -s ${name}/${name} ];then
-	# prefetch -p -X 60GB ${name}
+	# echo $name > tmp
+	prefetch -p -X 160GB ${name}
+	# /cluster2/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 20M
+	if [ -s ${name}/${name}.sra ];then
+	# 
 		jid=$(submit_job "${name}")
 	fi
 done

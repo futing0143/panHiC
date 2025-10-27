@@ -6,16 +6,19 @@ par(family = "Arial")
 setwd('/cluster2/home/futing/Project/panCancer/Analysis/QC/PC')
 
 # -------------------------- 01 read in processed data
-meta =read.csv('/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC0918.txt',sep='\t',check.names = F,header=F)
+meta =read.csv('/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC1016.txt',sep='\t',check.names = F,header=F)
 data=read.csv('/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/merged_col5.tsv',sep='\t')
+depth=read.csv('/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/hicInfo_1016.txt',sep='\t',check.names=F)
+colnames(meta) = c('cancer','gse','cell','ncell')
+meta=merge(meta,depth[,c(4,5)],by='ncell')
 
 # --- 预处理
-rownames(data) = paste0('PC_',c(1:nrow(PC)))
+rownames(data) = paste0('PC_',c(1:nrow(data)))
 df_clean <- data %>%
   as_tibble() %>%  
   dplyr::select(-chrom, -start, -end) %>%
   # na.omit(axis=1)
-  filter(rowSums(is.na(.)) / ncol(.) <= 0.5) #  533153,327
+  filter(rowSums(is.na(.)) / ncol(.) <= 0.5) # 26617,359
 # 
 
 top_features <- order(apply(df_clean, 1, var, na.rm = TRUE), 
@@ -27,12 +30,14 @@ top_features <- order(apply(df_clean, 1, var, na.rm = TRUE),
 
 df <- df_clean[top_features,] %>% t() %>%
   replace(., is.na(.), 0)
+
 # df <- replace(df_clean, is.na(df_clean), 0)
+
 #--------------------------- 02 running PCA
 #d1log2 <- log(d1,2)
 #pc1_fil0<- scale(pc1_fil0,center=T,scale=T)
 
-# method 1
+# -- method 1
 library(missMDA)
 
 # 首先对缺失值进行插补
@@ -41,29 +46,30 @@ df_imputed <- imputePCA(df, ncp = 5, scale = TRUE)$completeObs
 com1 <- PCA(df_imputed, scale.unit = TRUE, ncp = 5, graph = FALSE)
 com1 <- PCA(df, scale.unit = TRUE, ncp = 5, graph = FALSE)
 
-# method2 
+# -- method2 
 com1 <- prcomp(df, center = T,scale = TRUE)
 
 # 02 提取PC score并确定分组###
 pc1_pca<-com1$x %>% as.data.frame(.) %>% 
   rownames_to_column(var = "ncell") 
 
-pc1_pca =merge(pc1_pca,meta[,c(1,4)],by='ncell')
+pc1_pca =merge(pc1_pca,meta[,c(1,2,5)],by='ncell')
 pc1_pca$cancer <-factor(pc1_pca$cancer)
-write.table(pc1_pca,'/cluster2/home/futing/Project/panCancer/Analysis/QC/data/PCAdata327_top1w.txt',sep='\t',row.names =F)
+write.table(pc1_pca,'/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PCAPC1_1016_top1w.txt',sep='\t',row.names =F)
+
 
 summ<-summary(com1)
 xlab<-paste0("PC1 (",round(summ$importance[2,1]*100,2),"%)")
 ylab<-paste0("PC2 (",sprintf("%0.2f", summ$importance[2,2]*100),"%)")
 g <- guide_legend("cancer")
 set1 <- RColorBrewer::brewer.pal(11, "Paired") 
-gradient_colors <- colorRampPalette(set1)(32) #%>% rev()
+gradient_colors <- colorRampPalette(set1)(33) #%>% rev()
 # pc1_pcafil <- pc1_pca %>% filter(PC1<2000)
 pc1_pcafil <- pc1_pca %>% filter(PC1<500,PC2<40)
 
 # ------ PCA plot
 p2<-
-  ggplot(data = pc1_pcafil,aes(x=PC1,y=PC2,fill=cancer))+
+  ggplot(data = pc1_pca,aes(x=PC1,y=PC2,fill=cancer))+
   #散点图  
   #stat_ellipse(aes(fill=dataset),type = "norm", geom ="polygon",alpha=0.2,color=NA)+
   geom_point(stroke=0.35,shape=21,size=2,color="black",alpha=0.8)+
@@ -85,17 +91,17 @@ p2<-
         legend.title = element_blank(),
         legend.text =element_text(size=10,family = "sans"),
         legend.background = element_rect(fill = "transparent", colour = NA),
-        # legend.position = "none",
+        legend.position = "none",
         legend.margin = margin(t = 0, r = 1, b = 0, l = 0, unit = "pt"),
         ###图周围的边距
         plot.margin = unit(c(0.5,0.5,0.5,0.5),"cm"))
 p2
-ggsave("/cluster2/home/futing/Project/panCancer/Analysis/QC/data/plot/PCAdata327_stop1w_fil.pdf", egg::set_panel_size(p2, width=unit(3, "in"), height=unit(3, "in")), 
+ggsave("./plot/PCAPC1_1016_top1w.pdf", egg::set_panel_size(p2, width=unit(3, "in"), height=unit(3, "in")), 
        width = 8, height = 6, units = 'in')
 
 #-------------- 05 kmeans
 set.seed(123) 
-pca_result = pc1_pcafil
+pca_result = pc1_pca
 kmeans_result <- kmeans(pca_result[2:22],center=5)
 pca_result['kmeans']=kmeans_result$cluster
 #pc1_pca$kmeans <- ifelse(pc1_pca$kmeans == 3, 1, ifelse(pc1_pca$kmeans == 1, 3, pc1_pca$kmeans))
@@ -103,18 +109,17 @@ pca_result$kmeans <- factor(pca_result$kmeans,levels=c(1:5))
 
 # ----- 05 plot kmeans
 set1 <- RColorBrewer::brewer.pal(11, "Paired") 
-gradient_colors <- colorRampPalette(set1)(32) #%>% rev()
+gradient_colors <- colorRampPalette(set1)(33) #%>% rev()
 
-pcacancer<-
-  ggplot(data = pca_result,aes(x=PC1,y=PC2,fill=cancer))+
+pcadepth <-
+  ggplot(data = pca_result,aes(x=PC1,y=PC2,fill=depth))+
   #散点图  
   #stat_ellipse(aes(fill=dataset),type = "norm", geom ="polygon",alpha=0.2,color=NA)+
   geom_point(stroke=0.35,shape=21,size=2,color="black",alpha=0.8)+
-  scale_fill_manual(values=gradient_colors)+
-  #scale_color_brewer(palette = 'Set1')+
+  scale_fill_gradient( low='white', high = "darkblue", name = "Depth") +
   labs(x=xlab,y=ylab,color="")+
   ggtitle("Cancers")+
-  guides(fill=g,size=g,color=g,shape=g)+
+  guides(fill = guide_colorbar(),size=g,color=g,shape=g)+
   theme_bw()+
   theme(plot.title = element_text(size=12, face="bold",hjust=0.5,family="sans"),
         plot.background = element_rect(fill = NA, colour = NA),
@@ -131,7 +136,7 @@ pcacancer<-
         legend.margin = margin(t = 0, r = 1, b = 0, l = 0, unit = "pt"),
         ###图周围的边距
         plot.margin = unit(c(0.5,0.5,0.5,0.5),"cm"))
-pcacancer
+pcadepth
 
 
 pcakmeans =   ggplot(data = pca_result,aes(x=PC1,y=PC2,fill=kmeans))+
@@ -161,7 +166,7 @@ pcakmeans
 
 # 额外添加legend
 pcakmeans_legend <- get_legend(
-  ggplot(data = pc1_pca,aes(x=PC1,y=PC2,fill=kmeans)) +
+  ggplot(data = pca_result,aes(x=PC1,y=PC2,fill=kmeans)) +
     geom_point(stroke=0.35,size=3,alpha=0.8,shape=21,color="black")+
     scale_fill_brewer(palette = 'Dark2')+ 
     labs(fill="Clusters")+
@@ -171,7 +176,7 @@ pcakmeans_legend <- get_legend(
           legend.background = element_rect(fill =NA, colour = NA),
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "pt")))
 pcacancer_legend <- get_legend(
-  ggplot(data = pc1_pca,aes(x=PC1,y=PC2,fill=cancer)) +
+  ggplot(data = pca_result,aes(x=PC1,y=PC2,fill=cancer)) +
     geom_point(stroke=0.35,size=3,alpha=0.8,shape=21,color="black")+
     scale_fill_manual(values=gradient_colors)+
     labs(fill="Cancers")+
@@ -180,17 +185,17 @@ pcacancer_legend <- get_legend(
           legend.text =element_text(size=10,family = "sans"),
           legend.background = element_rect(fill =NA, colour = NA),
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "pt")))
-# pca_legend <- get_legend(
-#   ggplot(data = pc1_pca,aes(x=PC1,y=PC2,fill=cancer))+
-#   geom_point(stroke=0.35,shape=21,size=3,color="black",alpha=0.8)+
-#   labs(fill='Dataset')+
-#   scale_fill_manual(values=c('#a6cee3','#33a02c','#b2df8a','#1f78b4','#e31a1c','#fb9a99','#fdbf6f'))+
-#     theme_bw()+
-#   theme(
-#     legend.text =element_text(size=10,family = "sans"),
-#     legend.background = element_rect(fill = NA, colour = NA),
-#     legend.position = "right",
-#     legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "pt")))
+pcadepth_legend <- get_legend(
+  ggplot(data = pc1_pca,aes(x=PC1,y=PC2,fill=depth))+
+  geom_point(stroke=0.35,shape=21,size=3,color="black",alpha=0.8)+
+  scale_fill_gradient(low ='white', high = 'darkblue', name = "Depth") +
+    guides(fill = guide_colorbar(),size=g,color=g,shape=g)+
+    theme_bw()+
+  theme(
+    legend.text =element_text(size=10,family = "sans"),
+    legend.background = element_rect(fill = NA, colour = NA),
+    legend.position = "right",
+    legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "pt")))
 
 # --- merge all the plots
 
@@ -198,11 +203,23 @@ lay = rbind(c(1,1,2,2,3))
 #lay <- matrix(c(1, 1, 2), nrow = 1, byrow = TRUE)
 grid.arrange(p2,pcacancer, pcakmeans,arrangeGrob(pcakmeans_legend,pcacancer_legend,ncol = 1, nrow =2),layout_matrix = lay,padding = unit(0.01, "cm"))
 
-lay = rbind(c(1, 1,2,2,3,3))
-#lay <- matrix(c(1, 1, 2), nrow = 1, byrow = TRUE)
-grid.arrange(pcacancer, pcakmeans,arrangeGrob(pcacancer_legend,pcakmeans_legend,ncol = 2, nrow =1), layout_matrix = lay,padding = unit(0.01, "cm"))
+lay <- rbind(c(1,1,2,2,3,3,4,4))
+# 构建 legend 区域：
+# 左边为 pcacancer_legend
+# 右边为上下排列的 pcadepth_legend 和 pcakmeans_legend
+legend_block <- arrangeGrob(
+  pcacancer_legend,
+  arrangeGrob(pcadepth_legend, pcakmeans_legend, ncol = 1),
+  ncol = 2,
+  widths = c(1, 1)
+)
 
-
+# 最终组合
+grid.arrange(p2,pcadepth,pcakmeans,
+  legend_block,
+  layout_matrix = lay,
+  padding = unit(0.01, "cm")
+)
 #---- 添加label
 #prb <- 
   ggplot(pc1_pca, aes(x=PC1,y = PC2,fill=kmeans)) +

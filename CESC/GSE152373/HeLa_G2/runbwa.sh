@@ -28,7 +28,8 @@ site_file="${juiceDir}/restriction_sites/hg38_${site}.txt"
 usegzip=1
 tmpdir=${wkdir}/HiC_tmp
 # 01
-while read -r name;do
+# while read -r name;do
+for name in SRR12005148;do
 
 	name1=${name}_R1
 	name2=${name}_R2
@@ -80,6 +81,7 @@ while read -r name;do
     else
         rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
     fi
-done < "${wkdir}/srr.txt"
+done
+# done < "${wkdir}/srr.txt"
 
-sh /cluster2/home/futing/Project/panCancer/CESC/sbatch.sh GSE152373 HeLa_G2 DpnII "-S merge"
+sh /cluster2/home/futing/Project/panCancer/CESC/sbatch.sh GSE152373 HeLa_G2 DpnII "-S dedup"

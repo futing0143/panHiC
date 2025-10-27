@@ -1,9 +1,8 @@
 #!/bin/bash
-#SBATCH -p normal
+#SBATCH -p gpu
 #SBATCH -t 8000
 #SBATCH --cpus-per-task=20
-#SBATCH --nodelist=node1
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/new/dump-%j.log
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/new/dump1026-%j.log
 #SBATCH -J "dump"
 
 date
@@ -27,7 +26,10 @@ parallel_execute() {
     # 使用代码块统一重定向
     {
         echo "Starting ${cell} at $(date)"
-		source activate RNA
+		source activate /cluster2/home/futing/miniforge3/envs/RNA
+		OS_INFO=$(uname -a)
+		echo "系统信息: $OS_INFO"
+
         export TMPDIR=${WKDIR}/debug
 		echo -e "parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip"
 		parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip
@@ -42,6 +44,6 @@ readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/01undump.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/dumperr.txt"
 
 date

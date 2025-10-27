@@ -27,17 +27,17 @@ site_file="${juiceDir}/restriction_sites/hg38_${site}.txt"
 usegzip=1
 tmpdir=${wkdir}/HiC_tmp
 # 01
-while read -r name;do
-
+# while read -r name;do
+for name in SRR25419890;do
 	name1=${name}_R1
 	name2=${name}_R2
 	source /cluster2/home/futing/software/juicer_CPU/scripts/common/countligations_single.sh
 	echo "Running: bwa mem -SP5M $threadstring $refSeq $name$ext > $name$ext.sam"
 	bwa mem -SP5M $threadstring $refSeq $name$ext > "$name$ext.sam"
-done < "${wkdir}/srr.txt"
-
-
-while read -r name;do
+	if [ $? -ne 0 ]; then
+		echo "***! Failure during bwa mem of ${name}${ext}"
+		exit 1
+	fi
 	nofrag=0
     touch "${name}${ext}_abnorm.sam" "${name}${ext}_unmapped.sam"  
     awk -v fname1="${name}${ext}_norm.txt" \
@@ -72,7 +72,8 @@ while read -r name;do
     else
         rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
     fi
-done < "${wkdir}/srr.txt"
+done
+# done < "${wkdir}/srr.txt"
 
 
 #SRR9417281

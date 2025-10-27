@@ -1,5 +1,5 @@
 #!/bin/bash
-
+d=1016
 
 cd /cluster2/home/futing/Project/panCancer/Analysis/QC/PC
 output="cancer_327.bed"
@@ -7,27 +7,27 @@ output="cancer_327.bed"
 
 # outputmeta="/cluster2/home/futing/Project/panCancer/QC/cancer_meta.txt"
 # 检查 PC 100k 完成
-input=/cluster2/home/futing/Project/panCancer/check/done_meta.txt
-undonefile=/cluster2/home/futing/Project/panCancer/check/post/PCundone0918.txt
-outputmeta="/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC1012.txt"
+# input=/cluster2/home/futing/Project/panCancer/check/done_meta.txt
+# undonefile=/cluster2/home/futing/Project/panCancer/check/post/PCundone0918.txt
+outputmeta="/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC${d}.txt"
 >$outputmeta
->$undonefile
+# >$undonefile
 
-IFS=$'\t'
-while read -r cancer gse cell other;do
-	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
-	if [ -f "${dir}/anno/${cell}_cis_100k.cis.vecs.tsv" ];then
-		echo -e "${cancer}\t${gse}\t${cell}" >> ${outputmeta}
-	else
-		echo -e "${cancer}\t${gse}\t${cell}" >> ${undonefile}
-	fi
-done < <(grep "\.cool" /cluster2/home/futing/Project/panCancer/check/hic/hicdone0918.txt | cut -f1-3)
+# IFS=$'\t'
+# while read -r cancer gse cell other;do
+# 	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
+# 	if [ -f "${dir}/anno/${cell}_cis_100k.cis.vecs.tsv" ];then
+# 		echo -e "${cancer}\t${gse}\t${cell}" >> ${outputmeta}
+# 	else
+# 		echo -e "${cancer}\t${gse}\t${cell}" >> ${undonefile}
+# 	fi
+# done < <(grep "\.cool" /cluster2/home/futing/Project/panCancer/check/hic/hicdone0918.txt | cut -f1-3)
 
 
 # 直接从post中找
-grep 'cis_100k.cis.vecs.tsv' /cluster2/home/futing/Project/panCancer/check/hic/hicdone1012.txt \
+grep 'cis_100k.cis.vecs.tsv' /cluster2/home/futing/Project/panCancer/check/hic/hicdone${d}.txt \
 	| cut -f1-3 \
-	> /cluster2/home/futing/Project/panCancer/Analysis/QC/PC/${outputmeta}
+	> ${outputmeta}
 
 
 awk -F',' 'BEGIN{FS=OFS="\t"}{
@@ -41,15 +41,6 @@ awk -F',' 'BEGIN{FS=OFS="\t"}{
 }' ${outputmeta} > tmp && mv tmp ${outputmeta}
 
 
-# for cancer in CRC MB TALL; do
-#     metafile="/cluster2/home/futing/Project/panCancer/${cancer}/meta/${cancer}_meta.txt"
-#     if [ -f "$metafile" ]; then
-#         # 去掉表头，并在每行前添加 "$cancer,"
-#         awk -v cancer="$cancer" '{print cancer "," $0}' "$metafile" >> "$outputmeta"
-#     else
-#         echo "Warning: File not found - $metafile" >&2
-#     fi
-# done
 python /cluster2/home/futing/Project/panCancer/Analysis/QC/PC/merge.py $outputmeta 5
 
 

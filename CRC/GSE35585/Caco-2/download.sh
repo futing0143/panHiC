@@ -1,10 +1,15 @@
 #!/bin/bash
 
 cd /cluster2/home/futing/Project/panCancer/CRC/GSE35585/Caco-2
-# /cluster/home/futing/pipeline/Ascp/ascp2.sh /cluster2/home/futing/Project/panCancer/CRC/meta/ctrl_re.txt ./ctrl 20M
+
 # prefetch -p -X 60GB --option-file /cluster2/home/futing/Project/panCancer/CRC/meta/ctrl_re.txt
 
+wkdir="/cluster2/home/futing/Project/panCancer/CRC/GSE35585/Caco-2"
 debugdir="/cluster2/home/futing/Project/panCancer/CRC/GSE35585/Caco-2"
+
+# /cluster/home/futing/pipeline/Ascp/ascp2.sh \
+	#/cluster2/home/futing/Project/panCancer/CRC/meta/ctrl_re.txt ./ctrl 20M
+
 mkdir -p "$debugdir"
 submit_job() {
     local name=$1
@@ -12,7 +17,7 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p gpu
 #SBATCH -t "5780"
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=10
 #SBATCH --output=$debugdir/${name}_dump-%j.log
 #SBATCH -J "${name}_dump"
 
@@ -27,16 +32,16 @@ date
 EOF
 }
 
-for name in $(cat "srr.txt");do
-    source activate RNA
+for name in $(cat "${wkdir}/srr.txt");do
+    # source activate RNA
 	echo "Processing SRR: ${name}"
-	# echo $name > tmpp2
-	prefetch -p -X 60GB ${name}
-	# /cluster/home/futing/pipeline/Ascp/ascp2.sh tmpp2 ./ 20M
-	if [ -s ${name} ];then
-	# prefetch -p -X 60GB ${name}
+	prefetch -p -X 120GB ${name}
+	# echo ${name} > tmp
+	# sh /cluster2/home/futing/pipeline/Ascp/ascp2.sh \
+	# 	tmp ./ 20M
+	if [ -f ${name}/${name}.sra ];then
 		jid=$(submit_job "${name}")
-		echo $jid >> dumpnum.txt
+		echo "${name} Job ID: $jid"
 	fi
 done
 

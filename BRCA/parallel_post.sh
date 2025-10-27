@@ -1,5 +1,4 @@
 #!/bin/bash
-#SBATCH -p normal
 #SBATCH -t 5780
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/BRCA/parallel_post.log
 #SBATCH -J parallel_post

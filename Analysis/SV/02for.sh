@@ -1,0 +1,2 @@
+for i in {1..10}; do sbatch /cluster2/home/futing/Project/panCancer/Analysis/SV/slurm-predictSVv1.sh; sleep 40s; done
+#The above command will launch 16 parallelized jobs and should be able to finish within 2 hours.

@@ -34,7 +34,7 @@ EOF
 #SBATCH -d afterok:29629
 
 
-# jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
-# echo "${cell} Job ID: $jid"
-jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicer_single.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1_p.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 echo "${cell} Job ID: $jid"
+# jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicer_single.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+# echo "${cell} Job ID: $jid"

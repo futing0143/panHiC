@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p normal
-#SBATCH --cpus-per-task=15
+#SBATCH --cpus-per-task=20
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/DLBCL/GSE35585/OCI-LY7/bwa-%j.log
 #SBATCH -J "OCI-LY7"
 
@@ -16,24 +16,22 @@ source activate /cluster2/home/futing/miniforge3/envs/juicer
 while read -r srr;do
 	ln -s ${wkdir}/fastq/${srr}* ${wkdir}/splits
 done < "${wkdir}/srr.txt"
+
 cd splits
 threadstring="-t 20"
 refSeq=/cluster2/home/futing/software/juicer_CPU/references/hg38.fa
 juiceDir=/cluster2/home/futing/software/juicer_CPU
 ext=".fastq.gz"
-ligation="GATCGATC"
-site="MboI"
+ligation="XXXXXXXX"
+site="none"
 site_file="${juiceDir}/restriction_sites/hg38_${site}.txt"
 usegzip=1
 tmpdir=${wkdir}/HiC_tmp
 # 01
 while read -r name;do
-
-	name1=${name}_R1
-	name2=${name}_R2
-	source /cluster2/home/futing/software/juicer_CPU/scripts/common/countligations.sh
-	echo "Running: bwa mem -SP5M $threadstring $refSeq $name1$ext $name2$ext > $name$ext.sam"
-	bwa mem -SP5M $threadstring $refSeq $name1$ext $name2$ext > "$name$ext.sam"
+	source /cluster2/home/futing/software/juicer_CPU/scripts/common/countligations_single.sh
+	echo "Running: bwa mem -SP5M $threadstring $refSeq $name$ext > $name$ext.sam"
+	bwa mem -SP5M $threadstring $refSeq $name$ext > "$name$ext.sam"
 done < "${wkdir}/srr.txt"
 
 
@@ -72,16 +70,6 @@ while read -r name;do
     else
         rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
     fi
-done < "${wkdir}/srr2.txt"
+done < "${wkdir}/srr.txt"
 
-
-#SRR9417281
-name=SRR9417281
-sort -T "${tmpdir}" --parallel=10 -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n "${name}${ext}.frag.txt" > "${name}${ext}.sort.txt"
-if [ $? -ne 0 ]; then
-	echo "***! Failure during sort of ${name}${ext}"
-	exit 1
-else
-	rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
-fi
-sh /cluster2/home/futing/Project/panCancer/NUT/sbatch.sh GSE133163 293TRex MboI "-S merge"
+sh /cluster2/home/futing/Project/panCancer/DLBCL/sbatch.sh GSE35585 OCI-LY7 none "-S merge"

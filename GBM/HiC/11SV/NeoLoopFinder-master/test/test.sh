@@ -37,10 +37,11 @@ done
 # 输入需要来源于 Eagle-C ，例子如下，6列txt
 # chr7    chr14   ++      14000000        37500000        translocation
 wget -O SKNMC-EagleC.SV.txt -L https://www.dropbox.com/s/g1wa799wgwta9p4/SK-N-MC.EagleC.txt?dl=0
-assemble-complexSVs -O SKNMC -B SKNMC-EagleC.SV.txt --balance-type CNV --protocol insitu --nproc 6 \
-                      -H SKNMC-MboI-allReps-filtered.mcool::resolutions/25000 \
-                         SKNMC-MboI-allReps-filtered.mcool::resolutions/10000 \
-                         SKNMC-MboI-allReps-filtered.mcool::resolutions/5000
+assemble-complexSVs -O SKNMC -B SKNMC-EagleC.SV.txt --balance-type CNV \
+					--protocol insitu --nproc 15 \
+					-H SKNMC-MboI-allReps-filtered.mcool::resolutions/25000 \
+						SKNMC-MboI-allReps-filtered.mcool::resolutions/10000 \
+						SKNMC-MboI-allReps-filtered.mcool::resolutions/5000
 
 # result 
 # SKNMC.assemblies.txt

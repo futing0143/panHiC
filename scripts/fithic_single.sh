@@ -47,7 +47,7 @@ else
         echo -e "frags_${res}.gz exists, skip creating fragments\n"
     else
         /cluster2/home/futing/miniforge3/envs/juicer/bin/python /cluster2/home/futing/software/fithic/fithic/utils/createFitHiCFragments-fixedsize.py \
-        --chrLens /cluster2/home/futing/software/juicer_new/restriction_sites/hg38.genome \
+        --chrLens /cluster2/home/futing/ref_genome/hg38.genome \
         --outFile ${inF}/frags_${res}.gz --resolution ${res}
     fi
 
@@ -88,17 +88,17 @@ else
 
     # 03 Create FitHiC bias
     echo -e "------------- 03 Creating FitHiC bias for $name ------------- \n"
-    if [ -f ${inB}/bias_${res}.gz ];then
-        echo -e "${inB}/bias_${res}.gz exists, skip creating bias\n"
+    if [ -f "${inB}/bias_${res}_${x}.gz" ];then
+        echo -e "${inB}/bias_${res}_${x}.gz exists, skip creating bias\n"
     else
         which python
         /cluster2/home/futing/miniforge3/envs/juicer/bin/python /cluster2/home/futing/software/fithic/fithic/utils/HiCKRy.py -i ${inI}/${name}_${res}.txt.gz \
-            -f ${inF}/frags_${res}.gz -o ${inB}/bias_${res}.gz -x ${x}
+            -f ${inF}/frags_${res}.gz -o ${inB}/bias_${res}_${x}.gz -x ${x}
     fi
 
     # 04 Run FitHiC
     echo -e "------------- 04 Running fithic for $name ------------- \n"
-    fithic -r $res -l $name -i ${inI}/${name}_${res}.txt.gz -f ${inF}/frags_${res}.gz -t ${inB}/bias_${res}.gz \
+    fithic -r $res -l $name -i ${inI}/${name}_${res}.txt.gz -f ${inF}/frags_${res}.gz -t ${inB}/bias_${res}_${x}.gz \
         -b $noOfBins -p $noOfPasses -L $distLowThres -U $distUpThres \
 		-o ${dir}/anno/fithic/outputs/${res}/${name}.intraOnly -v
 fi

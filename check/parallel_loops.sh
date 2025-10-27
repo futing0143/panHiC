@@ -2,8 +2,8 @@
 #SBATCH -p normal
 #SBATCH --cpus-per-task=20
 #SBATCH --nodelist=node1
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/check/loops_parallel-%j.log
-#SBATCH -J "loops_parallel"
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/check/fithic_parallel-%j.log
+#SBATCH -J "fithic_parallel"
 
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/"
@@ -39,7 +39,7 @@ parallel_execute() {
             "fithic")
                 # echo "Skipping fithic by design"
 				sh "/cluster2/home/futing/Project/panCancer/scripts/fithic_single.sh" \
-                    "${wkdir}/${cancer}/${gse}/${cell}" 10000 "" 0.15
+                    "${wkdir}/${cancer}/${gse}/${cell}" 10000 "" 0.2
                 ;;
             *)
                 sh "/cluster2/home/futing/Project/panCancer/scripts/${tools}_single.sh" \
@@ -57,6 +57,6 @@ readonly PARALLEL_JOBS=6
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/loops10k_1012.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/fithic10k_1018.txt"
 
 date

@@ -13,7 +13,7 @@ check_file() {
 unalign=/cluster2/home/futing/Project/panCancer/check/aligned/unalign${d}.txt
 unrun_file=/cluster2/home/futing/Project/panCancer/check/aligned/unrun${d}.txt
 aligndone=/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt
-filelist=/cluster2/home/futing/Project/panCancer/check/panCan_meta.txt
+filelist=/cluster2/home/futing/Project/panCancer/check/meta/panCan_meta.txt
 >${unalign}
 >${unrun_file}
 >${aligndone}
@@ -30,7 +30,7 @@ filelist=/cluster2/home/futing/Project/panCancer/check/panCan_meta.txt
 
 while IFS=$'\t' read -r cancer gse cell other; do
     splitdir="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/splits"
-    if [ ! -d "$splitdir" ]; then
+	if ! compgen -G "${splitdir}/*.sam" > /dev/null; then
         echo -e "${cancer}\t${gse}\t${cell}" >> "$unrun_file"
     else
         # 使用进程替换分别处理两类文件
