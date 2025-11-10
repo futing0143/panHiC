@@ -190,6 +190,49 @@ grid.arrange(puma,pudepth,pukmeans,
 )
 
 
+
+# ----- 05 看组别
+head(PC1umap)
+dat <- PC1umap %>%
+  count(cancer, kmeans) %>%  # 计算每个cancer-kmeans组合的计数
+  group_by(cancer) %>%
+  mutate(
+    Total = sum(n),
+    Percent = n / Total 
+  ) %>%
+  ungroup()
+
+dat$kmeans = factor(dat$kmeans)
+kmeans_colors <- colorRampPalette(c("#D64F38","#F8F2ED","#77A3BB","#16365F"))(5)
+p <- 
+ggplot(dat, aes(x = cancer, y = Percent, fill = kmeans)) +
+  geom_col(position = "stack") +
+  scale_fill_manual(values=kmeans_colors)+
+  labs(title = "Kmeans cluster",
+       x = "",
+       y = "Proportion",
+       fill = "Category") +
+  scale_y_continuous(labels = percent_format(accuracy = 0.01)) +  # 两位小数
+  theme_bw()+
+  theme(plot.title = element_text(size=12, face="bold",hjust=0.5,family="sans"),
+        plot.background = element_rect(fill = NA, colour = NA),
+        axis.title= element_text(vjust=0.5,hjust=0.5,family = "sans",size=10),
+        axis.text.y = element_text(colour="black", size=9,family = "sans"),
+        axis.text.x = element_text(size=8,angle = 60, hjust = 1),
+        axis.ticks = element_line(colour="black"),
+        axis.line = element_line(colour = "black",linewidth =0.4),
+        panel.border = element_rect(fill=NA,color=NA,linetype = 1),
+        panel.grid=element_blank(),#去掉背景线
+        # legend.title = element_blank(),
+        legend.text =element_text(size=10,family = "sans"),
+        legend.background = element_rect(fill = "transparent", colour = NA),
+        # legend.position = "none",
+        legend.margin = margin(t = 0, r = 1, b = 0, l = 0, unit = "pt"),
+        ###图周围的边距
+        plot.margin = unit(c(0.5,0.5,0.5,0.5),"cm"))
+ggsave("Umap proportion.pdf", egg::set_panel_size(p, width=unit(6, "in"), height=unit(3, "in")), 
+       width = 10, height = 6, units = 'in')
+
 #---- 添加label
 labeldata=PC1umap[PC1umap$ncell %in% compare[compare$kmeans.x != compare$kmeans.y,]$ncell,]
 prb <- 

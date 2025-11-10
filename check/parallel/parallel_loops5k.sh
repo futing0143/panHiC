@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH -p normal
-#SBATCH --cpus-per-task=20
-#SBATCH --nodelist=node1
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/check/fithic_parallel-%j.log
-#SBATCH -J "fithic_parallel"
+#SBATCH -p gpu
+#SBATCH --cpus-per-task=24
+#SBATCH --nodelist=node2
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/check/loops5k_parallel-%j.log
+#SBATCH -J "loops5k_parallel"
 
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/"
@@ -25,7 +25,7 @@ parallel_execute() {
         return 1
     }
     
-    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d).log"
+    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d_%H%M%S).log"
     
     # 使用代码块统一重定向
     {
@@ -34,16 +34,16 @@ parallel_execute() {
         case "${tools}" in
             "cooltools")
                 sh "/cluster2/home/futing/Project/panCancer/scripts/dots_single.sh" \
-                    "${wkdir}/${cancer}/${gse}/${cell}" 10000
+                    "${wkdir}/${cancer}/${gse}/${cell}" 5000
                 ;;
             "fithic")
                 # echo "Skipping fithic by design"
 				sh "/cluster2/home/futing/Project/panCancer/scripts/fithic_single.sh" \
-                    "${wkdir}/${cancer}/${gse}/${cell}" 10000 "" 0.2
+                    "${wkdir}/${cancer}/${gse}/${cell}" 5000 "" 0.2
                 ;;
             *)
                 sh "/cluster2/home/futing/Project/panCancer/scripts/${tools}_single.sh" \
-                    "${wkdir}/${cancer}/${gse}/${cell}" 10000
+                    "${wkdir}/${cancer}/${gse}/${cell}"
                 ;;
         esac
         
@@ -53,10 +53,11 @@ parallel_execute() {
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=6
+readonly PARALLEL_JOBS=10
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/fithic10k_1018.txt"
+	--tmpdir /cluster2/home/futing/Project/panCancer/check/debug \
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/loops/loops5k_1110.txt"
 
 date

@@ -86,7 +86,7 @@ while read -r file depth; do
     fi
     
     if [ ! -f "${output_file}" ]; then
-        weight="/cluster/home/futing/Project/GBM/HiC/10loop/peakachu/peakachu/high-confidence.${depth}.${reso_kb}kb.w6.pkl"
+        weight="/cluster2/home/futing/Project/panCancer/GBM/HiC/10loop/peakachu/peakachu/high-confidence.${depth}.${reso_kb}kb.w6.pkl"
         
         if [ ! -e "${weight}" ]; then
             echo "Weight file ${weight} does not exist, please check!"

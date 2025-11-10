@@ -1,140 +1,98 @@
 #!/bin/bash
+set -euo pipefail
 d=$1
-# 检查post部分的输出
-output_file=/cluster2/home/futing/Project/panCancer/check/post/unpost_${d}.txt
->${output_file}
-# unrun_file=/cluster2/home/futing/Project/panCancer/check/unrunpost${d}.txt
-# >${unrun_file}
-hic_file=/cluster2/home/futing/Project/panCancer/check/hic/hicdone${d}.txt
->${hic_file}
 
+# 输出文件
+output_file=/cluster2/home/futing/Project/panCancer/check/unpost/unpost_${d}.txt
+hic_file=/cluster2/home/futing/Project/panCancer/check/post/hicdone${d}.txt
+> "$output_file"
+> "$hic_file"
+
+# 进度文件
+total=$(wc -l < "/cluster2/home/futing/Project/panCancer/check/aligned/realalign${d}.txt")
+progress_file=$(mktemp)
+echo 0 > "$progress_file"
+
+# 检查单个文件函数
 check_file() {
-	local file="$1"
-	# 检查文件是否存在
-	tools=$(awk -F '/' '{print $11}' <<< ${file})
-	cell=$(awk -F '/' '{print $9}' <<< ${dir})
-	gse=$(awk -F '/' '{print $8}' <<< ${dir})
-	cancer=$(awk -F '/' '{print $7}' <<< ${dir})
-	if [ ! -e "$file" ] || [ ! -s "$file" ]; then
-		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$output_file"
-	else
-		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$hic_file"
+    local file="$1"
+    local cancer="$2"
+    local gse="$3"
+    local cell="$4"
+    local output_tmp="$5"  # 临时文件
+    local hic_tmp="$6"     # 临时文件
 
-	fi
+    local tools
+	tools=$(awk -F '/' '{print $11}' <<< ${file})
+    if [ ! -e "$file" ] || [ ! -s "$file" ]; then
+        echo -e "${cancer}\t${gse}\t${cell}\t${tools}" >> "$output_tmp"
+    else
+        echo -e "${cancer}\t${gse}\t${cell}\t${tools}" >> "$hic_tmp"
+    fi
 }
 
-IFS=$'\t'
-while read -r cancer gse cell other;do
-	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
-	splitdir="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/splits"
+export -f check_file
 
-	# if [ ! -d "$splitdir" ]; then
-	# 	echo -e "${cancer}\t${gse}\t${cell}" >> "$unrun_file"
-	# else
-		check_file ${dir}/aligned/inter_30.hic
-		check_file ${dir}/cool/${cell}.mcool
-		# check_file ${dir}/splits/*.fastq.gz.sam
-		check_file ${dir}/cool/${cell}_2500000.cool
-		check_file ${dir}/anno/${cell}_cis_100k.cis.vecs.tsv
-		check_file $dir/anno/cooltools/dots.5000.tsv
-		check_file $dir/anno/fithic/outputs/5000/${cell}.intraOnly/${cell}.fithic.bed
-		check_file $dir/anno/mustache/${cell}_5kb_mustache.bedpe
-		check_file $dir/anno/OnTAD/${cell}_50000.bed
-		check_file $dir/anno/peakachu/${cell}-peakachu-5kb-loops.0.95.bedpe
-		check_file $dir/anno/stripecaller/${cell}.bed
-		check_file $dir/anno/stripenn/result_filtered.tsv
-		check_file $dir/anno/insul/${cell}_5000.tsv
-		check_file ${dir}/anno/SV/${cell}.SV_calls.txt
-	# fi
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt"
+# 检查每个样本
+check_one() {
+    local cancer="$1"
+    local gse="$2"
+    local cell="$3"
+    local dir="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}"
 
-# p4.1 单独处理post
-# PC insul cooltools peakachu mustache (fithic OnTAD stripecaller stripenn)
+    # 进度条更新
+    {
+        n=$(<"$progress_file")
+        echo $((n + 1)) > "$progress_file"
+    } 200>"$progress_file.lock"
+    local current=$(<"$progress_file")
+    printf "[ %3d / %3d ] Checking %s/%s/%s\n" "$current" "$total" "$cancer" "$gse" "$cell"
+
+    # 临时文件保存当前进程结果
+    local tmp_output=$(mktemp)
+    local tmp_hic=$(mktemp)
+
+    # 遍历文件列表安全调用 check_file
+    for f in "${dir}/aligned/inter_30.hic" \
+             "${dir}/cool/${cell}.mcool" \
+             "${dir}/cool/${cell}_2500000.cool" \
+             "${dir}/anno/${cell}_cis_100k.cis.vecs.tsv" \
+             "${dir}/anno/cooltools/dots.5000.tsv" \
+             "${dir}/anno/fithic/outputs/5000/${cell}.intraOnly/${cell}.fithic.bed" \
+             "${dir}/anno/mustache/${cell}_5kb_mustache.bedpe" \
+             "${dir}/anno/OnTAD/${cell}_50000.bed" \
+             "${dir}/anno/peakachu/${cell}-peakachu-5kb-loops.0.95.bedpe" \
+             "${dir}/anno/stripecaller/${cell}.bed" \
+             "${dir}/anno/stripenn/result_filtered.tsv" \
+             "${dir}/anno/insul/${cell}_5000.tsv" \
+             "${dir}/anno/SV/${cell}.assemblies.txt"; do
+        check_file "$f" "$cancer" "$gse" "$cell" "$tmp_output" "$tmp_hic"
+    done
+
+    # 将临时文件合并到全局文件，避免并行冲突
+    cat "$tmp_output" >> "$output_file"
+    cat "$tmp_hic" >> "$hic_file"
+    rm -f "$tmp_output" "$tmp_hic"
+}
+
+export -f check_one
+export output_file hic_file progress_file total
+
+# 并行执行
+xargs -a "/cluster2/home/futing/Project/panCancer/check/aligned/realalign${d}.txt" -n3 -P10 bash -c 'check_one "$@"' _
+
+# 清理进度文件
+rm -f "$progress_file" "$progress_file.lock"
+
+echo "✅ All done. Results:"
+echo "  - Unpost: $output_file"
+echo "  - Post:   $hic_file"
+
+# 最后修改 unpost 文件
 awk -F'\t' '{
     if ($0 ~ /cis_100k\.cis\.vecs\.tsv/) {
         $NF = "PC"
     }
     OFS = "\t"
     print
-}' ./post/unpost_${d}.txt > tmp && mv tmp ./post/unpost_${d}.txt
-
-# awk 'BEGIN{FS=OFS="\t"}{if ($4=="PC") print $1,$2,$3}' ./post/unpost_${d}.txt \
-# 	> /cluster2/home/futing/Project/panCancer/check/post/PCundone${d}.txt
-# awk 'BEGIN{FS=OFS="\t"}{if ($4=="cooltools") print $1,$2,$3,"dots"}' ./post/unpost_${d}.txt \
-# 	> /cluster2/home/futing/Project/panCancer/check/post/dots5k${d}.txt
-# awk 'BEGIN{FS=OFS="\t"}{if ($4=="insul") print $1,$2,$3,"insul"}' ./post/unpost_${d}.txt \
-# 	> /cluster2/home/futing/Project/panCancer/check/post/insul5k${d}.txt
-
-
-
-: << 'EOF'
-# p1 下载完了，没跑
-grep -F -w -v -f ./download/err_dir${d}.txt ./aligned/unrun${d}.txt
-
-# p2.1 没下载,没跑
-grep -F -f ./download/err_dir${d}.txt ./aligned/unrun${d}.txt
-# p2.2 没下载，跑了一半
-grep -F -f aligned/aligndone${d}.txt ./download/err_dir${d}.txt
-# grep -v -w -F -f ./aligned/unrun${d}.txt ./download/err_dir${d}.txt
-
-# p2.1 下载完了 aligned有问题
-head ./aligned/unalign${d}.txt
-
-# p2.2 下载完了，aligned，但没有hic
-# ! 从aligndone + 没有 hic 中去掉没下载的，需要挂final任务
-grep -F -w -v -f <(grep 'inter_30.hic' ./hic/hicdone${d}.txt | cut -f1-3) ./aligned/realalign${d}.txt > ./hic/hicundone${d}.txt
-
-# p3.1 从 hicdone 中去掉没下载的，找到没cool的
-grep -F -f <(grep '.mcool' ./post/unpost_${d}.txt | cut -f1-3) \
-	<(grep 'inter_30.hic' ./hic/hicdone${d}.txt | cut -f1-3)
-# 找到hicdone
-grep 'inter_30.hic' ./hic/hicdone${d}.txt | cut -f1-3 > ./sam2bam/sam2bam_${d}.txt
-# 没跑完的
-grep -w -v -F -f ./sam2bam/sam2bam_${d}.txt panCan_meta.txt
-
-# ---- 查找补充运行 insul loops ----
-# insul 50k 800k
-# 挑选出没有 50k insul 的时候
-output_file=/cluster2/home/futing/Project/panCancer/check/post/insul50k_${d}nig.txt
-IFS=$'\t'
-while read -r cancer gse cell other;do
-	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
-	splitdir="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/splits"
-	file=$dir/anno/insul/${cell}_50000.tsv
-	tools="insul"
-	if [ ! -e "$file" ] || [ ! -s "$file" ]; then
-		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$output_file"
-	else
-		echo -e "${cancer}\t$gse\t$cell\t$tools exists" 
-
-	fi
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/realalign${d}.txt"
-
-# 挑选出 loops 10k 没跑的
-
-output_file=/cluster2/home/futing/Project/panCancer/check/post/loops10k_${d}.txt
-check_file() {
-	local file="$1"
-	# 检查文件是否存在
-	tools=$(awk -F '/' '{print $11}' <<< ${file})
-	cell=$(awk -F '/' '{print $9}' <<< ${dir})
-	gse=$(awk -F '/' '{print $8}' <<< ${dir})
-	cancer=$(awk -F '/' '{print $7}' <<< ${dir})
-	if [ ! -e "$file" ] || [ ! -s "$file" ]; then
-		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$output_file"
-	else
-		echo -e "${cancer}\t$gse\t$cell\t$tools exists"
-
-	fi
-}
-IFS=$'\t'
-while read -r cancer gse cell other;do
-	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
-	splitdir="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/splits"
-	check_file $dir/anno/cooltools/dots.10000.tsv
-	check_file $dir/anno/fithic/outputs/10000/${cell}.intraOnly/${cell}.fithic.bed
-	check_file $dir/anno/mustache/${cell}_10kb_mustache.bedpe
-	check_file $dir/anno/peakachu/${cell}-peakachu-10kb-loops.0.95.bedpe
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/realalign${d}.txt"
-
-EOF
+}' "$output_file" > tmp && mv tmp "$output_file"

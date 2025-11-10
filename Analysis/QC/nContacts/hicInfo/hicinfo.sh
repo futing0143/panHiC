@@ -1,5 +1,6 @@
 #!/bin/bash
 
+d=1106
 resolutions=(5000 10000 25000 50000 100000 250000 500000 1000000)
 cd /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts
 scripts=/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/hicInfo.py
@@ -13,13 +14,13 @@ while IFS=$'\t' read -r cancer gse cell ncell;do
 	gse=$(cut -f8 -d '/' <<< "$file")
 	cancer=$(cut -f7 -d '/' <<< "$file")
 	echo -e "Processing $cell $gse and $cancer.."
-	hicInfo -m $file >> hicInfo_1016.log
+	hicInfo -m $file >> hicInfo_${d}.log
 
-done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1016.txt"
+done < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt"
 
-python $scripts hicInfo_1016.log hicInfo_1016.txt "."
+python $scripts hicInfo_${d}.log hicInfo_${d}.txt "."
 
-echo -e "cancer\tgse\tcell\tncell" > hicInfo_1016.txt.tmp
+echo -e "cancer\tgse\tcell\tncell" > hicInfo_${d}.txt.tmp
 awk -F',' 'BEGIN{FS=OFS="\t"}NR>1{
     count[$3]++
     if (count[$3]==1) {
@@ -28,4 +29,6 @@ awk -F',' 'BEGIN{FS=OFS="\t"}NR>1{
         uniq=$3"_"count[$3]
     }
     print $0,uniq
-}' hicInfo_1016.txt >> hicInfo_1016.txt.tmp && mv hicInfo_1016.txt.tmp hicInfo_1016.txt
+}' hicInfo_${d}.txt >> hicInfo_${d}.txt.tmp && mv hicInfo_${d}.txt.tmp hicInfo_${d}.txt
+
+sed -i 's/,//g' hicInfo_${d}.txt

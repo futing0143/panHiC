@@ -84,4 +84,4 @@ for name in SRR12005148;do
 done
 # done < "${wkdir}/srr.txt"
 
-sh /cluster2/home/futing/Project/panCancer/CESC/sbatch.sh GSE152373 HeLa_G2 DpnII "-S dedup"
+sh /cluster2/home/futing/Project/panCancer/CESC/sbatch.sh GSE152373 HeLa_G2 DpnII "-S merge"

@@ -11,10 +11,10 @@ source activate /cluster2/home/futing/miniforge3/envs/dchic
 ###生成_PCA 文件夹
 
 Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
-	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/input.txt \
+	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/input1106.txt \
 	--pcatype cis --dirovwt T 
 Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
-	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/input.txt \
+	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/input1106.txt \
 	--pcatype select --dirovwt T --genome hg38 
 
 # cat ../cancer_list.txt | while read line;do
@@ -39,17 +39,17 @@ Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
 	# 	--pcatype select --dirovwt T --genome hg38 
 
 ###生成DifferentialResult/GBM_vs_3type 文件夹
-Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
-	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
-	--pcatype analyze --dirovwt T --diffdir NPC
-Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
-	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
-	--pcatype subcomp --dirovwt T --diffdir NPC
-Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
-	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
-	--pcatype viz --diffdir NPC --genome hg38 
-Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
-	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
-	--pcatype enrich --genome hg38  \
-  	--diffdir NPC --exclA F --region anchor \
-	--pcgroup pcQnm --interaction intra --pcscore F --compare F
+# Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
+# 	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
+# 	--pcatype analyze --dirovwt T --diffdir NPC
+# Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
+# 	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
+# 	--pcatype subcomp --dirovwt T --diffdir NPC
+# Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
+# 	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
+# 	--pcatype viz --diffdir NPC --genome hg38 
+# Rscript /cluster2/home/futing/software/dcHiC-master/dchicf.r \
+# 	--file /cluster2/home/futing/Project/panCancer/Analysis/dchic/NPC.txt \
+# 	--pcatype enrich --genome hg38  \
+#   	--diffdir NPC --exclA F --region anchor \
+# 	--pcgroup pcQnm --interaction intra --pcscore F --compare F

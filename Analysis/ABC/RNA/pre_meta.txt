@@ -1,0 +1,1 @@
+/cluster2/home/futing/Project/DepMap/RNA/pre_meta.txt

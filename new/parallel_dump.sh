@@ -1,8 +1,6 @@
 #!/bin/bash
-#SBATCH -p gpu
-#SBATCH -t 8000
 #SBATCH --cpus-per-task=20
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/new/dump1026-%j.log
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/new/dump-%j.log
 #SBATCH -J "dump"
 
 date
@@ -30,9 +28,9 @@ parallel_execute() {
 		OS_INFO=$(uname -a)
 		echo "系统信息: $OS_INFO"
 
-        export TMPDIR=${WKDIR}/debug
-		echo -e "parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip"
-		parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip
+        export TMPDIR="${WKDIR}/debug"
+		echo -e "parallel-fastq-dump --sra-id ./${name}/${name} --threads 40 --outdir ./ --split-3 --gzip"
+		parallel-fastq-dump --sra-id ./${name}/${name} --threads 40 --outdir ./ --split-3 --gzip
 
         echo "Finished ${cell} at $(date)"
     } >> "${log_file}" 2>&1
@@ -44,6 +42,6 @@ readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/dumperr.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/ascp1105p3.txt"
 
 date

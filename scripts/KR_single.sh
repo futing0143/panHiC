@@ -3,8 +3,9 @@
 dir=$1
 reso=${2:-5000} # reso, default 5000
 hicfile=${dir}/aligned/inter_30.hic
-out=${dir}/anno/fithic/${reso}/biasPerLocus/bias_${reso}.txt.gz
+out=${dir}/anno/fithic/${reso}/biasPerLocus/bias_juicer_${reso}.txt
 
+cd ${dir}/aligned/
 IFS=$'\t'
 while read chr len;do
 	
@@ -25,3 +26,5 @@ while read chr len;do
     # 清理临时文件
     rm tmp_pos.txt tmp_bias.txt
 done < "/cluster2/home/futing/ref_genome/hg38.genome"
+
+gzip $out

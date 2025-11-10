@@ -33,10 +33,10 @@ parallel_execute() {
     {
         echo "Starting ${cell} at $(date)"
         
-		# sh "/cluster2/home/futing/Project/panCancer/scripts/insul_single.sh" \
-		# 	"${wkdir}/${cancer}/${gse}/${cell}" 50000 800000
-		sh "/cluster2/home/futing/Project/panCancer/scripts/dots_single.sh" \
-			"${wkdir}/${cancer}/${gse}/${cell}"
+		sh "/cluster2/home/futing/Project/panCancer/scripts/insul_single.sh" \
+			"${wkdir}/${cancer}/${gse}/${cell}" 50000 800000
+		# sh "/cluster2/home/futing/Project/panCancer/scripts/dots_single.sh" \
+		# 	"${wkdir}/${cancer}/${gse}/${cell}"
 		# sh "/cluster2/home/futing/Project/panCancer/scripts/fithic_single.sh" \
 		# 	"${wkdir}/${cancer}/${gse}/${cell}" 10000
         echo "Finished ${cell} at $(date)"
@@ -49,6 +49,6 @@ readonly PARALLEL_JOBS=6
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/post/dots5k1013.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/insul/insul50k_1103.txt"
 
 date

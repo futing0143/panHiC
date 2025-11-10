@@ -1,1 +1,0 @@
-/cluster2/home/futing/Project/panCancer/check/panCan_meta.txt

@@ -11,7 +11,7 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p gpu
 #SBATCH -t "5780"
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=10
 #SBATCH --output=$debugdir/debug/${name}_pair-%j.log
 #SBATCH -J "${name}_pair"
 
@@ -27,14 +27,14 @@ date
 EOF
 }
 
-for name in $(cat "srr.txt");do
+for name in $(cat "ascp1105.txt");do
     source activate RNA
 	echo "Processing SRR: ${name}"
-	echo $name > tmp
-	/cluster/home/futing/pipeline/Ascp/ascp.sh tmp ./ 20M
-	# if [ -s ${name} ];then
-	# # prefetch -p -X 60GB ${name}
-	# 	jid=$(submit_job "${name}")
-	# fi
+	echo $name > tmp1104
+	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmp1104 ./ 40M
+	if [ -s ${name} ];then
+	# prefetch -p -X 60GB ${name}
+		jid=$(submit_job "${name}")
+	fi
 done
 

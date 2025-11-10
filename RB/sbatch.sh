@@ -6,7 +6,7 @@ enzyme=$3
 juicerstage=${4:-""}  # 新增参数，默认值为空
 
 # 全局变量
-queue="normal"
+queue="gpu"
 queue_time="9000"
 debugdir="/cluster2/home/futing/Project/panCancer/RB/$gse/$cell/debug"
 mkdir -p "$debugdir"
@@ -18,8 +18,6 @@ submit_job() {
 sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
-#SBATCH -t $queue_time
-#SBATCH --nodelist=node5
 #SBATCH --cpus-per-task=15
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
@@ -35,5 +33,5 @@ EOF
 # jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 # echo "${cell} Job ID: $jid"
 
-jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1_p.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 echo "${cell} Job ID: $jid"

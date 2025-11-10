@@ -1,8 +1,7 @@
 #!/bin/bash
-#SBATCH -p gpu
 #SBATCH -t 8000
+#SBATCH --nodelist=node1
 #SBATCH --cpus-per-task=15
-#SBATCH --nodelist=node3
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/new/dump-%j.log
 #SBATCH -J "dump1025"
 
@@ -29,8 +28,8 @@ parallel_execute() {
         echo "Starting ${cell} at $(date)"
 		source activate RNA
         export TMPDIR=${WKDIR}/debug
-		echo -e "parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip"
-		parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip
+		echo -e "parallel-fastq-dump --sra-id ./${name}/${name} --threads 40 --outdir ./ --split-3 --gzip"
+		parallel-fastq-dump --sra-id ./${name}/${name} --threads 40 --outdir ./ --split-3 --gzip
 
         echo "Finished ${cell} at $(date)"
     } >> "${log_file}" 2>&1
@@ -38,10 +37,10 @@ parallel_execute() {
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=2
+readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1}" :::: "${WKDIR}/01dump1026.txt"
+    "parallel_execute {1}" :::: "${WKDIR}/dumperr.txt"
 
 date

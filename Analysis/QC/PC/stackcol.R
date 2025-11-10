@@ -1,10 +1,9 @@
-pacman::p_load(FactoMineR,ggplot2,magrittr,dplyr,RColorBrewer,knitr,reshape2,extrafont,ggpubr,gridExtra,tibble)
+pacman::p_load(FactoMineR,scales,ggplot2,magrittr,dplyr,RColorBrewer,knitr,reshape2,extrafont,ggpubr,gridExtra,tibble)
 
 meta =read.csv('/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC1016.txt',sep='\t',check.names = F,header=F)
 data=read.csv('/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/merged_col5.tsv',sep='\t',check.names = F)
 
 # 统计每个细胞系包含多少大于0
-# 假设你的矩阵叫 mat
 mat=data[,-c(1,2,3)]
 count_matrix <- apply(mat, 2, function(x) {
   c(
@@ -15,17 +14,16 @@ count_matrix <- apply(mat, 2, function(x) {
   )
 }) %>% t(.) %>% as.data.frame %>% rownames_to_column(.,var='cell')
 
-
+# 转换 percent
 dat= melt(count_matrix, id.vars = "cell", 
           variable.name = "Category", value.name = "Count") %>%
   group_by(cell) %>%
   mutate(Total = sum(Count),
          Percent = Count / Total) %>%
   ungroup()
-
 dat$Category = factor(dat$Category,levels=c('A','B','non','NA'))
 
-library(scales)
+
 ggplot(dat, aes(x = cell, y = Percent, fill = Category)) +
   geom_col(position = "stack") +
   scale_fill_manual(values=c("#D64F38","#16365F","#F8F2ED","#77A3BB"))+

@@ -8,7 +8,7 @@ name=$(awk -F '/' '{print $NF}' <<< ${dir})
 
 mkdir -p ${dir}/anno/OnTAD/
 cd ${dir}/anno/OnTAD
-source activate OnTAD
+source activate ~/miniforge3/envs/OnTAD
 hicfile=${dir}/aligned/inter_30.hic
 
 if [ -f $hicfile ];then
@@ -23,22 +23,22 @@ if [ -z $ischr ];then
 	# 每个染色体单独运行OnTAD，chr开头的HiC
     while IFS=$'\t' read -r chr length;do
         echo "chr: ${chr}, length: ${length}"
-        /cluster/home/futing/software/OnTAD-master/src/OnTAD \
+        /cluster2/home/futing/software/OnTAD-master/src/OnTAD \
             ${hicfile} \
             -bedout ${chr} ${length} ${reso} \
             -o ./${name}_${chr} >> ./${name}.log
 
         awk -v chrn=$chr -v res=$reso 'BEGIN{FS=OFS="\t"}{print chrn,$1*res,$2*res,$3,$4,$5}' ${name}_${chr}.tad >> ${name}.bed
-    done < "/cluster/home/futing/ref_genome/hg38.genome"
+    done < "/cluster2/home/futing/ref_genome/hg38.genome"
 else
     while IFS=$'\t' read -r chr length;do
         echo "chr: ${chr}, length: ${length}"
-        /cluster/home/futing/software/OnTAD-master/src/OnTAD \
+        /cluster2/home/futing/software/OnTAD-master/src/OnTAD \
             ${hicfile} \
             -bedout ${chr} ${length} ${reso} \
             -o ./${name}_${chr} >> ./${name}.log
         awk -v chrn=$chr -v res=$reso 'BEGIN{FS=OFS="\t"}{print "chr"chrn,$1*res,$2*res,$3,$4,$5}' ${name}_${chr}.tad >> ${name}.bed
-    done < "/cluster/home/futing/ref_genome/hg38_24_nochr.chrom.sizes"
+    done < "/cluster2/home/futing/ref_genome/hg38_24_nochr.chrom.sizes"
 fi
 
 # 整理OnTAD的输出，转变为 bedpe 格式

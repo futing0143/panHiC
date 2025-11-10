@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-metafile=/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1023.txt
-outputfile=/cluster2/home/futing/Project/panCancer/check/post/fithic_1023.txt
+metafile=/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1027.txt
+outputfile=/cluster2/home/futing/Project/panCancer/check/unpost/fithic_1027.txt
 >$outputfile
 
 IFS=$'\t'
@@ -16,3 +16,8 @@ while read -r cancer gse cell; do
         fi
     done
 done < "$metafile"
+IFS=$'\t'
+while read -r cancer gse cell reso;do
+	file="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/anno/fithic/${reso}/fragmentLists/frags_${reso}.gz"
+	rm ${file}
+done < "$outputfile"

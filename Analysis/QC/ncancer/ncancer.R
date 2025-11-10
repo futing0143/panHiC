@@ -10,6 +10,8 @@ ncan_sorted$cancer <- factor(ncan_sorted$cancer,levels=ncan_sorted$cancer)
 # scale_fill_manual(values=c("#16365F","#77A3BB","#F8F2ED","#D64F38"))+##红蓝色
 # scale_fill_manual(values = wes_palette("Royal1"))+###红金色
 total_samples <- sum(ncan_sorted$Freq)
+
+
 p<-
   ggplot(ncan_sorted, aes(x = cancer, y = Freq)) +
   geom_bar(stat = "identity", fill = "#16365F") +

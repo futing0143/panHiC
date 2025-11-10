@@ -11,7 +11,7 @@ readonly WKDIR="/cluster2/home/futing/Project/panCancer/"
 cd "${WKDIR}" || exit 1
 source activate /cluster2/home/futing/miniforge3/envs/juicer
 
-meta=/cluster2/home/futing/Project/panCancer/Analysis/dchic/meta/p1.txt
+meta=/cluster2/home/futing/Project/panCancer/Analysis/dchic/meta/preundone1106p2.txt
 
 
 parallel_execute() {

@@ -45,15 +45,22 @@ for cancer in CML CRC BRCA GC MB TALL AML PRAD NSCLC; do
     fi
 done
 
-# 合并 cancer_down_sim.txt undone_down_sim.txt 为 panCan_down_sim.txt
+
+# 02 合并
+# 合并 CRC_ctrl cancer
 grep 'Normal' /cluster2/home/futing/Project/panCancer/CRC/meta/ctrl.txt | awk 'BEGIN{FS=OFS="\t"}{print "CRC",$1,$4"_"$5,$2}' >> ${outputsim}
+# 合并 cancer undone
 ln -s /cluster2/home/futing/Project/panCancer/new/meta/undone_down_sim.txt undone_down_sim.txt
-# 合并
 cat cancer_down_sim.txt undone_down_sim.txt | sort -u > panCan_down_sim.txt
 
 # 合并 ctrl_merge.txt panCan_down_sim.txt;panCan_meta.txt;panCan_merge.txt;cell_list.txt
+# <(cut -f1-4 meta1028.txt)  <(cut -f1-3,5 meta1028.txt) 
 # cat <(cut -f1-5 ctrl_merge.txt) panCan_merge.txt | sort -u > tmp && mv tmp panCan_merge.txt
+sed -i 's/ /_/g' ctrl_merge.txt
 cat <(cut -f1-4 ctrl_merge.txt) panCan_down_sim.txt | sort -u > tmp && mv tmp panCan_down_sim.txt
 cat <(cut -f1-3,5 ctrl_merge.txt) panCan_meta.txt | sort -u > tmp && mv tmp panCan_meta.txt
+
+# 合并 cancer list
 # awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,"1"}' ctrl_merge.txt >> /cluster2/home/futing/Project/panCancer/Analysis/dchic/cell_list.txt
+# sed -i 's/ /_/g' /cluster2/home/futing/Project/panCancer/Analysis/dchic/cell_list.txt
 # sort -u /cluster2/home/futing/Project/panCancer/Analysis/dchic/cell_list.txt -o tmp && mv tmp /cluster2/home/futing/Project/panCancer/Analysis/dchic/cell_list.txt

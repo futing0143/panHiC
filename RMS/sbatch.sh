@@ -21,7 +21,6 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #SBATCH -p $queue
 #SBATCH -t $queue_time
 #SBATCH --cpus-per-task=10
-#SBATCH --nodelist=node4
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
 

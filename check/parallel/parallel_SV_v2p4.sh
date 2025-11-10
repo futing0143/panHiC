@@ -1,11 +1,12 @@
 #!/bin/bash
-#SBATCH --array=1-90%6
+#SBATCH -p gpu
+#SBATCH --array=1-133%6
 #SBATCH -J predictSV
 #SBATCH --cpus-per-task=15
 #SBATCH -o /cluster2/home/futing/Project/panCancer/Analysis/SV/debug/SV-%A_%a.log
 
-scripts=/cluster2/home/futing/Project/panCancer/scripts/SV_single.sh
-input=/cluster2/home/futing/Project/panCancer/check/hic/mcool1018p4.txt
+scripts=/cluster2/home/futing/Project/panCancer/scripts/SVv2_single.sh
+input=/cluster2/home/futing/Project/panCancer/Analysis/SV/SV_unrun1029p2.txt
 
 line=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$input")
 read cancer gse cell <<< "$line"
