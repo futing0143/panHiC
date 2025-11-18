@@ -19,9 +19,9 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
 #SBATCH -t $queue_time
-#SBATCH --cpus-per-task=15
-#SBATCH --nodelist=node4
+#SBATCH --cpus-per-task=20
 #SBATCH --output=$debugdir/$name-%j.log
+#SBATCH --dependency=afterok:57052
 #SBATCH -J "${name}"
 
 
@@ -32,5 +32,5 @@ date
 EOF
 }
 
-jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1_p.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 echo "${cell} Job ID: $jid"

@@ -9,6 +9,16 @@ cd $dir/anno/cooltools # /cluster/home/futing/Project/panCancer/CRC/GSE178593/DL
 file=${dir}/cool/${name}_${reso}.cool
 echo -e "\nProcessing $name at $reso using cooltools call dots..."
 
+# !!!! checking if the cool file is balanced !!!!
+if cooler dump -t bins --header "$file" | head -1 | grep -qw "weight";then
+	echo "[$(date)] $file is balanced"
+	continue
+else
+	echo "[$(date)] ${file} is not ICE balanced!"
+	cooler balance "$file"
+fi
+
+
 # 01 view_hg38.py
 if [ -f ./${name}_view_hg38.tsv ];then
     echo "${name}_view_hg38.tsv exists, skip..."

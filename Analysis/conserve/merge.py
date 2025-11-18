@@ -7,9 +7,9 @@ if len(sys.argv) != 3:
     sys.exit(1)
 
 outputmeta = sys.argv[1]
-base_file = "/cluster2/home/futing/Project/panCancer/CRC/GSE137188/11-51_Normal/anno/insul/11-51_Normal_5000.tsv"
+base_file = "/cluster2/home/futing/Project/panCancer/CRC/GSE137188/11-51_Normal/anno/insul/11-51_Normal_50000.tsv"
 col_num = int(sys.argv[2]) - 1  # 转成 0-based index
-outfile = f"Cancer_327{col_num+1}.tsv"
+outfile = f"Cancer_412_BS{col_num+1}.tsv"
 
 # 读取 meta 文件
 meta = []
@@ -17,8 +17,8 @@ with open(outputmeta) as f:
     for line in f:
         if line.strip() == "" or line.startswith("cancer"):  # 跳过表头或空行
             continue
-        cancer, gse, cell, ncell = line.strip().split("\t")[:4]
-        file = f"/cluster2/home/futing/Project/panCancer/{cancer}/{gse}/{cell}/anno/insul/{cell}_5000.tsv"
+        cancer, gse, cell, clcell, ncell = line.strip().split("\t")[:5]
+        file = f"/cluster2/home/futing/Project/panCancer/{cancer}/{gse}/{cell}/anno/insul/{cell}_50000.tsv"
         if os.path.exists(file):
             meta.append((file, ncell))
         else:

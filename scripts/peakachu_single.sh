@@ -20,6 +20,15 @@ fi
 source activate /cluster2/home/futing/miniforge3/envs/peakachu
 coolfile="${dir}/cool/${name}_${reso}.cool"
 
+# !!!! checking if the cool file is balanced !!!!
+if cooler dump -t bins --header "$coolfile" | head -1 | grep -qw "weight";then
+	echo "[$(date)] $coolfile is balanced"
+	continue
+else
+	echo "[$(date)] ${coolfile} is not ICE balanced!"
+	cooler balance "$coolfile"
+fi
+
 # 创建输出目录
 mkdir -p "${dir}/anno/peakachu" || {
     echo "Error: Failed to create output directory"
@@ -75,6 +84,7 @@ awk '
 
 
 # running peakachu
+IFS=$'\t'
 while read -r file depth; do
     echo "Processing ${file} at ${depth}..."
     output_file="${file}-peakachu-${reso_kb}kb-scores.bedpe"

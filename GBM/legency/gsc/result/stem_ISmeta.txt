@@ -1,6 +1,0 @@
-cellline type
-G523 GSC
-GB567 GSC
-GB583 GSC
-ts543 GSC
-ts667 GSC

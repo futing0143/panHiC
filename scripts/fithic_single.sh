@@ -122,7 +122,7 @@ else
 
     # 04 Run FitHiC
     echo -e "------------- 04 Running fithic for $name ------------- \n"
-	outputfile=${dir}/anno/fithic/outputs/${res}/${name}.intraOnly/${name}.spline_pass1.res${res}.significances.txt.gz
+	outputfile=${dir}/anno/fithic/outputs/${res}/${name}_${x}.intraOnly/${name}.spline_pass1.res${res}.significances.txt.gz
 	if check_gz_nonempty "${outputfile}";then
 		echo "${outputfile} exists ..."
 	else
@@ -130,12 +130,12 @@ else
 			echo -e "Running fithic using fithic KR..."
 			fithic -r $res -l $name -i ${inI}/${name}_${res}.txt.gz -f ${inF}/frags_${res}.gz -t ${inB}/bias_${res}_${x}.gz \
 				-b $noOfBins -p $noOfPasses -L $distLowThres -U $distUpThres \
-				-o ${dir}/anno/fithic/outputs/${res}/${name}.intraOnly -v
+				-o ${dir}/anno/fithic/outputs/${res}/${name}_${x}.intraOnly -v
 		elif [[ "$usehicKR" == 'yes' ]];then
 			echo -e "Running fithic using juicer KR...\n"
 			fithic -r $res -l $name -i ${inI}/${name}_${res}.txt.gz -f ${inF}/frags_${res}.gz -t ${inB}/bias_juicer_${res}.txt.gz \
 				-b $noOfBins -p $noOfPasses -L $distLowThres -U $distUpThres \
-				-o ${dir}/anno/fithic/outputs/${res}/${name}.intraOnly -v
+				-o ${dir}/anno/fithic/outputs/${res}/${name}_${x}.intraOnly -v
 		fi
 	fi
 fi
@@ -144,19 +144,19 @@ fi
 # 05 Postprocess
 
 echo -e "------------ 05 Postprocessing ${name} at ${res} -------------------\n"
-if [ -f "./outputs/${res}/${name}.intraOnly/${name}.merge.bed.gz" ];then
-    echo -e "./outputs/${res}/${name}.intraOnly/${name}.merge.bed.gz exists, skip postprocessing\n"
+if [ -f "./outputs/${res}/${name}_${x}.intraOnly/${name}.merge.bed.gz" ];then
+    echo -e "./outputs/${res}/${name}_${x}.intraOnly/${name}.merge.bed.gz exists, skip postprocessing\n"
 else
 	jid=$(sh /cluster2/home/futing/software/fithic/fithic/utils/merge-filter-parallelized.sh \
-		./outputs/${res}/${name}.intraOnly/${name}.spline_pass1.res${res}.significances.txt.gz \
-		${res} ./outputs/${res}/${name}.intraOnly/ 0.05 \
-		/cluster2/home/futing/software/fithic/fithic/utils/ 2>&1 | tee ./outputs/${res}/${name}.intraOnly/${name}.merge.log | tail -n 1)
+		./outputs/${res}/${name}_${x}.intraOnly/${name}.spline_pass1.res${res}.significances.txt.gz \
+		${res} ./outputs/${res}/${name}_${x}.intraOnly/ 0.05 \
+		/cluster2/home/futing/software/fithic/fithic/utils/ 2>&1 | tee ./outputs/${res}/${name}_${x}.intraOnly/${name}.merge.log | tail -n 1)
 
 fi
 
 
-if [ -s "./outputs/${res}/${name}.intraOnly/${name}.fithic.bed" ];then
-	echo "./outputs/${res}/${name}.intraOnly/${name}.fithic.bed exits! Exiting the scripts!"
+if [ -s "./outputs/${res}/${name}_${x}.intraOnly/${name}.fithic.bed" ];then
+	echo "./outputs/${res}/${name}_${x}.intraOnly/${name}.fithic.bed exits! Exiting the scripts!"
 else
 	if [ -z "${jid}" ]; then
 		echo "No job ID found for merging and filtering step. Merging the files directly..."
@@ -169,12 +169,12 @@ else
 		echo "All sub-jobs for ${jid} completed."
 	fi
 	echo -e "Creating fithic bed file for ${name} at ${res}...\n"
-	> "./outputs/${res}/${name}.intraOnly/${name}.fithic.bed"
+	> "./outputs/${res}/${name}_${x}.intraOnly/${name}.fithic.bed"
 	reso=$((res/2))
-	cut -f1 ./outputs/${res}/${name}.intraOnly/chromosomes.used | while read -r chr; do
-		zcat ./outputs/${res}/${name}.intraOnly/${chr}/postmerged_fithic_${chr}.gz |
+	cut -f1 ./outputs/${res}/${name}_${x}.intraOnly/chromosomes.used | while read -r chr; do
+		zcat ./outputs/${res}/${name}_${x}.intraOnly/${chr}/postmerged_fithic_${chr}.gz |
 			awk -v reso=$reso 'BEGIN{FS=OFS="\t"}NR>1{print $1,int($2)-reso,int($2)+reso,$3,int($4)-reso,int($4)+reso,$5,$6,$7}' \
-			>> "./outputs/${res}/${name}.intraOnly/${name}.fithic.bed"
+			>> "./outputs/${res}/${name}_${x}.intraOnly/${name}.fithic.bed"
 	done
 fi
 

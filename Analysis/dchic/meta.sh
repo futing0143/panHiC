@@ -12,12 +12,13 @@ rm ./meta/cell_list/cell_list_ctrl.txt ./meta/cell_list/cell_list_unctrl.txt
 # ------- 检查 preprocess --------
 input=/cluster2/home/futing/Project/panCancer/check/post/hicdone${d}.txt
 # cat ./meta/prepro/predone_1016.txt ./meta/prepro/predone${d}.txt | sort -u > ./meta/prepro/predone.txt # 所有转换完成的样本
-cat ./meta/prepro/predone.txt ./meta/prepro/predone1030p1.txt | sort -u > tmp && mv tmp ./meta/prepro/predone.txt
-grep -v -w -F -f ./meta/prepro/predone.txt <(grep '_2500000.cool' $input | cut -f1-3) > ./meta/prepro/predone${d}p1.txt # 所有需要转换的样本
+cat ./meta/prepro/predone.txt ./meta/prepro/preundone*.txt | sort -u > tmp && mv tmp ./meta/prepro/predone.txt
+grep -v -w -F -f ./meta/prepro/predone.txt <(grep '_2500000.cool' $input | cut -f1-3) > ./meta/prepro/preundone${d}.txt # 所有需要转换的样本
 
 # -------- 检查 PCA，生成 input_undone.txt --------
-cut -f1 input.txt | awk 'BEGIN{FS="/";OFS="\t"}{print $7,$8,$9}' | sort -u > ./meta/cell_list/cell_listdone.txt
+cut -f1 input*.txt | awk 'BEGIN{FS="/";OFS="\t"}{print $7,$8,$9}' | sort -u > ./meta/cell_list/cell_listdone.txt
 grep -F -v -w -f ./meta/cell_list/cell_listdone.txt <(grep '_2500000.cool' $input | cut -f1-3) > ./meta/cell_list/cell_listundone${d}.txt
+grep -v 'TREx-KRta' ./meta/cell_list/cell_listundone${d}.txt > tmp && mv tmp ./meta/cell_list/cell_listundone${d}.txt
 
 # -------- 转换 ./meta/cell_list/cell_list.txt 为 input.txt
 grep -F -f ./meta/cell_list/cell_listundone${d}.txt ./meta/cell_list/cell_list_all.txt > tmp && mv tmp ./meta/cell_list/cell_list${d}.txt

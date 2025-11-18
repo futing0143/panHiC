@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -p gpu
+#SBATCH -p normal
 #SBATCH --cpus-per-task=24
-#SBATCH --nodelist=node2
+#SBATCH --nodelist=node1
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/check/loops5k_parallel-%j.log
 #SBATCH -J "loops5k_parallel"
 
@@ -58,6 +58,6 @@ readonly PARALLEL_JOBS=10
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
 	--tmpdir /cluster2/home/futing/Project/panCancer/check/debug \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/loops/loops5k_1110.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/loops/loops5k_1116.txt"
 
 date

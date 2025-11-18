@@ -22,6 +22,8 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #SBATCH --cpus-per-task=15
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
+ulimit -s unlimited
+ulimit -l unlimited
 
 
 

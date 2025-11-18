@@ -77,6 +77,17 @@ if [ ! -e "${cell}.assemblies.txt" ]; then
 	echo "[INFO] ${cell}.assemblies.txt not found!"
 	exit 1
 elif [ ! -e "${cell}.neo-loops.txt" ]; then
+	for reso in 50000 10000 5000; do
+		file=${dir}/cool/${cell}.mcool::/resolutions/${reso}
+		if cooler dump -t bins --header "$file" | head -1 | grep -qw "weight";then
+			echo "$file is balanced"
+			continue
+		else
+			echo "[$(date)] ${file} is not ICE balanced!"
+			cooler balance "$file"
+		fi
+	done
+
 	echo "[$(date)] Running neoLoop-caller for ${cell}..."
 	neoloop-caller -O ${cell}.neo-loops.txt \
 		--assembly ${cell}.assemblies.txt \

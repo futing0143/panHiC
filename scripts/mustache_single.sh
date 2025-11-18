@@ -9,6 +9,15 @@ mkdir -p $dir/anno/mustache
 cd $dir/anno/mustache # /cluster/home/futing/Project/panCancer/CRC/GSE178593/DLD-1
 echo -e "\nProcessing $name at $reso using mustache call dots..."
 
+# !!!! checking if the cool file is balanced !!!!
+if cooler dump -t bins --header "$file" | head -1 | grep -qw "weight";then
+	echo "[$(date)] $file is balanced"
+	continue
+else
+	echo "[$(date)] ${file} is not ICE balanced!"
+	cooler balance "$file"
+fi
+
 
 kb_reso=$((reso / 1000))kb
 mustache -f $file -pt 0.05 -st 0.8 -r ${kb_reso} -norm weight -o ${name}_${kb_reso}_mustache.tsv

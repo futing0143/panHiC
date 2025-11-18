@@ -1,17 +1,22 @@
 #!/bin/bash
-#SBATCH -p normal
+#SBATCH -p gpu
 #SBATCH --cpus-per-task=20
-#SBATCH --nodelist=node4
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam-%j.log
 #SBATCH -J "sam2bam"
 ulimit -s unlimited
 ulimit -l unlimited
 
 # 定义包含SAM文件的根目录
-source activate /cluster2/home/futing/miniforge3/envs/hic
+source activate /cluster2/home/futing/miniforge3/envs/juicer
 # samtools install samtools -y
-d=1011
-convertfile="/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_${d}.txt"
+d=1111
+convertfile="/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_undone${d}.txt"
+
+# cat /cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_done0*.txt | sort -u > \
+# 	/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_done.txt
+# grep -w -v -F -f /cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_done.txt \
+# 	/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_${d}.txt > \
+# 	/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_undone${d}.txt
 # grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/hic/hicdone${d}.txt | cut -f1-3 > $convertfile
 
 

@@ -53,11 +53,11 @@ parallel_execute() {
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=10
+readonly PARALLEL_JOBS=6
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
 	--tmpdir /cluster2/home/futing/Project/panCancer/check/debug \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/loops/loops10k_1106aft.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/loops/loops10k_1116.txt"
 
 date

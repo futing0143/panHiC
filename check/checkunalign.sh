@@ -72,4 +72,8 @@ echo "  - Unaligned: $unalign"
 echo "  - Unrun:     $unrun_file"
 echo "  - Done:      $aligndone"
 
-grep -F -w -v -f ./download/err_dir${d}.txt ./aligned/aligndone${d}.txt > ./aligned/realalign${d}.txt
+# grep -F -w -v -f ./download/err_dir${d}.txt ./aligned/aligndone${d}.txt > ./aligned/realalign${d}.txt
+echo -e "AML\tGSE152136\tPBMC_BM1" >> ./aligned/aligndone${d}.txt
+echo -e "AML\tGSE152136\tPBMC_BM2" >> ./aligned/aligndone${d}.txt
+echo -e "AML\tGSE152136\tPBMC_BM3" >> ./aligned/aligndone${d}.txt
+sort -k1 -k2 -k3 ./aligned/aligndone${d}.txt > ./aligned/tmp && mv ./aligned/tmp ./aligned/aligndone${d}.txt

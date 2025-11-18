@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --array=1-21%6
+#SBATCH --array=1-3%3
 #SBATCH -J predictSV
 #SBATCH --cpus-per-task=15
 #SBATCH -o /cluster2/home/futing/Project/panCancer/Analysis/SV/debug/SV-%A_%a.log
 
 scripts=/cluster2/home/futing/Project/panCancer/scripts/SVv2_single.sh
-input=/cluster2/home/futing/Project/panCancer/Analysis/SV/SV_unrun1108.txt
+input=/cluster2/home/futing/Project/panCancer/Analysis/SV/SV_unrun1115.txt
 
 line=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$input")
 read cancer gse cell <<< "$line"

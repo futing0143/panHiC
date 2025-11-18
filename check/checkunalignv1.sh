@@ -52,7 +52,7 @@ done < "$filelist"
 i=SRR11187362
 # splitdir=/cluster2/home/futing/Project/panCancer/AML/GSE165038/U937/splits
 dir=/cluster2/home/futing/Project/panCancer/ALL/GSE145997/ALL_PDX23
-cat ${dir}/srr.txt | while read -r srr;do
+cat ${dir}/srr2.txt | while read -r srr;do
 	splitdir=${dir}/splits
 	wctotal=`zcat -f ${splitdir}/${srr}.fastq.gz_linecount.txt.gz | awk '{sum+=$1}END{print sum/4}'`
 	check2=`zcat -f ${splitdir}/${srr}.fastq.gz_norm.txt.res.txt.gz | awk '{s2+=$2;}END{print s2}'`
@@ -63,7 +63,7 @@ cat ${dir}/srr.txt | while read -r srr;do
 	fi
 done
 
-cat ${dir}/srr.txt | while read -r srr;do
+cat ${dir}/srra.txt | while read -r srr;do
 	splitdir=${dir}/splits
 	wctotal=`cat ${splitdir}/${srr}.fastq.gz_linecount.txt | awk '{sum+=$1}END{print sum/4}'`
 	check2=`cat ${splitdir}/${srr}.fastq.gz_norm.txt.res.txt | awk '{s2+=$2;}END{print s2}'`

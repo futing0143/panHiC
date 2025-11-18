@@ -9,7 +9,10 @@ ulimit -l unlimited
 
 date
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/"
-cd "${WKDIR}" || exit 1
+cd "${WKDIR}" || {
+    echo "Error: Failed to change directory to ${WKDIR}" >&2
+    exit 1
+}
 source activate /cluster2/home/futing/miniforge3/envs/juicer
 
 # 定义并行执行函数
@@ -27,7 +30,8 @@ parallel_execute() {
         return 1
     }
     
-    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d).log"
+    # 使用更精确的时间戳避免日志文件名冲突
+    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d_%H%M%S).log"
     
     # 使用代码块统一重定向
     {
@@ -48,7 +52,7 @@ export WKDIR
 readonly PARALLEL_JOBS=6
 
 # 执行并行任务
-parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
+parallel -j "${PARALLEL_JOBS}" --colsep '\t' \
     "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/insul/insul50k_1115.txt"
 
 date

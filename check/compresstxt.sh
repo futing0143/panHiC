@@ -1,14 +1,22 @@
 #!/bin/bash
-#SBATCH -p normal
+#SBATCH -p gpu
 #SBATCH --cpus-per-task=10
-#SBATCH --nodelist=node1
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/check/gzip-%j.log
 #SBATCH -J "gzip"
 ulimit -s unlimited
 ulimit -l unlimited
 
+
+# 
+# d=1111
+# cat /cluster2/home/futing/Project/panCancer/check/gzip/gzip_0*.txt | sort -u > \
+# 	/cluster2/home/futing/Project/panCancer/check/gzip/gzip_done.txt
+# grep -w -v -F -f /cluster2/home/futing/Project/panCancer/check/gzip/gzip_done.txt \
+# 	<(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/hicdone${d}.txt | cut -f1-3) \
+# 	> /cluster2/home/futing/Project/panCancer/check/gzip/gzip_${d}.txt
+#
 # 定义包含SAM文件的根目录
-source activate /cluster2/home/futing/miniforge3/envs/hic
+source activate /cluster2/home/futing/miniforge3/envs/juicer
 readonly WKDIR="/cluster2/home/futing/Project/panCancer/check"
 cd "${WKDIR}" || exit 1
 
@@ -29,23 +37,25 @@ parallel_execute() {
     # 使用代码块统一重定向
     {
 		echo -e "Processing ${cancer}/${gse}/${cell}...\n"
-		root_directory=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
-		find "$root_directory" -type f -name "*txt" -print0 | while IFS= read -r -d '' file
-		do
-			# 去除文件名末尾的回车符
+		root_directory=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/aligned
+		root_directory2=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/splits
+		find "$root_directory" "$root_directory2" -type f -name "*.txt" -print0 |
+		while IFS= read -r -d '' file; do
 			file="${file%$'\r'}"
-			bgzip $file
+			gzip "$file"
 			echo "compress gzip: $file"
 		done
+
     } >> "${log_file}" 2>&1
 }
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=5
+readonly PARALLEL_JOBS=10
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3}" :::: "${WKDIR}/gzip_0827.txt"
+	--tmpdir "${WKDIR}/debug" \
+    "parallel_execute {1} {2} {3}" :::: "${WKDIR}/gzip/gzip_1111.txt"
 
 date

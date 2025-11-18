@@ -18,6 +18,7 @@ else
     exit 1
 fi
 
+module load gcc/12.3.0
 
 if [ -z $ischr ];then
 	# 每个染色体单独运行OnTAD，chr开头的HiC
