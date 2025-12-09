@@ -12,6 +12,7 @@ cd "${WKDIR}" || exit 1
 source activate /cluster2/home/futing/miniforge3/envs/juicer
 
 meta=/cluster2/home/futing/Project/panCancer/Analysis/dchic/meta/preundone1112.txt
+# meta=/cluster2/home/futing/Project/panCancer/Analysis/dchic/meta/p2.txt
 
 
 parallel_execute() {

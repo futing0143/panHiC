@@ -20,7 +20,8 @@ submit_job() {
 sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=15
+#SBATCH --nodelist=node1
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
 ulimit -s unlimited
@@ -29,12 +30,12 @@ ulimit -l unlimited
 
 
 date
-sh $script_path
+bash $script_path
 date
 EOF
 }
 #SBATCH -d afterok:29629
 
 
-jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1_p.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1.4.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 echo "${cell} Job ID: $jid"

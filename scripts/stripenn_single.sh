@@ -2,7 +2,7 @@
 
 dir=$1
 reso=${2:-50000}
-name=$(awk -F '/' '{print $NF}' <<< ${dir})
+name=$(basename ${dir})
 
 cd $dir # /cluster/home/futing/Project/panCancer/CRC/GSE178593/DLD-1
 source activate ~/miniforge3/envs/stripenn

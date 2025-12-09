@@ -12,7 +12,7 @@ sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p gpu
 #SBATCH -t "5780"
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=10
 #SBATCH --output=$debugdir/${name}_dump-%j.log
 #SBATCH -J "${name}_dump"
 
@@ -22,7 +22,7 @@ date
 source activate RNA
 cd ${debugdir}
 echo -e "parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip"
-parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip
+parallel-fastq-dump --sra-id ./${name} --threads 40 --outdir ./ --split-3 --gzip
 date
 EOF
 }
@@ -30,9 +30,9 @@ EOF
 for name in $(cat "srr.txt");do
     source activate RNA
 	echo "Processing SRR: ${name}"
-	echo $name > tmpp2
+	# echo $name > tmpp2
 	# prefetch -p -X 60GB ${name}
-	/cluster/home/futing/pipeline/Ascp/ascp2.sh srr.txt ./ 20M
+	# /cluster/home/futing/pipeline/Ascp/ascp2.sh srr.txt ./ 20M
 	if [ -s ${name} ];then
 	# prefetch -p -X 60GB ${name}
 		jid=$(submit_job "${name}")

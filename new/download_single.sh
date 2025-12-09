@@ -31,7 +31,7 @@ for name in $(cat "ascp1105.txt");do
     source activate RNA
 	echo "Processing SRR: ${name}"
 	echo $name > tmp1104
-	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmp1104 ./ 40M
+	/cluster/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 40M
 	if [ -s ${name} ];then
 	# prefetch -p -X 60GB ${name}
 		jid=$(submit_job "${name}")

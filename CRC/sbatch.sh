@@ -18,13 +18,15 @@ submit_job() {
 sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
-#SBATCH --cpus-per-task=15
+#SBATCH --cpus-per-task=10
+#SBATCH --nodelist=node3
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
-
+ulimit -s unlimited
+ulimit -l unlimited
 
 date
-sh $script_path
+bash $script_path
 date
 EOF
 }
@@ -34,7 +36,10 @@ EOF
 # jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/CRC/juicer.sh MboI ${dir}/${gse}/${cell}")
 # echo "Job ID: $jid"
 
-jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1_p.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
+# jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1.3.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -s "juicer" -j \"${juicerstage}\"")
+# echo "Job ID: $jid"
+
+jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv1.4.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")
 echo "Job ID: $jid"
 
 # jid=$(submit_job "${cell}" "/cluster2/home/futing/Project/panCancer/scripts/juicerv2.sh -d ${dir}/${gse}/${cell} -e ${enzyme} -j \"${juicerstage}\"")

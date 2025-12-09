@@ -38,7 +38,7 @@ check_one() {
     local expected found
     expected=$(awk -v c="$cancer" -v g="$gse" -v cl="$cell" \
         '$1==c && $2==g && $3==cl {print $4}' "$input" | sort -u | tr '\n' ' ')
-    found=$(find "$dir" -type f -name "*.fastq.gz" \
+    found=$(find -L "$dir" -type f -name "*.fastq.gz" \
         | xargs -r -n1 basename \
         | sed 's/\.fastq\.gz$//' \
         | cut -d'_' -f1 \
@@ -55,7 +55,7 @@ export -f check_one
 cut -f1-3 "$checklist" | sort -u | xargs -n3 -P 10 bash -c 'check_one "$@"' _
 
 # grep -v 'PBMC_BM' $err_file > tmp && mv tmp $err_file
-
+grep -v 'GBM' $err_file > tmp && mv tmp $err_file
 # ===== 清理临时文件 =====
 rm -f "$progress_file" "$progress_file.lock"
 

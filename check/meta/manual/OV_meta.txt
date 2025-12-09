@@ -1,0 +1,8 @@
+OV	GSE229408	KURAMOCHI	SRR24134015	0	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134015/4_4221CSMC_KURAMOCHI_HiC_hg38_R1.fastq.gz.1	SRR24134015_1.fastq.gz
+OV	GSE229408	KURAMOCHI	SRR24134015	0	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134015/4_4221CSMC_KURAMOCHI_HiC_hg38_R2.fastq.gz.1	SRR24134015_2.fastq.gz
+OV	GSE229408	OVCAR4	SRR24134016	0	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134016/3_4221CSMC_OVCAR4_HiC_hg38_R1.fastq.gz.1	SRR24134016_1.fastq.gz
+OV	GSE229408	OVCAR4	SRR24134016	0	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134016/3_4221CSMC_OVCAR4_HiC_hg38_R2.fastq.gz.1	SRR24134016_2.fastq.gz
+OV	GSE229408	FT282	SRR24134017	1	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134017/2_4221CSMC_FT282_HiC_hg38_R2.fastq.gz.1	SRR24134017_2.fastq.gz
+OV	GSE229408	FT282	SRR24134017	1	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134017/2_4221CSMC_FT282_HiC_hg38_R1.fastq.gz.1	SRR24134017_1.fastq.gz
+OV	GSE229408	FT246	SRR24134018	1	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134018/1_4221CSMC_FT246_HiC_hg38_R1.fastq.gz.1	SRR24134018_1.fastq.gz
+OV	GSE229408	FT246	SRR24134018	1	Arima	https://sra-pub-src-1.s3.amazonaws.com/SRR24134018/1_4221CSMC_FT246_HiC_hg38_R2.fastq.gz.1	SRR24134018_2.fastq.gz

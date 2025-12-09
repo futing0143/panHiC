@@ -15,16 +15,19 @@ sort -u 01online${d}.txt > tmp2 && mv tmp2 01online${d}.txt
 find . -maxdepth 1 -name '*.fastq.gz' -exec basename {} .fastq.gz \; | cut -f1 -d '_' | sort -u > ./dumpdone${d}.txt
 
 # -- 03 合并 meta_sim 和 dumpdone 的 srr
-# # tail -n +2 ./meta/undone_down.txt | sort -k3 > tmp && mv tmp ./meta/undone_down_sorted.txt
-# join -t $'\t' -1 1 -2 3 -o 2.1,2.3,2.4,2.5,2.6,2.7,2.9 dumpdone${d}.txt ./meta/undone_down_sorted.txt > ./meta/done${d}.txt
-# # 合并文件
-# cat <(cut -f1,3,5 ./meta/done${d}.txt | sort -u | awk '{FS=OFS="\t"}{print $3,$1,$2}') ./meta/done_meta.txt | sort -u > tmp && mv tmp ./meta/done_meta.txt
+# tail -n +2 ./meta/undone_down.txt | sort -k3 > tmp && mv tmp ./meta/undone_down_sorted.txt
+# 01 合并除了cancer_meta.txt的部分
+join -t $'\t' -1 1 -2 3 -o 2.1,2.3,2.4,2.5,2.6,2.7,2.9 dumpdone${d}.txt ./meta/undone_down_sorted.txt > ./meta/done${d}.txt
+# 合并文件
+cat <(cut -f1,3,5 ./meta/done${d}.txt | sort -u | awk '{FS=OFS="\t"}{print $3,$1,$2}') \
+	./meta/done_meta.txt | sort -u > tmp && mv tmp ./meta/done_meta.txt
 
-# 合并 ctrl
+# 02 合并新下的 ctrl
 grep -F -f ./dumpdone${d}.txt /cluster2/home/futing/Project/panCancer/check/meta/panCan_down_sim.txt > ./meta/done${d}.txt
 cat ./meta/done1*.txt | cut -f4 | sort -u > ./meta/donectrl_srr.txt
 grep -v -w -F -f ./dumpdone${d}.txt 01online${d}.txt > 01undump${d}.txt
 grep -v -w -F -f ./meta/donectrl_srr.txt ./01undump${d}.txt > tmp2 && mv tmp2 01undump${d}.txt #因为有些fastq移走了，所以再去掉dump好的done_srr.txt
+
 # -- 04 移动 fastq
 # IFS=$'\t'
 # shopt -s nullglob

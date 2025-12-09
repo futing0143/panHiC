@@ -3,20 +3,19 @@
 dir=$1
 res=${2:-5000} # resolution, default 5000
 dump=${3:-yes}  # start from KR if no
-x=${4:-0.1}
+x=${4:-0.2}
 usehicKR=${5:-no}
-ischr=${6:-yes} # whether hic startwith chr
-postprocess=${7:-no}
+postprocess=${6:-no}
 name=$(basename "${dir%/}")
 
 set -euo pipefail
 juicer_tools_jar=/cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar
-hicdir="${dir}/aligned/inter_30.hic"
+hicfile="${dir}/aligned/inter_30.hic"
 
-if [ -f "${hicdir}" ];then
+if [ -f "${hicfile}" ];then
     echo -e "Hic file exists, continue...\n"
 else
-    echo "Hic file ${hicdir} does not exist."
+    echo "Hic file ${hicfile} does not exist."
     exit 1
 fi
 check_gz_nonempty () {
@@ -61,25 +60,42 @@ else
     echo -e "------------- 02 Creating FitHiC contacts for $name ---------------\n"
 	if ! check_gz_nonempty ${inI}/${name}_${res}.txt.gz;then
 		if [[ "$dump" != 'no' ]];then
-			if [[ $ischr != 'no' ]];then
-				echo -e "Using chr...\n"
-				cut -f1 /cluster2/home/futing/ref_genome/hg38.genome | while read chr;do
-					java -Xms16G -jar /cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar \
-						dump observed NONE ${hicdir} \
-						${chr} ${chr} BP ${res} ${inI}/${chr}.VCobserved
-					/cluster2/home/futing/software/fithic/fithic/utils/createFitHiCContacts-hic.sh ${inI}/${chr}.VCobserved \
-						${chr} ${chr} ${inI}/${chr}.gz ${res}
-				done
+			JUICER_JAR="/cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar"
+			echo "Checking chromosome naming convention in ${hicfile}..."
+			check_output=$(java -Xms4G -jar ${JUICER_JAR} dump norm VC ${hicfile} chr1 BP ${res} 2>&1 || true)
+
+			use_chr_prefix="false"
+			if [[ "$check_output" == *"Invalid chromosome"* ]]; then
+				echo -e "Detected style: [1, 2, 3...] (Ensembl style, no 'chr').\n"
+				use_chr_prefix="false"
+				genome_file="/cluster2/home/futing/ref_genome/hg38_24_nochr.chrom.sizes"
 			else
-				echo -e "Not using chr...\n"
-				cut -f1 /cluster2/home/futing/ref_genome/hg38_24_nochr.chrom.sizes | while read chr;do
-					java -Xms16G -jar /cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar \
-						dump observed NONE ${hicdir} \
-						${chr} ${chr} BP ${res} ${inI}/chr${chr}.VCobserved
-					/cluster2/home/futing/software/fithic/fithic/utils/createFitHiCContacts-hic.sh ${inI}/chr${chr}.VCobserved \
-						chr${chr} chr${chr} ${inI}/chr${chr}.gz ${res}
-				done
+				# 如果没有报错，或者报错内容不是 "Invalid chromosome"，我们假设它包含了 chr
+				echo -e "Detected style: [chr1, chr2, chr3...] (UCSC style).\n"
+				use_chr_prefix="true"
+				genome_file="/cluster2/home/futing/ref_genome/hg38.genome"
 			fi
+			cut -f1 ${genome_file} | while read chrom_name; do				
+				# 确定输入给 juicer 的染色体名字 (hic_name) 和 输出文件的名字 (out_name)
+				if [[ "$use_chr_prefix" == "true" ]]; then
+					# hic里是 chr1, 列表里是 chr1
+					hic_chr="${chrom_name}"
+					out_prefix="${chrom_name}"
+				else
+					# hic里是 1, 列表里是 1
+					hic_chr="${chrom_name}"
+					# 输出文件依然保持 chr1 格式
+					out_prefix="chr${chrom_name}"
+				fi
+
+				echo "Processing ${hic_chr} -> Output: ${out_prefix}..."
+				java -Xms4G -jar ${JUICER_JAR} \
+					dump observed NONE ${hicfile} \
+					${hic_chr} ${hic_chr} BP ${res} ${inI}/${out_prefix}.VCobserved
+				/cluster2/home/futing/software/fithic/fithic/utils/createFitHiCContacts-hic.sh \
+					${inI}/${out_prefix}.VCobserved \
+					${out_prefix} ${out_prefix} ${inI}/${out_prefix}.gz ${res}
+			done
 		else
 			echo -e "Skip dumping...\n"
 		fi

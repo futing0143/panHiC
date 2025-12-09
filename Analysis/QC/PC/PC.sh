@@ -11,17 +11,6 @@ output="cancer_327.bed"
 # undonefile=/cluster2/home/futing/Project/panCancer/check/post/PCundone0918.txt
 outputmeta="/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC${d}.txt"
 >$outputmeta
-# >$undonefile
-
-# IFS=$'\t'
-# while read -r cancer gse cell other;do
-# 	dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
-# 	if [ -f "${dir}/anno/${cell}_cis_100k.cis.vecs.tsv" ];then
-# 		echo -e "${cancer}\t${gse}\t${cell}" >> ${outputmeta}
-# 	else
-# 		echo -e "${cancer}\t${gse}\t${cell}" >> ${undonefile}
-# 	fi
-# done < <(grep "\.cool" /cluster2/home/futing/Project/panCancer/check/hic/hicdone0918.txt | cut -f1-3)
 
 
 # 直接从post中找

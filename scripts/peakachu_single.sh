@@ -19,15 +19,17 @@ fi
 
 source activate /cluster2/home/futing/miniforge3/envs/peakachu
 coolfile="${dir}/cool/${name}_${reso}.cool"
-
+echo "Processing ${coolfile}..."
 # !!!! checking if the cool file is balanced !!!!
-if cooler dump -t bins --header "$coolfile" | head -1 | grep -qw "weight";then
-	echo "[$(date)] $coolfile is balanced"
-	continue
+# 检查 $coolfile 是否 balanced
+if [[ $(cooler dump -t bins --header "$coolfile" | head -1) =~ "weight" ]]; then
+    echo "[$(date)] $coolfile is balanced"
 else
-	echo "[$(date)] ${coolfile} is not ICE balanced!"
-	cooler balance "$coolfile"
+    # 这种方式避免了 SIGPIPE
+    echo "[$(date)] ${coolfile} is not ICE balanced!"
+    cooler balance "$coolfile"
 fi
+
 
 # 创建输出目录
 mkdir -p "${dir}/anno/peakachu" || {
@@ -40,7 +42,6 @@ cd "${dir}/anno/peakachu" || {
 }
 
 echo -e "\nProcessing $name at $reso using peakachu call dots..."
-
 # 计算分辨率kb值
 reso_kb=$((reso / 1000))
 
@@ -48,7 +49,7 @@ reso_kb=$((reso / 1000))
 cleanfile="./${name}_${reso_kb}kb_clean.txt"
 depthfile="./${name}_${reso_kb}kb.txt"
 
-if [ -e "${depthfile}" ] && [ -s "${depthfile}" ]; then
+if [ -e "${depthfile}" ] && [ $(wc -l < "${depthfile}") -gt 27 ]; then
     echo "${name}_${reso_kb}kb.txt exists, skip..."
 else
     echo "${name}" > "${depthfile}"
@@ -59,7 +60,7 @@ else
 
     line_count=$(wc -l < "${depthfile}")
 
-    if [ "$line_count" -le 1 ]; then
+    if [ "$line_count" -le 28 ]; then
         echo "depth not completed, exiting..."
         exit 1
     fi
@@ -96,7 +97,7 @@ while read -r file depth; do
     fi
     
     if [ ! -f "${output_file}" ]; then
-        weight="/cluster2/home/futing/Project/panCancer/GBM/HiC/10loop/peakachu/peakachu/high-confidence.${depth}.${reso_kb}kb.w6.pkl"
+        weight="/cluster2/home/futing/Project/GBM/HiC/10loop/peakachu/peakachu/high-confidence.${depth}.${reso_kb}kb.w6.pkl"
         
         if [ ! -e "${weight}" ]; then
             echo "Weight file ${weight} does not exist, please check!"

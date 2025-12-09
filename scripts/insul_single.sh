@@ -3,7 +3,7 @@
 dir=$1
 reso=${2:-5000}
 win=${3:-25000}
-name=$(awk -F '/' '{print $NF}' <<< ${dir})
+name=$(basename ${dir})
 source activate ~/miniforge3/envs/juicer
 mkdir -p $dir/anno/insul && cd ${dir}/anno/insul
 file=${dir}/cool/${name}_${reso}.cool

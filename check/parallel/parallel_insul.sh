@@ -27,7 +27,7 @@ parallel_execute() {
         return 1
     }
     
-    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d).log"
+    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d_%H%M%S).log"
     
     # 使用代码块统一重定向
     {

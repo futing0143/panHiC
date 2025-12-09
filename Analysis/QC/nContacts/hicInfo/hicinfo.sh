@@ -8,17 +8,22 @@ scripts=${wkdir}/hicInfo.py
 source activate /cluster2/home/futing/miniforge3/envs/juicer
 
 # find /cluster2/home/futing/Project/panCancer -name '*_50000.cool' | while read file;do
+# grep -w -v -F -f <(tail -n+2 ${wkdir}/hicInfo_1120.txt | cut -f1-3) \
+# 	<(grep '\.cool' /cluster2/home/futing/Project/panCancer/check/post/hicdone${d}.txt | cut -f1-3) \
+# 	> ${wkdir}/hicInfo_undone${d}.txt
 
 while IFS=$'\t' read -r cancer gse cell ncell;do
 	file="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/cool/${cell}_50000.cool"
 	echo -e "Processing $cell $gse and $cancer.."
 	hicInfo -m $file >> hicInfo_${d}.log
 
-done < <(grep '\.cool' /cluster2/home/futing/Project/panCancer/check/post/hicdone${d}.txt)
+done < "${wkdir}/hicInfo_undone${d}.txt"
 python $scripts hicInfo_${d}.log hicInfo_${d}.txt "."
-
+cat hicInfo_1116nig.txt hicInfo_${d}.txt > tmp && mv tmp hicInfo_${d}.txt
 
 bash meta.sh ${d}
+sed -i 's/,//g' hicInfocl_${d}.txt
+
 # 生成唯一cell名称
 # 见 meta.sh
 

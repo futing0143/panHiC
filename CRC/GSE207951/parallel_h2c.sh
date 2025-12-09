@@ -28,6 +28,6 @@ while read -r cell;do
 	mv ./${cell}/aligned/*.hic ./${cell}/aligned/inter_30.hic
 
 	sh /cluster2/home/futing/Project/panCancer/CRC/sbatch.sh \
-		GSE207951 ${cell} mHIC
+		GSE207951 ${cell} mHiC
 
 done < "/cluster2/home/futing/Project/panCancer/CRC/GSE207951/dir.txt"

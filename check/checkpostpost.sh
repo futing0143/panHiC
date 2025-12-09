@@ -1,47 +1,48 @@
 #!/bin/bash
 d=$1
 cd /cluster2/home/futing/Project/panCancer/check
+blacklist=/cluster2/home/futing/Project/panCancer/check/meta/blacklist.txt
+blacklist5k='/cluster2/home/futing/Project/panCancer/check/unpost/loops/loops5k_blacklist.txt'
+blacklist10k='/cluster2/home/futing/Project/panCancer/check/unpost/loops/loops10k_blacklist.txt'
+
+err_file="/cluster2/home/futing/Project/panCancer/check/download/err_dir${d}.txt" # SRR对不上的
+alignfail=/cluster2/home/futing/Project/panCancer/check/aligned/unalign/unalign${d}.txt # splits 文件有问题的：CRC7个，AML3个，GBM NC28 & EGA21
+unalign=/cluster2/home/futing/Project/panCancer/check/unrun/unrun${d}.txt #没有splits
+aligndone=/cluster2/home/futing/Project/panCancer/check/${aligndone} # splits没有问题
+unpost=/cluster2/home/futing/Project/panCancer/check/unpost/all/unpost_${d}.txt # 从aligndone挑选的
+postdone=/cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt
+
+
 : << 'EOF'
 # ----------  01 单独处理post
 # PC insul cooltools peakachu mustache (fithic OnTAD stripecaller stripenn)
 
-grep -v -e 'SV' -e '\.mcool' -e '\.cool' -e 'inter_30.hic' -e 'stripenn' \
-	-e 'peakachu' -e 'mustache' \
-    ./unpost/unpost_${d}.txt | \
-    grep -v -w -F -f /cluster2/home/futing/Project/panCancer/Analysis/SV/meta/blacklist.txt | \
+grep -Ev 'SV|\.mcool|\.cool|inter_30\.hic|stripenn|PBMC_BM' \
+    ${unpost} | \
+    grep -v -w -F -f ${blacklist5k} | \
     sort -u > ./unpost/loops/loops5k_${d}.txt
 
-
-awk 'BEGIN{FS=OFS="\t"}{if ($4=="PC") print $1,$2,$3}' ./unpost/unpost_${d}.txt \
-	> ./unpost/PC/PCundone${d}.txt
-awk 'BEGIN{FS=OFS="\t"}{if ($4=="cooltools") print $1,$2,$3,"dots"}' ./unpost/unpost_${d}.txt \
-	> ./unpost/loops/dots5k${d}.txt
-awk 'BEGIN{FS=OFS="\t"}{if ($4=="insul") print $1,$2,$3,"insul"}' ./unpost/unpost_${d}.txt \
-	> ./unpost/loops/insul5k${d}.txt
-
 # ---------- 02 综合检查各个步骤的结果，划分不同情况
-# p1 下载完了，没跑
-grep -F -w -v -f ./download/err_dir1112.txt ./unrun/unrun${d}.txt
+# p1.1 下载完了，没跑
+grep -F -w -v -f ${err_file} ${unalign}
+# p1.2 没下载，没跑
+grep -F -f ${err_file} ${unalign}
 
-# p2.1 没下载,没跑
-grep -F -f ./download/err_dir1112.txt ./unrun/unrun${d}.txt
-# p2.2 没下载，跑了一半
-grep -F -f aligned/aligndone${d}.txt ./download/err_dir1112.txt
-# grep -v -w -F -f ./unrun/unrun${d}.txt ./download/err_dir1112.txt
+# p2 没下载，跑了一半；有sam但fastq不齐
+grep -F -f ${aligndone} ${err_file}
 
-# p2.1 下载完了 aligned有问题
-head ./aligned/unalign${d}.txt
-
+# p3 下载完了 aligned有问题
+head ${alignfail}
 
 
-# p2.2 下载完了，aligned，但没有hic
+# p4.1 下载完了 aligned 但没有hic
 # ! 从aligndone + 没有 hic 中去掉没下载的，需要挂final任务
-grep -F -w -v -f <(grep 'inter_30.hic' ./post/hicdone${d}.txt | cut -f1-3) ./aligned/aligndone${d}.txt > ./unpost/hicundone/hicundone${d}.txt
+grep -F -w -v -f <(grep 'inter_30.hic' ./post/hicdone${d}.txt | cut -f1-3) ./${aligndone} > ./unpost/hicundone/hicundone${d}.txt
 # hic没有完成
 head ./unpost/hicundone/hicundone${d}.txt
 
-# p3.1 从 hicdone 中去掉没下载的，找到没cool的
-grep -F -f <(grep '.mcool' ./unpost/unpost_${d}.txt | cut -f1-3) \
+# p4.2 从 hicdone 中去掉没下载的，找到没cool的
+grep -F -f <(grep '.mcool' ${unpost} | cut -f1-3) \
 	<(grep 'inter_30.hic' ./post/hicdone${d}.txt | cut -f1-3)
 # 找到hicdone
 grep 'inter_30.hic' ./post/hicdone${d}.txt | cut -f1-3 > ./sam2bam/sam2bam_${d}.txt
@@ -53,7 +54,7 @@ grep -w -v -F -f ./sam2bam/sam2bam_${d}.txt ./meta/panCan_meta.txt
 
 # 重新检查SV的问题
 
-grep 'SV' ./unpost/unpost_${d}.txt > /cluster2/home/futing/Project/panCancer/Analysis/SV/meta/unSV/SV_${d}.txt
+grep 'SV' ${unpost} > /cluster2/home/futing/Project/panCancer/Analysis/SV/meta/unSV/SV_${d}.txt
 
 > "/cluster2/home/futing/Project/panCancer/Analysis/SV/SV_post${d}.txt"
 IFS=$'\t'
@@ -140,8 +141,8 @@ echo "Done checking loops 10k missing."
 echo "file: $output_file"
 
 # grep -v "peakachu" $outputfile > tmp && mv tmp $outputfile
-grep -v -w -F -f /cluster2/home/futing/Project/panCancer/Analysis/SV/meta/blacklist.txt \
-	$output_file > tmp && mv tmp $output_file
+grep -v -w -F -f ${blacklist} \
+	$output_file | grep -Ev 'PBMC_BM2|PBMC_BM1|PBMC_BM3' > tmp && mv tmp $output_file
 
 :<< 'EOF'
 grep 'fithic' $output_file > tmp && mv tmp $output_file
@@ -194,7 +195,7 @@ while read -r cancer gse cell;do
 dir=/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}
 echo $dir 
 find ${dir}/anno/SV -type f -name '*.txt.gz' -exec gunzip {} \;
-done < "/cluster2/home/futing/Project/panCancer/Analysis/SV/SV_unrun1112.txt"
+done < "/cluster2/home/futing/Project/panCancer/Analysis/SV/SV_unrun${d}.txt"
 
 EOF
 

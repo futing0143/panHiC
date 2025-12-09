@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -p gpu
+#SBATCH -p normal
 #SBATCH -t unlimited
 #SBATCH --cpus-per-task=15
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/CRC/GSE182105/DKO/bwa-%j.log
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/CRC/GSE182105/DKO/gunzip-%j.log
 #SBATCH -J "DKO"
 wkdir=/cluster2/home/futing/Project/panCancer/CRC/GSE182105/DKO
 cd ${wkdir}
@@ -15,9 +15,9 @@ rename .R2 _R2 *fastq.gz
 mv *.fastq.gz ./fastq
 source activate /cluster2/home/futing/miniforge3/envs/juicer
 IFS=$'\t'
-while read -r srr;do
-	ln -s ${wkdir}/fastq/${srr}*fastq.gz ${wkdir}/splits
-done < "${wkdir}/srr.txt"
+# while read -r srr;do
+# 	ln -s ${wkdir}/fastq/${srr}*fastq.gz ${wkdir}/splits
+# done < "${wkdir}/srr.txt"
 
 cd splits
 threadstring="-t 20"
@@ -40,41 +40,47 @@ tmpdir=${wkdir}/HiC_tmp
 # 	bwa mem -SP5M $threadstring $refSeq $name1$ext $name2$ext > "$name$ext.sam"
 # done < "${wkdir}/srr.txt"
 
-while read -r name;do
-	nofrag=0
-    # touch "${name}${ext}_abnorm.sam" "${name}${ext}_unmapped.sam"  
-    # awk -v fname1="${name}${ext}_norm.txt" \
-    #     -v fname2="${name}${ext}_abnorm.sam" \
-    #     -v fname3="${name}${ext}_unmapped.sam" \
-    #     -f "${juiceDir}/scripts/common/chimeric_blacklist.awk" "${name}${ext}.sam"
-    # if [ $? -ne 0 ]; then
-    #     echo "***! Failure during chimera handling of ${name}${ext}"
-    #     exit 1
-    # fi
+# while read -r name;do
+# 	nofrag=0
+#     # touch "${name}${ext}_abnorm.sam" "${name}${ext}_unmapped.sam"  
+#     # awk -v fname1="${name}${ext}_norm.txt" \
+#     #     -v fname2="${name}${ext}_abnorm.sam" \
+#     #     -v fname3="${name}${ext}_unmapped.sam" \
+#     #     -f "${juiceDir}/scripts/common/chimeric_blacklist.awk" "${name}${ext}.sam"
+#     # if [ $? -ne 0 ]; then
+#     #     echo "***! Failure during chimera handling of ${name}${ext}"
+#     #     exit 1
+#     # fi
 
-    # if [ -e "${name}${ext}_norm.txt" ] && [ "$site" != "none" ] && [ -e "$site_file" ]; then
-    #     echo "${juiceDir}/scripts/common/fragment.pl ${name}${ext}_norm.txt ${name}${ext}.frag.txt $site_file..."
-    #     "${juiceDir}/scripts/common/fragment.pl" "${name}${ext}_norm.txt" "${name}${ext}.frag.txt" "$site_file"
-    # elif [ "$site" == "none" ] || [ "$nofrag" -eq 1 ]; then
-    #     echo "awk '{printf(\"%s %s %s %d %s %s %s %d\", \$1, \$2, \$3, 0, \$4, \$5, \$6, 1); for (i=7; i<=NF; i++) {printf(\" %s\", \$i);}printf(\"\n\");}' ${name}${ext}_norm.txt > ${name}${ext}.frag.txt"
-    #     awk '{printf("%s %s %s %d %s %s %s %d", $1, $2, $3, 0, $4, $5, $6, 1); for (i=7; i<=NF; i++) {printf(" %s", $i);}printf("\n");}' "${name}${ext}_norm.txt" > "${name}${ext}.frag.txt"
-    # else                                                                    
-    #     echo "***! No ${name}${ext}_norm.txt file created"
-    #     exit 1
-    # fi 
+#     # if [ -e "${name}${ext}_norm.txt" ] && [ "$site" != "none" ] && [ -e "$site_file" ]; then
+#     #     echo "${juiceDir}/scripts/common/fragment.pl ${name}${ext}_norm.txt ${name}${ext}.frag.txt $site_file..."
+#     #     "${juiceDir}/scripts/common/fragment.pl" "${name}${ext}_norm.txt" "${name}${ext}.frag.txt" "$site_file"
+#     # elif [ "$site" == "none" ] || [ "$nofrag" -eq 1 ]; then
+#     #     echo "awk '{printf(\"%s %s %s %d %s %s %s %d\", \$1, \$2, \$3, 0, \$4, \$5, \$6, 1); for (i=7; i<=NF; i++) {printf(\" %s\", \$i);}printf(\"\n\");}' ${name}${ext}_norm.txt > ${name}${ext}.frag.txt"
+#     #     awk '{printf("%s %s %s %d %s %s %s %d", $1, $2, $3, 0, $4, $5, $6, 1); for (i=7; i<=NF; i++) {printf(" %s", $i);}printf("\n");}' "${name}${ext}_norm.txt" > "${name}${ext}.frag.txt"
+#     # else                                                                    
+#     #     echo "***! No ${name}${ext}_norm.txt file created"
+#     #     exit 1
+#     # fi 
 
-    # if [ $? -ne 0 ]; then
-    #     echo "***! Failure during fragment assignment of ${name}${ext}"
-    #     exit 1
-    # fi                              
+#     # if [ $? -ne 0 ]; then
+#     #     echo "***! Failure during fragment assignment of ${name}${ext}"
+#     #     exit 1
+#     # fi                              
 
-    sort -T "${tmpdir}" --parallel=10 -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n "${name}${ext}.frag.txt" > "${name}${ext}.sort.txt"
-    if [ $? -ne 0 ]; then
-        echo "***! Failure during sort of ${name}${ext}"
-        exit 1
-    else
-        rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
-    fi
-done < "${wkdir}/srr.txt"
+#     sort -T "${tmpdir}" --parallel=10 -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n "${name}${ext}.frag.txt" > "${name}${ext}.sort.txt"
+#     if [ $? -ne 0 ]; then
+#         echo "***! Failure during sort of ${name}${ext}"
+#         exit 1
+#     else
+#         rm "${name}${ext}_norm.txt" "${name}${ext}.frag.txt"
+#     fi
+# done < "${wkdir}/srr.txt"
 
-sh /cluster2/home/futing/Project/panCancer/CRC/sbatch.sh GSE182105 DKO MboI "-S merge"
+cd /cluster2/home/futing/Project/panCancer/CRC/GSE182105/DKO/splits
+
+parallel -j 5 \
+    --tmpdir /cluster2/home/futing/Project/panCancer/CRC/GSE182105/DKO/debug \
+    "echo '解压 {}'; if [ -f {}.fastq.gz.sort.txt.gz ]; then gunzip {}.fastq.gz.sort.txt.gz; fi" :::: /cluster2/home/futing/Project/panCancer/CRC/GSE182105/DKO/srr_a.txt
+sh /cluster2/home/futing/Project/panCancer/CRC/sbatch.sh \
+	GSE182105 DKO MboI "-S merge"

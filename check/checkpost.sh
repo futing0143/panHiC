@@ -3,11 +3,11 @@ set -euo pipefail
 d=$1
 
 # 输出文件
-output_file=/cluster2/home/futing/Project/panCancer/check/unpost/unpost_${d}.txt
-hic_file=/cluster2/home/futing/Project/panCancer/check/post/hicdone${d}.txt
+output_file=/cluster2/home/futing/Project/panCancer/check/unpost/all/unpost_${d}.txt
+hic_file=/cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt
 > "$output_file"
 > "$hic_file"
-
+cd /cluster2/home/futing/Project/panCancer/check
 # 进度文件
 total=$(wc -l < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt")
 progress_file=$(mktemp)
@@ -87,7 +87,16 @@ rm -f "$progress_file" "$progress_file.lock"
 echo "✅ All done. Results:"
 echo "  - Unpost: $output_file"
 echo "  - Post:   $hic_file"
-
+# 最后修改 unpost 文件
+awk -F'\t' '{
+    if ($0 ~ /cis_100k\.cis\.vecs\.tsv/) {
+        $NF = "PC"
+    } if ($0 ~ /cooltools/) {
+		$NF = "dots"
+	}
+    OFS = "\t"
+    print
+}' "$output_file" > tmp && mv tmp "$output_file"
 
 # ------- 挑选出 insul 50k 没跑的
 echo "------- Checking insul 50k files -------"
@@ -107,18 +116,9 @@ while read -r cancer gse cell other;do
 		echo -e "${cancer}\t$gse\t$cell\t$tools" >> "$donefile"
 
 	fi
-done < <(grep '\.cool' ./post/hicdone${d}.txt)
+done < <(grep '\.cool' $hic_file)
 
 
 
-# 最后修改 unpost 文件
-awk -F'\t' '{
-    if ($0 ~ /cis_100k\.cis\.vecs\.tsv/) {
-        $NF = "PC"
-    } if ($0 ~ /cooltools/) {
-		$NF = "dots"
-	}
-    OFS = "\t"
-    print
-}' "$output_file" > tmp && mv tmp "$output_file"
+
 

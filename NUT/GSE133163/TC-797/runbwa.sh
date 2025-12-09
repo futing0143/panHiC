@@ -74,4 +74,4 @@ while read -r name;do
     fi
 done < "${wkdir}/srr.txt"
 
-# sh /cluster2/home/futing/Project/panCancer/RCC/sbatch.sh GSE233166 HEK293T MboI "-S merge"
+# /cluster2/home/futing/Project/panCancer/NUT/sbatch.sh GSE133163 TC-797 MboI "-S final"

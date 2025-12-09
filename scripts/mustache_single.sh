@@ -1,7 +1,7 @@
 #!/bin/bash
 dir=$1
 reso=${2:-5000}
-name=$(awk -F '/' '{print $NF}' <<< ${dir})
+name=$(basename ${dir})
 
 source activate /cluster2/home/futing/miniforge3/envs/mustache
 file=${dir}/cool/${name}_${reso}.cool

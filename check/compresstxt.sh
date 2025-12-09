@@ -9,10 +9,10 @@ ulimit -l unlimited
 
 # 
 # d=1111
-# cat /cluster2/home/futing/Project/panCancer/check/gzip/gzip_0*.txt | sort -u > \
+# cat /cluster2/home/futing/Project/panCancer/check/gzip/gzip_+([0-9]).txt | sort -u > \
 # 	/cluster2/home/futing/Project/panCancer/check/gzip/gzip_done.txt
 # grep -w -v -F -f /cluster2/home/futing/Project/panCancer/check/gzip/gzip_done.txt \
-# 	<(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/hicdone${d}.txt | cut -f1-3) \
+# 	<(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/all/hicdone1206.txt | cut -f1-3) \
 # 	> /cluster2/home/futing/Project/panCancer/check/gzip/gzip_${d}.txt
 #
 # 定义包含SAM文件的根目录
@@ -56,6 +56,6 @@ readonly PARALLEL_JOBS=10
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
 	--tmpdir "${WKDIR}/debug" \
-    "parallel_execute {1} {2} {3}" :::: "${WKDIR}/gzip/gzip_1111.txt"
+    "parallel_execute {1} {2} {3}" :::: "${WKDIR}/gzip/gzip_1207.txt"
 
 date

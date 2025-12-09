@@ -34,16 +34,14 @@ while read -r cancer gse cell;do
 done < "/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/reso1103.txt"
 # done < <(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/hic/hicdone1012nig.txt | cut -f1-3)
 
-
-# 
-# awk '
-#  /^[A-Za-z]{3} [A-Za-z]{3} [0-9]{1,2} / {cancer=$0; next}       # 匹配日期行，暂时存起来
-#  /^[^\t]+\t[^\t]+\t[^\t]+$/ {split($0,a,"\t"); g1=a[1]; g2=a[2]; g3=a[3]; next}  # cancer,gse,cell
-#  /The map resolution is/ {match($0,/[0-9]+/,m); res=m[0]; print g1 "\t" g2 "\t" g3 "\t" res}
-#  ' /cluster2/home/futing/Project/panCancer/check/debug/calres-13892.log \
-# > /cluster2/home/futing/Project/panCancer/check/res1015.txt
-
 # 第二次计算reso
 # grep -w -v -F -f <(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/hicdone1012nig.txt | cut -f1-3) \
 # 	<(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/hicdone1103.txt | cut -f1-3) \
 # 	> /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso1103.txt
+
+# 第三次计算
+# grep -w -v -F -f <(cut -f1-3 /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/res.txt) \
+# <(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/hicdone1120.txt | cut -f1-3) \
+# > /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/reso1120.txt
+
+

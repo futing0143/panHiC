@@ -1,11 +1,18 @@
 #!/bin/bash
 cd /cluster2/home/futing/Project/panCancer/Analysis/dchic
 # 生成 ./meta/cell_list/cell_list.txt
-cut -f1-3 /cluster2/home/futing/Project/panCancer/check/meta/ctrl_merge.txt | sort -u > ./meta/cell_list/cell_list_ctrl.txt
-awk 'BEGIN{FS=OFS="\t"} {print $1,$2,$3,1}' ./meta/cell_list/cell_list_ctrl.txt >> tmp && mv tmp ./meta/cell_list/cell_list_ctrl.txt
-cut -f1-3 /cluster2/home/futing/Project/panCancer/check/meta/cancer_meta.txt | sort -u > ./meta/cell_list/cell_list_unctrl.txt
-cut -f1-3 /cluster2/home/futing/Project/panCancer/check/meta/done_meta.txt | sort -u >> ./meta/cell_list/cell_list_unctrl.txt
-awk 'BEGIN{FS=OFS="\t"} {print $1,$2,$3,0}' ./meta/cell_list/cell_list_unctrl.txt >> tmp && mv tmp ./meta/cell_list/cell_list_unctrl.txt
+metadir=/cluster2/home/futing/Project/panCancer/check/meta/part
+cat <(cut -f1-3 ${metadir}/ctrl_merge.txt) \
+    <(cut -f1-3 /cluster2/home/futing/Project/panCancer/GBM/GBM_ctrl_sim.txt | awk 'BEGIN{FS=OFS="\t"}{print "GBM",$0}' | grep -Ev 'DIPG007|SF9427|DIPGXIII') \
+    <(awk '($2 == "GSE207951" && $3 ~ /^A/) || ($3 ~ /^Norm_patient/) || ($3 ~ /_Normal$/)' ${metadir}/cancer_meta.txt| cut -f1-3) | \
+awk 'BEGIN{FS=OFS="\t"} {print $1,$2,$3,1}' | sort -k1 -k2 -k3 -u > ./meta/cell_list/cell_list_ctrl.txt
+
+cat <(awk '($2 != "GSE207951" || $3 !~ /^A/) && ($3 !~ /^Norm_patient/) && ($3 !~ /_Normal$/)' ${metadir}/cancer_meta.txt | cut -f1-3) \
+	<(cut -f1-3 ${metadir}/done_meta.txt) \
+	<(cut -f1-2 /cluster2/home/futing/Project/panCancer/GBM/GBM_meta.txt | awk 'BEGIN{FS=OFS="\t"}{print "GBM",$0}') \
+	<(cut -f1-3 /cluster2/home/futing/Project/panCancer/GBM/GBM_ctrl_sim.txt | awk 'BEGIN{FS=OFS="\t"}{print "GBM",$0}' | grep -E 'DIPG007|SF9427|DIPGXIII') |\
+	awk 'BEGIN{FS=OFS="\t"} {print $1,$2,$3,0}' | sort -k1 -k2 -k3 -u > ./meta/cell_list/cell_list_unctrl.txt
+
 cat ./meta/cell_list/cell_list_ctrl.txt ./meta/cell_list/cell_list_unctrl.txt | sort -u > ./meta/cell_list/cell_list_all.txt
 rm ./meta/cell_list/cell_list_ctrl.txt ./meta/cell_list/cell_list_unctrl.txt
 
@@ -16,12 +23,16 @@ cat ./meta/prepro/predone.txt ./meta/prepro/preundone*.txt | sort -u > tmp && mv
 grep -v -w -F -f ./meta/prepro/predone.txt <(grep '_2500000.cool' $input | cut -f1-3) > ./meta/prepro/preundone${d}.txt # 所有需要转换的样本
 
 # -------- 检查 PCA，生成 input_undone.txt --------
-cut -f1 input*.txt | awk 'BEGIN{FS="/";OFS="\t"}{print $7,$8,$9}' | sort -u > ./meta/cell_list/cell_listdone.txt
-grep -F -v -w -f ./meta/cell_list/cell_listdone.txt <(grep '_2500000.cool' $input | cut -f1-3) > ./meta/cell_list/cell_listundone${d}.txt
-grep -v 'TREx-KRta' ./meta/cell_list/cell_listundone${d}.txt > tmp && mv tmp ./meta/cell_list/cell_listundone${d}.txt
+grep -F -v -w -f <(cut -f1 input*.txt | awk 'BEGIN{FS="/";OFS="\t"}{print $7,$8,$9}' | sort -u) \   # 所有完成dchic的文件
+	<(grep '_2500000.cool' $input | cut -f1-3) \     #所有的有cool的文件
+	| grep -v 'TREx-KRta' > ./meta/cell_list/tmp #需要进行dchic的文件
 
-# -------- 转换 ./meta/cell_list/cell_list.txt 为 input.txt
-grep -F -f ./meta/cell_list/cell_listundone${d}.txt ./meta/cell_list/cell_list_all.txt > tmp && mv tmp ./meta/cell_list/cell_list${d}.txt
+grep -F -f ./meta/cell_list/tmp \     #需要进行dchic的文件
+	./meta/cell_list/cell_list_all.txt > \                #含有Meta信息的文件
+	./meta/cell_list/cell_list${d}.txt                    #含有meta 信息的dchic文件
+rm ./meta/cell_list/tmp
+
+# cell_list.tsv 是GPT注释的结果
 # join -t $'\t' -1 3 -2 1 -o 1.1,1.2,1.3,2.2 "${input}" ./meta/cell_list/cell_list.tsv > tmp && mv tmp ./meta/cell_list/cell_list.txt
 dir=/cluster2/home/futing/Project/panCancer/
 
@@ -37,10 +48,9 @@ awk -v dir="$dir" 'BEGIN{FS=OFS="\t"}
               dir $1 "/" $2 "/" $3 "/cool/" $3 "_100000_abs.bed", \
               $2"_"$3, $1 "_ctrl"
     }
-}' ./meta/cell_list/cell_list${d}.txt > input${d}.txt
-
+}' ./meta/cell_list/cell_list${d}.txt | grep -Ev 'BCBL1_TREx-KRta_NoDox|BCBL1_TREx-KRta_Dox' > input${d}.txt
 # # BCBL1_TREx-KRta_NoDox 和 BCBL1_TREx-KRta_Dox 数据质量较差，先不做 dcHiC 分析
-grep -v 'BCBL1_TREx-KRta_NoDox' input${d}.txt | grep -v 'BCBL1_TREx-KRta_Dox' > tmp && mv tmp input${d}.txt
+
 
 # ------- 先检查所有的 matrix，再跑run_dchic.sh -------
 cat input${d}.txt | while read matrix bed prefix cancer; do
