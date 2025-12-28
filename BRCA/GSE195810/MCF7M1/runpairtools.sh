@@ -4,5 +4,5 @@
 #SBATCH --cpus-per-task=15
 #SBATCH -o /cluster2/home/futing/Project/panCancer/BRCA/GSE195810/MCF7M1/debug/MCF7M1_pair-%j.log
 
-bash /cluster2/home/futing/Project/panCancer/BRCA/GSE195810/MCF7M1/runpairtools.sh \
+bash /cluster2/home/futing/pipeline/HiC/pairtools/pairtools_hicv2.sh \
 	/cluster2/home/futing/Project/panCancer/BRCA/GSE195810/MCF7M1 5000 15 DpnII

@@ -1,0 +1,531 @@
+ncell	cancer	gse	cell	isctrl	depth	Cancer_Category	Origin
+09-376	CRC	GSE137188	09-376	0	105179165	Solid Tumor	Digestive System
+11-1026	CRC	GSE137188	11-1026	0	102757999	Solid Tumor	Digestive System
+11-1074	CRC	GSE137188	11-1074	0	95497276	Solid Tumor	Digestive System
+11-1074_Normal	CRC	GSE137188	11-1074_Normal	1	90275817	Normal	Digestive System
+11-51	CRC	GSE137188	11-51	0	61174254	Solid Tumor	Digestive System
+11-51_Normal	CRC	GSE137188	11-51_Normal	1	113095102	Normal	Digestive System
+11-52	CRC	GSE137188	11-52	0	94723091	Solid Tumor	Digestive System
+11-52_Normal	CRC	GSE137188	11-52_Normal	1	87713161	Normal	Digestive System
+11-63	CRC	GSE137188	11-63	0	104670025	Solid Tumor	Digestive System
+11-63_Normal	CRC	GSE137188	11-63_Normal	1	95145177	Normal	Digestive System
+11-927	CRC	GSE137188	11-927	0	95997926	Solid Tumor	Digestive System
+11-983	CRC	GSE137188	11-983	0	105174347	Solid Tumor	Digestive System
+12-251	CRC	GSE137188	12-251	0	88429106	Solid Tumor	Digestive System
+12-251_Normal	CRC	GSE137188	12-251_Normal	1	88555819	Normal	Digestive System
+13-1317	CRC	GSE137188	13-1317	0	76242970	Solid Tumor	Digestive System
+13-1320	CRC	GSE137188	13-1320	0	104161355	Solid Tumor	Digestive System
+13-1321	CRC	GSE137188	13-1321	0	102227797	Solid Tumor	Digestive System
+13-1334	CRC	GSE137188	13-1334	0	83177025	Solid Tumor	Digestive System
+13-1410	CRC	GSE137188	13-1410	0	83288862	Solid Tumor	Digestive System
+13-1413	CRC	GSE137188	13-1413	0	105917260	Solid Tumor	Digestive System
+13-1483	CRC	GSE137188	13-1483	0	103280343	Solid Tumor	Digestive System
+13-257	CRC	GSE137188	13-257	0	101549236	Solid Tumor	Digestive System
+13-542	CRC	GSE137188	13-542	0	133842886	Solid Tumor	Digestive System
+13-542_Normal	CRC	GSE137188	13-542_Normal	1	133875316	Normal	Digestive System
+13-545	CRC	GSE137188	13-545	0	96096371	Solid Tumor	Digestive System
+13-731	CRC	GSE137188	13-731	0	98623941	Solid Tumor	Digestive System
+13-731_Normal	CRC	GSE137188	13-731_Normal	1	89819563	Normal	Digestive System
+14-1083	CRC	GSE137188	14-1083	0	109272174	Solid Tumor	Digestive System
+14-114	CRC	GSE137188	14-114	0	90329881	Solid Tumor	Digestive System
+14-1251	CRC	GSE137188	14-1251	0	154430050	Solid Tumor	Digestive System
+14-1251_Normal	CRC	GSE137188	14-1251_Normal	1	115006957	Normal	Digestive System
+14-132	CRC	GSE137188	14-132	0	104686966	Solid Tumor	Digestive System
+14-151	CRC	GSE137188	14-151	0	151921808	Solid Tumor	Digestive System
+14-151_Normal	CRC	GSE137188	14-151_Normal	1	159188464	Normal	Digestive System
+14-258	CRC	GSE137188	14-258	0	98928192	Solid Tumor	Digestive System
+14-275	CRC	GSE137188	14-275	0	104004210	Solid Tumor	Digestive System
+14-326	CRC	GSE137188	14-326	0	108045087	Solid Tumor	Digestive System
+14-328	CRC	GSE137188	14-328	0	107223632	Solid Tumor	Digestive System
+14-426	CRC	GSE137188	14-426	0	97620267	Solid Tumor	Digestive System
+14-431	CRC	GSE137188	14-431	0	99337407	Solid Tumor	Digestive System
+14-442	CRC	GSE137188	14-442	0	100646188	Solid Tumor	Digestive System
+14-494	CRC	GSE137188	14-494	0	106122910	Solid Tumor	Digestive System
+14-810	CRC	GSE137188	14-810	0	96240840	Solid Tumor	Digestive System
+14-91	CRC	GSE137188	14-91	0	84180225	Solid Tumor	Digestive System
+15-1382	CRC	GSE137188	15-1382	0	98217331	Solid Tumor	Digestive System
+15-1420	CRC	GSE137188	15-1420	0	103755746	Solid Tumor	Digestive System
+15-418	CRC	GSE137188	15-418	0	91229779	Solid Tumor	Digestive System
+15-446	CRC	GSE137188	15-446	0	101884332	Solid Tumor	Digestive System
+16-178	CRC	GSE137188	16-178	0	98856677	Solid Tumor	Digestive System
+16-178_Normal	CRC	GSE137188	16-178_Normal	1	92658122	Normal	Digestive System
+22RV1	PRAD	GSE118514	22Rv1	0	119835106	Solid Tumor	Reproductive System
+22RV1_2	PRAD	GSE118629	22Rv1	0	119835102	Solid Tumor	Reproductive System
+22RV1_3	PRAD	GSE143370	22Rv1	0	56649929	Solid Tumor	Reproductive System
+293TRex	NUT	GSE133163	293TRex	1	296176578	Normal	Epithelial tumors
+3neg_patient1	BRCA	GSE167150	3neg_patient1	0	78774063	Solid Tumor	Reproductive System
+3neg_patient2	BRCA	GSE167150	3neg_patient2	0	65909622	Solid Tumor	Reproductive System
+3neg_patient3	BRCA	GSE167150	3neg_patient3	0	70420736	Solid Tumor	Reproductive System
+42MGBA	GBM	GSE240343	42MGBA	0	57960380	Solid Tumor	Central Nervous System
+5534N	NSCLC	PRJCA000333	5534N	1	40228477	Normal	Epithelial tumors
+5534T	NSCLC	PRJCA000333	5534T	0	96250681	Solid Tumor	Epithelial tumors
+6405N	NSCLC	PRJCA000333	6405N	1	33646777	Normal	Epithelial tumors
+6405T	NSCLC	PRJCA000333	6405T	0	35212296	Solid Tumor	Epithelial tumors
+697	B-ALL	GSE190843	697	0	31416199	Hematological (Leukemia)	Hematological
+786M1A	RCC	GSE99051	786-M1A	0	39121758	Solid Tumor	Urinary System
+786O	RCC	GSE99051	786-O	0	50846021	Solid Tumor	Urinary System
+A001C007	CRC	GSE207951	A001C007	1	42156301	Normal	Digestive System
+A001C008	CRC	GSE207951	A001C008	1	46449643	Normal	Digestive System
+A001C011	CRC	GSE207951	A001C011	1	35671485	Normal	Digestive System
+A001C013	CRC	GSE207951	A001C013	1	41965036	Normal	Digestive System
+A001C019	CRC	GSE207951	A001C019	1	38901517	Normal	Digestive System
+A001C023	CRC	GSE207951	A001C023	1	29899150	Normal	Digestive System
+A001C024	CRC	GSE207951	A001C024	1	39185941	Normal	Digestive System
+A002C001	CRC	GSE207951	A002C001	1	29755153	Normal	Digestive System
+A002C002	CRC	GSE207951	A002C002	1	23993446	Normal	Digestive System
+A002C006	CRC	GSE207951	A002C006	1	21702414	Normal	Digestive System
+A002C010	CRC	GSE207951	A002C010	1	31550036	Normal	Digestive System
+A002C012	CRC	GSE207951	A002C012	1	24716017	Normal	Digestive System
+A002C013	CRC	GSE207951	A002C013	1	27896686	Normal	Digestive System
+A002C122	CRC	GSE207951	A002C122	1	26770506	Normal	Digestive System
+A002C212	CRC	GSE207951	A002C212	1	37133694	Normal	Digestive System
+A014C004	CRC	GSE207951	A014C004	1	23461480	Normal	Digestive System
+A014C012	CRC	GSE207951	A014C012	1	27012653	Normal	Digestive System
+A014C038	CRC	GSE207951	A014C038	1	30727910	Normal	Digestive System
+A014C040	CRC	GSE207951	A014C040	1	27325260	Normal	Digestive System
+A014C041	CRC	GSE207951	A014C041	1	26347685	Normal	Digestive System
+A014C045	CRC	GSE207951	A014C045	1	25901511	Normal	Digestive System
+A014C046	CRC	GSE207951	A014C046	1	23575365	Normal	Digestive System
+A014C053	CRC	GSE207951	A014C053	1	20659490	Normal	Digestive System
+A014C054	CRC	GSE207951	A014C054	1	26085933	Normal	Digestive System
+A015C004	CRC	GSE207951	A015C004	1	17699132	Normal	Digestive System
+A015C006	CRC	GSE207951	A015C006	1	41766223	Normal	Digestive System
+A015C010	CRC	GSE207951	A015C010	1	44039431	Normal	Digestive System
+A172	GBM	GSE147123	A172	0	25675499	Solid Tumor	Central Nervous System
+A172_2	GBM	PRJNA532762	A172	0	127457433	Solid Tumor	Central Nervous System
+A2058	MEL	GSE147123	A2058	0	29494725	Solid Tumor	Neural crest derived tumors
+A375	MEL	GSE143676	A375	0	49060471	Solid Tumor	Neural crest derived tumors
+A375_2	MEL	GSE275396	A375-Clone3-ITGB4neg	0	47067508	Solid Tumor	Neural crest derived tumors
+A375_3	MEL	GSE275396	A375-Clone3-ITGB4pos	0	60432057	Solid Tumor	Neural crest derived tumors
+A375_4	MEL	GSE275396	A375-Parental-ITGB4neg	0	119518311	Solid Tumor	Neural crest derived tumors
+A375_5	MEL	GSE275396	A375-Parental-ITGB4pos	0	128114382	Solid Tumor	Neural crest derived tumors
+A549	NSCLC	GSE164533	A549-ACE2	0	32992182	Solid Tumor	Epithelial tumors
+A549_2	NSCLC	GSE168233	A549	0	73013424	Solid Tumor	Epithelial tumors
+A549_3	NSCLC	GSE179184	A549-hACE2	0	110223413	Solid Tumor	Epithelial tumors
+A549_4	NSCLC	PRJCA000333	A549	0	58561160	Solid Tumor	Epithelial tumors
+A673	ES	GSE185125	A673	0	66403987	Solid Tumor	Mesenchymal tumors
+AA86	AA	GSE81879	AA86	0	6968351	Solid Tumor	Central Nervous System
+ABC-DLBCL	DLBCL	GSE168470	ABC-DLBCL	0	104838262	Hematological (Lymphoma)	Hematological
+ACHN	RCC	GSE59395	ACHN	0	38119272	Solid Tumor	Urinary System
+ALL_PDX17	ALL	GSE145997	ALL_PDX17	0	63639853	Hematological (Leukemia)	Hematological
+ALL_PDX19	ALL	GSE145997	ALL_PDX19	0	47101158	Hematological (Leukemia)	Hematological
+ALL_PDX23	ALL	GSE145997	ALL_PDX23	0	94214218	Hematological (Leukemia)	Hematological
+ALL_PDX29	ALL	GSE145997	ALL_PDX29	0	79135914	Hematological (Leukemia)	Hematological
+ALL_PDX31	ALL	GSE145997	ALL_PDX31	0	66037266	Hematological (Leukemia)	Hematological
+ALL_PDX34	ALL	GSE145997	ALL_PDX34	0	96874337	Hematological (Leukemia)	Hematological
+ALL_PDX40	ALL	GSE145997	ALL_PDX40	0	77855379	Hematological (Leukemia)	Hematological
+ARPE19	RB	GSE230795	ARPE19	1	116627688	Normal	Central Nervous System
+ATMhTERT	MEL	GSE136899	ATMhTERT	1	44251768	Normal	Neural crest derived tumors
+B_lymphocytes	B-ALL	GSE105776	B_lymphocytes	1	164059556	Normal	Hematological
+B-ALL	B-ALL	GSE138862	B-ALL_minus27	0	43633422	Hematological (Leukemia)	Hematological
+B-ALL_2	B-ALL	GSE138862	B-ALL_minus35	0	57813204	Hematological (Leukemia)	Hematological
+B-ALL_3	B-ALL	GSE138862	B-ALL_plus27	0	51564319	Hematological (Leukemia)	Hematological
+B-ALL_4	B-ALL	GSE138862	B-ALL_plus35	0	46342951	Hematological (Leukemia)	Hematological
+B-ALL_5	B-ALL	GSE73924	B-ALL	0	9656525	Hematological (Leukemia)	Hematological
+BC1	B-ALL	GSE163696	BC1_latent	0	26909772	Hematological (Leukemia)	Hematological
+BC3	B-ALL	GSE163696	BC3_latent	0	28215000	Hematological (Leukemia)	Hematological
+BCBL1	B-ALL	GSE163696	BCBL-1_latent	0	14703229	Hematological (Leukemia)	Hematological
+BCBL1_2	B-ALL	GSE163696	BCBL-1_reactivated	0	25188713	Hematological (Leukemia)	Hematological
+BJ1	MEL	GSE136899	BJ1	1	36805047	Normal	Neural crest derived tumors
+BJ5ta	MEL	GSE136899	BJ5ta	1	30997464	Normal	Neural crest derived tumors
+BL	HCC	GSE120023	BL	0	17396438	Solid Tumor	Digestive System
+BL_2	HCC	GSE120023	BL_RBM25-KD	0	16221796	Solid Tumor	Digestive System
+Bladder_Tissue	BLCA	GSE87112	Bladder_Tissue	1	64163034	Normal	Urinary System
+BT20	BRCA	GSE147123	BT-20	0	31298685	Solid Tumor	Reproductive System
+BT474	BRCA	GSE109229	BT474	0	48681670	Solid Tumor	Reproductive System
+BT483	BRCA	GSE55634	BT483	0	54865664	Solid Tumor	Reproductive System
+BT549	BRCA	GSE147123	BT-549	0	31693598	Solid Tumor	Reproductive System
+BT549_2	BRCA	GSE167150	BT-549	0	52101408	Solid Tumor	Reproductive System
+C42B	PRAD	GSE118629	C42B	0	139881355	Solid Tumor	Reproductive System
+C42B_2	PRAD	GSE204996	C42B	0	139881355	Solid Tumor	Reproductive System
+CACO2	CRC	GSE35585	Caco-2	0	134351581	Solid Tumor	Digestive System
+CALL4	B-ALL	GSE73924	CALL4	0	5809481	Hematological (Leukemia)	Hematological
+CALU3	NSCLC	GSE237356	Calu3	0	142080413	Solid Tumor	Epithelial tumors
+CAOV3	OV	GSE147123	Caov-3	0	8710685	Solid Tumor	Reproductive System
+CCRFCEM	TALL	GSE147123	CCRF-CEM	0	39869205	Hematological (Leukemia)	Hematological
+cervical_epithelial_cell	CESC	PRJCA001242	cervical_epithelial_cell	1	157609	Normal	Reproductive System
+CHLA9	ES	GSE242273	CHLA9	0	76302790	Solid Tumor	Mesenchymal tumors
+Chondrogenic_precursor	ES	GSE242273	Chondrogenic_precursor	1	250113089	Normal	Mesenchymal tumors
+CLL_102	CLL	GSE163896	CLL_102	0	93875152	Hematological (Leukemia)	Hematological
+CLL_312	CLL	GSE163896	CLL_312	0	108550378	Hematological (Leukemia)	Hematological
+CLL_324	CLL	GSE163896	CLL_324	0	106606645	Hematological (Leukemia)	Hematological
+CLL_344	CLL	GSE163896	CLL_344	0	87789602	Hematological (Leukemia)	Hematological
+CLL_401	CLL	GSE163896	CLL_401	0	82745492	Hematological (Leukemia)	Hematological
+CLL_484	CLL	GSE163896	CLL_484	0	86187609	Hematological (Leukemia)	Hematological
+CRC15157	CRC	GSE207951	CRC15157	0	51809017	Solid Tumor	Digestive System
+CRC19779	CRC	GSE207951	CRC19779	0	46479360	Solid Tumor	Digestive System
+CRC25135	CRC	GSE207951	CRC25135	0	53388672	Solid Tumor	Digestive System
+CRC25988	CRC	GSE207951	CRC25988	0	47713121	Solid Tumor	Digestive System
+CRC26616	CRC	GSE207951	CRC26616	0	47999470	Solid Tumor	Digestive System
+CRC8396	CRC	GSE207951	CRC8396	0	51099806	Solid Tumor	Digestive System
+CUTLL1	TALL	GSE130140	CUTLL1	0	79685272	Hematological (Leukemia)	Hematological
+CUTLL1_2	TALL	GSE134761	CUTLL1_1	0	56629698	Hematological (Leukemia)	Hematological
+CUTLL1_3	TALL	GSE134761	CUTLL1_2	0	90596554	Hematological (Leukemia)	Hematological
+D458	MB	GSE240410	D458	0	50247631	Solid Tumor	Central Nervous System
+DAUDI	BL	GSE98120	Daudi	0	21178173	Hematological (Lymphoma)	Hematological
+DIPG007	GBM	GSE162976	DIPG007	0	125390004	Solid Tumor	Central Nervous System
+DIPG6	GBM	GSE146731	DIPG6_S1	0	67679021	Solid Tumor	Central Nervous System
+DIPGXIII	GBM	GSE162976	DIPGXIII	0	115050513	Solid Tumor	Central Nervous System
+DKO	CRC	GSE182105	DKO	0	151856833	Solid Tumor	Digestive System
+DLBCL_patient	DLBCL	GSE168470	DLBCL_patient	0	62326757	Hematological (Lymphoma)	Hematological
+DLD1	CRC	GSE160235	DLD-1_async	0	82186116	Solid Tumor	Digestive System
+DLD1_2	CRC	GSE160235	DLD-1_G1	0	105761497	Solid Tumor	Digestive System
+DLD1_3	CRC	GSE160235	DLD-1_reenter_sync	0	83031612	Solid Tumor	Digestive System
+DLD1_4	CRC	GSE178593	DLD-1	0	67416227	Solid Tumor	Digestive System
+DND41	TALL	GSE182682	DND41	0	115992659	Hematological (Leukemia)	Hematological
+DU145	PRAD	GSE147123	DU-145	0	27812139	Solid Tumor	Reproductive System
+DU145_2	PRAD	GSE172097	DU145	0	50093190	Solid Tumor	Reproductive System
+DU4475	BRCA	GSE147123	DU4475	0	54025647	Solid Tumor	Reproductive System
+FASR	BRCA	GSE118712	FASR	0	67765587	Solid Tumor	Reproductive System
+FLT3-ITD	AML	GSE108303	FLT3-ITD_cHiC	0	49869119	Hematological (Leukemia)	Hematological
+FT246	OV	GSE229408	FT246	1	138931648	Normal	Reproductive System
+FT282	OV	GSE278254	FT282	1	27063295	Normal	Reproductive System
+FT282_2	OV	GSE229408	FT282	1	118918279	Normal	Reproductive System
+G1	GBM	GSE229962	G1	0	77870934	Solid Tumor	Central Nervous System
+G120	GBM	GSE229962	G120	0	61558993	Solid Tumor	Central Nervous System
+G148	GBM	GSE229962	G148	0	69726610	Solid Tumor	Central Nervous System
+G163	GBM	GSE229962	G163	0	57591352	Solid Tumor	Central Nervous System
+G171	GBM	GSE229962	G171	0	64716915	Solid Tumor	Central Nervous System
+G181	GBM	GSE229962	G181	0	39183198	Solid Tumor	Central Nervous System
+G208	GBM	GSE229962	G208	0	119819965	Solid Tumor	Central Nervous System
+G213	GBM	GSE229962	G213	0	119452552	Solid Tumor	Central Nervous System
+G23	GBM	GSE229962	G23	0	98596757	Solid Tumor	Central Nervous System
+G275	GBM	GSE229962	G275	0	70724407	Solid Tumor	Central Nervous System
+G275R	GBM	GSE229962	G275R	0	53596605	Solid Tumor	Central Nervous System
+G28	GBM	GSE229962	G28	0	51112218	Solid Tumor	Central Nervous System
+G318	GBM	GSE229962	G318	0	63223945	Solid Tumor	Central Nervous System
+G323	GBM	GSE229962	G323	0	74101456	Solid Tumor	Central Nervous System
+G351	GBM	GSE229962	G351	0	88953761	Solid Tumor	Central Nervous System
+G390	GBM	GSE229962	G390	0	60626339	Solid Tumor	Central Nervous System
+G394	GBM	GSE229962	G394	0	78215301	Solid Tumor	Central Nervous System
+G402	GBM	GSE229962	G402	0	80998968	Solid Tumor	Central Nervous System
+G402R	GBM	GSE229962	G402R	0	100058689	Solid Tumor	Central Nervous System
+G412	GBM	GSE229962	G412	0	60702035	Solid Tumor	Central Nervous System
+G412R	GBM	GSE229962	G412R	0	76190609	Solid Tumor	Central Nervous System
+G450	GBM	GSE229962	G450	0	76779679	Solid Tumor	Central Nervous System
+G452C	GBM	GSE229962	G452C	0	70752483	Solid Tumor	Central Nervous System
+G452P	GBM	GSE229962	G452P	0	74464659	Solid Tumor	Central Nervous System
+G457	GBM	GSE229962	G457	0	56635589	Solid Tumor	Central Nervous System
+G477	GBM	GSE146731	G477_S1	0	44585640	Solid Tumor	Central Nervous System
+G523	GBM	GSE162976	G523	0	181306968	Solid Tumor	Central Nervous System
+G567	GBM	GSE162976	G567	0	141767541	Solid Tumor	Central Nervous System
+G583	GBM	GSE162976	G583	0	185319821	Solid Tumor	Central Nervous System
+G61	GBM	GSE229962	G61	0	56665723	Solid Tumor	Central Nervous System
+G62	GBM	GSE229962	G62	0	61228988	Solid Tumor	Central Nervous System
+G83	GBM	GSE229962	G83	0	69083555	Solid Tumor	Central Nervous System
+GB176	GBM	GSE81879	GB176	0	9921127	Solid Tumor	Central Nervous System
+GB180	GBM	GSE81879	GB180	0	8904520	Solid Tumor	Central Nervous System
+GB182	GBM	GSE81879	GB182	0	8879011	Solid Tumor	Central Nervous System
+GB183	GBM	GSE81879	GB183	0	6994386	Solid Tumor	Central Nervous System
+GB238	GBM	GSE81879	GB238	0	8780186	Solid Tumor	Central Nervous System
+Germinal_Center_B-cells	DLBCL	GSE168470	Germinal_Center_B-cells	1	26844021	Normal	Hematological
+GES1	GC	GSE135941	GES-1	1	50779991	Normal	Digestive System
+GES1_2	GC	GSE135941	GES-1_ctrl	1	65932526	Normal	Digestive System
+GIMEN	NB	GSE214792	GI-MEN	0	6392942	Solid Tumor	Central Nervous System
+GM02052	MEL	GSE136899	GM02052	1	39617002	Normal	Neural crest derived tumors
+GM12878	ALL	GSE145997	GM12878	0	148618721	Hematological (Leukemia)	Hematological
+GM12878_2	B-ALL	GSE136904	GM12878	0	66686108	Hematological (Leukemia)	Hematological
+GM12878_3	MM	GSE100832	GM12878	0	69175696	Hematological (Leukemia)	Hematological
+GRANTA452	MCL	GSE147123	Granta	0	25186223	Hematological (Lymphoma)	Hematological
+H4	GBM	GSE240343	H4	0	56642938	Solid Tumor	Central Nervous System
+HaCaT_Keratinocyte	MEL	GSE151193	HaCaT_Keratinocyte	1	30538398	Normal	Neural crest derived tumors
+HAP1	CML	GSE180922	HAP1	0	108456301	Hematological (Leukemia)	Hematological
+HAP1_2	CML	GSE182500	HAP1	0	111644872	Hematological (Leukemia)	Hematological
+HCC1187	BRCA	GSE147123	HCC1187	0	70847790	Solid Tumor	Reproductive System
+HCC1569	BRCA	GSE147123	HCC1569	0	52913057	Solid Tumor	Reproductive System
+HCC1599	BRCA	GSE147123	HCC1599	0	51636800	Solid Tumor	Reproductive System
+HCC1806	BRCA	GSE147123	HCC1806	0	25318569	Solid Tumor	Reproductive System
+HCC1937	BRCA	GSE147123	HCC1937	0	20384560	Solid Tumor	Reproductive System
+HCC1954	BRCA	GSE167150	HCC1954	0	65219043	Solid Tumor	Reproductive System
+HCC2157	BRCA	GSE147123	HCC2157	0	30584485	Solid Tumor	Reproductive System
+HCC2218	BRCA	GSE147123	HCC2218	0	9620147	Solid Tumor	Reproductive System
+HCC364	NSCLC	GSE292519	HCC364	0	39069201	Solid Tumor	Epithelial tumors
+HCC38	BRCA	GSE147123	HCC38	0	37772308	Solid Tumor	Reproductive System
+HCC70	BRCA	GSE147123	HCC70	0	48021290	Solid Tumor	Reproductive System
+HCC70_2	BRCA	GSE167150	HCC70	0	68203649	Solid Tumor	Reproductive System
+HCT116	CRC	GSE160235	HCT116	0	105460956	Solid Tumor	Digestive System
+HCT116_2	CRC	GSE182105	HCT116	0	67714680	Solid Tumor	Digestive System
+HEK293	RCC	GSE233166	HEK293	1	22025717	Normal	Urinary System
+HEK293T	RCC	GSE233166	HEK293T	1	38171684	Normal	Urinary System
+HELA	CESC	GSE102884	HeLa	0	16670740	Solid Tumor	Reproductive System
+HELA_10	CESC	GSE119825	HeLa_clone26a_mitotic	0	16801688	Solid Tumor	Reproductive System
+HELA_11	CESC	GSE119825	HeLa_clone27b	0	16139036	Solid Tumor	Reproductive System
+HELA_12	CESC	GSE119825	HeLa_clone27b_mitotic	0	20084019	Solid Tumor	Reproductive System
+HELA_13	CESC	GSE119825	HeLa_clone27k_async	0	14803839	Solid Tumor	Reproductive System
+HELA_14	CESC	GSE119825	HeLa_clone27k_mitotic	0	18952620	Solid Tumor	Reproductive System
+HELA_15	CESC	GSE138405	HeLa_G1_HindIII	0	19601891	Solid Tumor	Reproductive System
+HELA_16	CESC	GSE138405	HeLa_G1_MboI	0	100873797	Solid Tumor	Reproductive System
+HELA_18	CESC	GSE152373	HeLa_G1	0	13302214	Solid Tumor	Reproductive System
+HELA_19	CESC	GSE152373	HeLa_G1_4sT	0	15019394	Solid Tumor	Reproductive System
+HELA_2	CESC	GSE102884	HeLa_CTCF-AID_auxin	0	13117919	Solid Tumor	Reproductive System
+HELA_20	CESC	GSE152373	HeLa_G1label	0	10922631	Solid Tumor	Reproductive System
+HELA_21	CESC	GSE152373	HeLa_G2	0	133290406	Solid Tumor	Reproductive System
+HELA_22	CESC	GSE152373	HeLa_Prometa	0	36857780	Solid Tumor	Reproductive System
+HELA_24	CESC	GSE173781	HeLa	0	36548192	Solid Tumor	Reproductive System
+HELA_25	CESC	GSE183186	HeLa-S3	0	86509889	Solid Tumor	Reproductive System
+HELA_3	CESC	GSE102884	HeLa_G1	0	19601891	Solid Tumor	Reproductive System
+HELA_4	CESC	GSE102884	HeLa_G2	0	22323881	Solid Tumor	Reproductive System
+HELA_5	CESC	GSE102884	HeLa_Prometa	0	21336066	Solid Tumor	Reproductive System
+HELA_6	CESC	GSE102884	HeLa_S	0	25068983	Solid Tumor	Reproductive System
+HELA_7	CESC	GSE102884	HeLa_Scc1-AID_auxin	0	34496124	Solid Tumor	Reproductive System
+HELA_8	CESC	GSE114539	HeLa	0	17197604	Solid Tumor	Reproductive System
+HELA_9	CESC	GSE119825	HeLa_clone26a_async	0	17884138	Solid Tumor	Reproductive System
+HEPG2	HCC	GSE113405	HepG2	0	52814764	Solid Tumor	Digestive System
+HEPG2_2	HCC	GSE35585	HepG2_ENCLB009YAO	0	47774912	Solid Tumor	Digestive System
+HEPG2_3	HCC	GSE35585	HepG2_ENCLB567NSJ	0	71474623	Solid Tumor	Digestive System
+HEPG2_4	HCC	GSE35585	HepG2_ENCLB740OBC	0	36726562	Solid Tumor	Digestive System
+HEPG2_5	HCC	GSE59395	HepG2	0	433660940	Solid Tumor	Digestive System
+HEYA8	OV	GSE201878	HEYA8	0	200090883	Solid Tumor	Reproductive System
+HFE145	GC	GSE135941	HFE145	0	59708567	Solid Tumor	Digestive System
+HK1	NPC	GSE166570	HK1	0	72210177	Solid Tumor	Epithelial tumors
+HK1_2	NPC	GSE166570	NPC	0	85007359	Solid Tumor	Epithelial tumors
+HL60	AML	GSE115633	HL-60_S4	0	123756469	Hematological (Leukemia)	Hematological
+HL60_2	AML	GSE120815	HL-60_S4	0	14969491	Hematological (Leukemia)	Hematological
+HL60_3	AML	GSE131580	HL-60	0	388243640	Hematological (Leukemia)	Hematological
+HL60_4	AML	GSE147123	HL-60	0	46128057	Hematological (Leukemia)	Hematological
+HL60_5	AML	GSE93995	HL-60	0	45526275	Hematological (Leukemia)	Hematological
+HS578T	BRCA	GSE147123	HS578T	0	26269371	Solid Tumor	Reproductive System
+HSJD-GBM002	GBM	GSE146731	HSJD-GBM002	0	80630654	Solid Tumor	Central Nervous System
+HT1080	FSA	GSE261834	HT1080	0	3290683	Solid Tumor	Mesenchymal tumors
+HT1376	BLCA	GSE148079	HT1376	0	133936380	Solid Tumor	Urinary System
+Hypertrophic_chondrocyte	ES	GSE242273	Hypertrophic_chondrocyte	1	265213214	Normal	Mesenchymal tumors
+IM95	GC	GSE135941	IM95	0	58593680	Solid Tumor	Digestive System
+induced_pluripotent_stem_cell_muscle_progenitor_P3F1	RMS	GSE253894	induced_pluripotent_stem_cell_muscle_progenitor_P3F1	0	30549026	Solid Tumor	Mesenchymal tumors
+induced_pluripotent_stem_cell_muscle_progenitor_P7F1	RMS	GSE253894	induced_pluripotent_stem_cell_muscle_progenitor_P7F1	0	33295728	Solid Tumor	Mesenchymal tumors
+induced_pluripotent_stem_cell_muscle_progenitor_WT	RMS	GSE253894	induced_pluripotent_stem_cell_muscle_progenitor_WT	1	36012022	Normal	Mesenchymal tumors
+iPSC	GBM	ENCODE	iPSC	1	753344180	Normal	Central Nervous System
+iPSC_2	GBM	GSE220103	iPSC	1	56613864	Normal	Central Nervous System
+JEKO1	MCL	GSE147123	Jeko1	0	53380235	Hematological (Lymphoma)	Hematological
+JURKAT	TALL	GSE130140	Jurkat	0	86495541	Hematological (Leukemia)	Hematological
+JURKAT_2	TALL	GSE134761	Jurkat	0	53841430	Hematological (Leukemia)	Hematological
+JURKAT_3	TALL	GSE147123	Jurkat	0	35368391	Hematological (Leukemia)	Hematological
+KBM7	CML	GSE137372	KBM7	0	29034299	Hematological (Leukemia)	Hematological
+KBM7_2	CML	GSE137373	KBM7	0	4775128	Hematological (Leukemia)	Hematological
+KNS42	GBM	GSE146731	KNS-42	0	129964331	Solid Tumor	Central Nervous System
+KURAMOCHI	OV	GSE229408	KURAMOCHI	0	119102522	Solid Tumor	Reproductive System
+LEIOPT1063	UCEC	GSE128234	LEIO-PT1063	0	27381944	Solid Tumor	Reproductive System
+LEIOPT848	UCEC	GSE128234	LEIO-PT848	0	30692394	Solid Tumor	Reproductive System
+LEIOPT886	UCEC	GSE128234	LEIO-PT886	0	37577739	Solid Tumor	Reproductive System
+LEIOPT916	UCEC	GSE128234	LEIO-PT916	0	32268413	Solid Tumor	Reproductive System
+LEIOPT967	UCEC	GSE128234	LEIO-PT967	0	34262178	Solid Tumor	Reproductive System
+LNCAPCLONEFGC	PRAD	GSE105557	LNCaP	0	105530756	Solid Tumor	Reproductive System
+LNCAPCLONEFGC_2	PRAD	GSE125640	LNCaP	0	43353650	Solid Tumor	Reproductive System
+LNCAPCLONEFGC_3	PRAD	GSE161493	LNCaP	0	134602997	Solid Tumor	Reproductive System
+LNCAPCLONEFGC_4	PRAD	GSE172097	LNCaP	0	24869579	Solid Tumor	Reproductive System
+LNCAPCLONEFGC_5	PRAD	GSE268339	LNCaP	0	47866071	Solid Tumor	Reproductive System
+LNCAPCLONEFGC_6	PRAD	GSE73782	LNCaP	0	156304599	Solid Tumor	Reproductive System
+mammary_epithelial	BRCA	GSE167150	mammary_epithelial	1	47661790	Normal	Reproductive System
+MAVER1	MCL	GSE147123	Maver-1	0	39570549	Hematological (Lymphoma)	Hematological
+MB102	MB	GSE240410	MB102	0	75230739	Solid Tumor	Central Nervous System
+MB106	MB	GSE240410	MB106	0	93829458	Solid Tumor	Central Nervous System
+MB164	MB	GSE240410	MB164	0	78523190	Solid Tumor	Central Nervous System
+MB174	MB	GSE240410	MB174	0	63176424	Solid Tumor	Central Nervous System
+MB199	MB	GSE240410	MB199	0	55940643	Solid Tumor	Central Nervous System
+MB227	MB	GSE240410	MB227	0	71540538	Solid Tumor	Central Nervous System
+MB234	MB	GSE240410	MB234	0	62153159	Solid Tumor	Central Nervous System
+MB244	MB	GSE240410	MB244	0	46154302	Solid Tumor	Central Nervous System
+MB248	MB	GSE240410	MB248	0	193856016	Solid Tumor	Central Nervous System
+MB264	MB	GSE240410	MB264	0	61236715	Solid Tumor	Central Nervous System
+MB268	MB	GSE240410	MB268	0	60645646	Solid Tumor	Central Nervous System
+MB274	MB	GSE240410	MB274	0	38206139	Solid Tumor	Central Nervous System
+MB275	MB	GSE240410	MB275	0	6758491	Solid Tumor	Central Nervous System
+MB277	MB	GSE240410	MB277	0	43957899	Solid Tumor	Central Nervous System
+MB288	MB	GSE240410	MB288	0	249898904	Solid Tumor	Central Nervous System
+MCF10A	BRCA	GSE109229	MCF10	1	70991098	Normal	Reproductive System
+MCF10A_2	BRCA	GSE165570	MCF10A	1	29036598	Normal	Reproductive System
+MCF10A_3	BRCA	GSE98552	MCF10AT1	0	106209999	Solid Tumor	Reproductive System
+MCF10A_4	BRCA	GSE98552	MCF10CA1a	0	139443807	Solid Tumor	Reproductive System
+MCF7	BRCA	GSE109229	MCF7	0	51221761	Solid Tumor	Reproductive System
+MCF7_10	BRCA	GSE195810	MCF7TR	0	28255439	Solid Tumor	Reproductive System
+MCF7_11	BRCA	GSE205874	MCF7	0	106959988	Solid Tumor	Reproductive System
+MCF7_12	BRCA	GSE237722	MCF7	0	168325539	Solid Tumor	Reproductive System
+MCF7_13	BRCA	GSE51687	MCF7	0	330611	Solid Tumor	Reproductive System
+MCF7_14	BRCA	GSE66733	MCF7	0	99453355	Solid Tumor	Reproductive System
+MCF7_15	BRCA	GSE68858	MCF7	0	13642081	Solid Tumor	Reproductive System
+MCF7_16	BRCA	GSE75070	MCF7	0	82832495	Solid Tumor	Reproductive System
+MCF7_2	BRCA	GSE118712	MCF7	0	98667744	Solid Tumor	Reproductive System
+MCF7_3	BRCA	GSE121443	MCF7	0	16552070	Solid Tumor	Reproductive System
+MCF7_4	BRCA	GSE130916	MCF7	0	30433879	Solid Tumor	Reproductive System
+MCF7_5	BRCA	GSE144377	MCF7L	0	73584642	Solid Tumor	Reproductive System
+MCF7_6	BRCA	GSE165570	MCF7	0	69076036	Solid Tumor	Reproductive System
+MCF7_7	BRCA	GSE165570	MCF7TR	0	46254032	Solid Tumor	Reproductive System
+MCF7_8	BRCA	GSE195810	MCF7	0	73584642	Solid Tumor	Reproductive System
+MCF7_9	BRCA	GSE195810	MCF7M1	0	692282	Solid Tumor	Reproductive System
+MDAMB231	BRCA	GSE124409	MDA-MB-231	0	36053934	Solid Tumor	Reproductive System
+MDAMB231_2	BRCA	GSE143676	MDA-MB-231_bot5	0	47877602	Solid Tumor	Reproductive System
+MDAMB231_3	BRCA	GSE143676	MDA-MB-231_ctrl	0	44256621	Solid Tumor	Reproductive System
+MDAMB231_4	BRCA	GSE143676	MDA-MB-231_top5	0	41904225	Solid Tumor	Reproductive System
+MDAMB436	BRCA	GSE234323	MDA-MB-436	0	221725301	Solid Tumor	Reproductive System
+MDAMB468	BRCA	GSE147123	MDA-MB-468	0	52803176	Solid Tumor	Reproductive System
+MDAMD231	BRCA	GSE147123	MDA-MD-231	0	28301956	Solid Tumor	Reproductive System
+MDAMD436	BRCA	GSE147123	MDA-MD-436	0	22134274	Solid Tumor	Reproductive System
+MDAPCa2a	PRAD	GSE172097	MDAPCa2a	0	61541994	Solid Tumor	Reproductive System
+MDAPCa2b	PRAD	GSE172097	MDAPCa2b	0	50683785	Solid Tumor	Reproductive System
+melanoma	MEL	GSE186055	melanoma	0	38928993	Solid Tumor	Neural crest derived tumors
+Mesenchymal_condensate	ES	GSE242273	Mesenchymal_condensate	1	103613765	Normal	Mesenchymal tumors
+MG63	OS	GSE147123	MG-63	0	31580356	Solid Tumor	Mesenchymal tumors
+MINO	MCL	GSE147123	Mino-1	0	52375442	Hematological (Lymphoma)	Hematological
+MKN1	GC	GSE135941	MKN1	0	56261756	Solid Tumor	Digestive System
+MKN7	GC	GSE135941	MKN7	0	68231472	Solid Tumor	Digestive System
+MKN7_2	GC	GSE135941	MKN7_ctrl	0	53860260	Solid Tumor	Digestive System
+ML2	AML	GSE147123	ML2	0	33311638	Hematological (Leukemia)	Hematological
+MNT1	MEL	GSE248849	MNT-1_Hae3	0	40627645	Solid Tumor	Neural crest derived tumors
+MNT1_2	MEL	GSE248849	MNT-1_Hae3_Alu1	0	42120530	Solid Tumor	Neural crest derived tumors
+MOLM13	AML	GSE147123	MOLM13	0	43415123	Hematological (Leukemia)	Hematological
+MOLT4	TALL	GSE147123	MOLT-4	0	39911706	Hematological (Leukemia)	Hematological
+MRC5	MEL	GSE136899	MRC5	1	28604026	Normal	Neural crest derived tumors
+Mutu-LCL	BL	GSE160973	Mutu-LCL	0	5058908	Hematological (Lymphoma)	Hematological
+MutuI	BL	GSE160973	MutuI	0	337269	Hematological (Lymphoma)	Hematological
+MutuI_2	BL	GSE160973	MutuI_olaparib	0	400682	Hematological (Lymphoma)	Hematological
+MV411	AML	GSE147123	MV411	0	33813989	Hematological (Leukemia)	Hematological
+Myometrium	UCEC	GSE128234	Myometrium	1	112010467	Normal	Reproductive System
+NALM6	B-ALL	GSE115491	Nalm6	0	204225772	Hematological (Leukemia)	Hematological
+NALM6_2	B-ALL	GSE190843	NALM6	0	27288649	Hematological (Leukemia)	Hematological
+NAMALWA	BL	GSE98120	Namalwa	0	25864043	Hematological (Lymphoma)	Hematological
+NB4	AML	GSE235154	NB-4	0	88609506	Hematological (Leukemia)	Hematological
+NCC19	GC	GSE135941	NCC19	0	61780803	Solid Tumor	Digestive System
+NCC24	GC	GSE135941	NCC24	0	48408332	Solid Tumor	Digestive System
+NCC59	GC	GSE135941	NCC59	0	74908024	Solid Tumor	Digestive System
+NCIH1437	NSCLC	GSE147123	NCI-H1437	0	35656036	Solid Tumor	Epithelial tumors
+NCIH1563	NSCLC	GSE147123	NCI-H1563	0	31138639	Solid Tumor	Epithelial tumors
+NCIH1573	NSCLC	GSE147123	NCI-H1573	0	33013525	Solid Tumor	Epithelial tumors
+NCIH1975	NSCLC	GSE147123	NCI-H1975	0	29931442	Solid Tumor	Epithelial tumors
+NCIH2087	NSCLC	GSE292519	NCI-H2087	0	32506405	Solid Tumor	Epithelial tumors
+NCIH358	NSCLC	GSE292519	NCI-H358	0	26885696	Solid Tumor	Epithelial tumors
+NCIH441	NSCLC	GSE292519	NCI-H441	0	39106660	Solid Tumor	Epithelial tumors
+NCIH460	NSCLC	GSE105725	NCI-H460	0	43748916	Solid Tumor	Epithelial tumors
+NCIH596	NSCLC	GSE147123	NCI-H596	0	35813054	Solid Tumor	Epithelial tumors
+NHA	GBM	GSE162976	NHA	1	42105816	Normal	Central Nervous System
+NHA_2	GBM	GSE241592	NHA	1	422583085	Normal	Central Nervous System
+NHA_3	GBM	PRJNA532762	NHA	1	113361837	Normal	Central Nervous System
+NHA_4	GBM	PRJNA63443	NHA	1	126447413	Normal	Central Nervous System
+Norm_patient1	BRCA	GSE167150	Norm_patient1	1	64263764	Normal	Reproductive System
+Norm_patient2	BRCA	GSE167150	Norm_patient2	1	68534877	Normal	Reproductive System
+Norm_patient3	BRCA	GSE167150	Norm_patient3	1	68762186	Normal	Reproductive System
+Norm_patient4	BRCA	GSE167150	Norm_patient4	1	72058866	Normal	Reproductive System
+Norm_patient5	BRCA	GSE167150	Norm_patient5	1	61730692	Normal	Reproductive System
+NP69	NPC	GSE166570	NP-69	1	73956224	Normal	Epithelial tumors
+NPC	GBM	GSE185192	NPC	1	209667327	Normal	Central Nervous System
+NPC_2	GBM	GSE220103	NPC	1	151472862	Normal	Central Nervous System
+NSD2	MM	GSE131651	NSD2_High_1	0	22270584	Hematological (Leukemia)	Hematological
+NSD2_2	MM	GSE131651	NSD2_High_2	0	36202343	Hematological (Leukemia)	Hematological
+NSD2_3	MM	GSE131651	NSD2_Low_1	0	27142923	Hematological (Leukemia)	Hematological
+NSD2_4	MM	GSE131651	NSD2_Low_2	0	34661239	Hematological (Leukemia)	Hematological
+NUGC3	GC	GSE135941	NUGC3	0	55073215	Solid Tumor	Digestive System
+OCILY7	DLBCL	GSE35585	OCI-LY7	0	197243607	Hematological (Lymphoma)	Hematological
+OCUM1	GC	GSE135941	OCUM1	0	44857558	Solid Tumor	Digestive System
+OVCAR4	OV	GSE229408	OVCAR4	0	107815535	Solid Tumor	Reproductive System
+P455_SF11901	GBM	EGAD00001010312	P455_SF11901	0	87267991	Solid Tumor	Central Nervous System
+P475_SF12180	GBM	EGAD00001010312	P475_SF12180	0	122627581	Solid Tumor	Central Nervous System
+P498_SF12251	GBM	EGAD00001010312	P498_SF12251	0	88304786	Solid Tumor	Central Nervous System
+P503_SF12518	GBM	EGAD00001010312	P503_SF12518	0	67725167	Solid Tumor	Central Nervous System
+P519_SF12601	GBM	EGAD00001010312	P519_SF12601	0	68153897	Solid Tumor	Central Nervous System
+P521_SF12631	GBM	EGAD00001010312	P521_SF12631	0	76913386	Solid Tumor	Central Nervous System
+P524_SF12681v1	GBM	EGAD00001010312	P524_SF12681v1	0	112651195	Solid Tumor	Central Nervous System
+P524_SF12681v4	GBM	EGAD00001010312	P524_SF12681v4	0	243278047	Solid Tumor	Central Nervous System
+P524_SF12681v9	GBM	EGAD00001010312	P524_SF12681v9	0	122468761	Solid Tumor	Central Nervous System
+P529_SF12794v1-1	GBM	EGAD00001010312	P529_SF12794v1-1	0	60859721	Solid Tumor	Central Nervous System
+P529_SF12794v6-1	GBM	EGAD00001010312	P529_SF12794v6-1	0	71164896	Solid Tumor	Central Nervous System
+P529_SF12794v8-1	GBM	EGAD00001010312	P529_SF12794v8-1	0	83813068	Solid Tumor	Central Nervous System
+P530_SF12822v10	GBM	EGAD00001010312	P530_SF12822v10	0	122802320	Solid Tumor	Central Nervous System
+P530_SF12822v13	GBM	EGAD00001010312	P530_SF12822v13	0	129706912	Solid Tumor	Central Nervous System
+P530_SF12822v14	GBM	EGAD00001010312	P530_SF12822v14	0	104309723	Solid Tumor	Central Nervous System
+P530_SF12822v15	GBM	EGAD00001010312	P530_SF12822v15	0	102347291	Solid Tumor	Central Nervous System
+P530_SF12822v18	GBM	EGAD00001010312	P530_SF12822v18	0	178359695	Solid Tumor	Central Nervous System
+P530_SF12822v19	GBM	EGAD00001010312	P530_SF12822v19	0	142532003	Solid Tumor	Central Nervous System
+P530_SF12822v2	GBM	EGAD00001010312	P530_SF12822v2	0	104131761	Solid Tumor	Central Nervous System
+P530_SF12822v4	GBM	EGAD00001010312	P530_SF12822v4	0	184809811	Solid Tumor	Central Nervous System
+P530_SF12822v5	GBM	EGAD00001010312	P530_SF12822v5	0	151612541	Solid Tumor	Central Nervous System
+PBMC	AML	GSE152136	PBMC_BM1	1	151426030	Normal	Hematological
+PBMC_2	AML	GSE152136	PBMC_BM2	1	134805051	Normal	Hematological
+PBMC_3	AML	GSE152136	PBMC_BM3	1	183763252	Normal	Hematological
+PC3	PRAD	GSE172097	PC-3	0	50941199	Solid Tumor	Reproductive System
+PC3_2	PRAD	GSE73782	PC3	0	53286377	Solid Tumor	Reproductive System
+PCGBM2	GBM	GSE146731	PCGBM2_S1	0	19783398	Solid Tumor	Central Nervous System
+PEO1	OV	GSE201878	PEO1	0	230758683	Solid Tumor	Reproductive System
+PHH	HCC	GSE298819	PHH	1	4692479	Normal	Digestive System
+PRECLH	PRAD	GSE73782	PrEC	1	172991193	Normal	Reproductive System
+primary_EBVp_GC_tissue	GC	GSE135941	primary_EBVp_GC_tissue	0	93683857	Solid Tumor	Digestive System
+primary_TALL_cells	TALL	GSE134761	primary_TALL_cells	0	171241983	Hematological (Leukemia)	Hematological
+Proliferating_chondrocyte	ES	GSE242273	Proliferating_chondrocyte	1	163610352	Normal	Mesenchymal tumors
+PS10801	GBM	GSE146731	PS10-801	0	32885651	Solid Tumor	Central Nervous System
+RAJI	BL	GSE98120	Raji	0	30640229	Hematological (Lymphoma)	Hematological
+REC1	MCL	GSE147123	Rec-1	0	50980097	Hematological (Lymphoma)	Hematological
+REC1_2	MCL	GSE268226	REC-1	0	73573586	Hematological (Lymphoma)	Hematological
+REH	B-ALL	GSE190843	Reh	0	24199666	Hematological (Leukemia)	Hematological
+RPMI7951	MEL	GSE59395	RPMI-7951	0	110060144	Solid Tumor	Neural crest derived tumors
+RPMI8226	MM	GSE100832	RPMI-8226	0	55121198	Hematological (Leukemia)	Hematological
+RPMI8226_2	MM	GSE87585	RPMI-8226_HindIII	0	52418459	Hematological (Leukemia)	Hematological
+RPMI8226_3	MM	GSE87585	RPMI-8226_MboI	0	32424774	Hematological (Leukemia)	Hematological
+RPMI8402	TALL	GSE147123	RPMI-8402	0	32635355	Hematological (Leukemia)	Hematological
+RT4	BLCA	GSE148079	RT4	0	183631955	Solid Tumor	Urinary System
+SCABER	BLCA	GSE148079	SCABER	0	34139940	Solid Tumor	Urinary System
+SF3B1	CESC	GSE114539	SF3B1	0	19244674	Solid Tumor	Reproductive System
+SF9427	GBM	GSE162976	SF9427	0	134219700	Solid Tumor	Central Nervous System
+SHSY5Y	NB	GSE252149	SH-SY5Y	0	16303972	Solid Tumor	Central Nervous System
+SHSY5Y_2	NB	GSE252149	SH-SY5Y_TOP2BKO	0	15805048	Solid Tumor	Central Nervous System
+SHYSY5Y	NB	GSE129732	SHY_neuroblasts	0	59673280	Solid Tumor	Central Nervous System
+SJCRH30	RMS	GSE59395	SJCRH30	0	6902835	Solid Tumor	Mesenchymal tumors
+SKBR3	BRCA	GSE109229	SKBR3	0	57759118	Solid Tumor	Reproductive System
+SKNDZ	NB	GSE105275	SK-N-DZ	0	44628390	Solid Tumor	Central Nervous System
+SKNDZ_2	NB	GSE147123	SK-N-DZ	0	50464135	Solid Tumor	Central Nervous System
+SKNMC_2	NB	GSE59395	SK-N-MC	0	125589518	Solid Tumor	Central Nervous System
+SKNSH	NB	GSE115862	SKNSH	0	6879800	Solid Tumor	Central Nervous System
+SKNSH_2	NB	GSE115862	SKNSHadel1r	0	7791959	Solid Tumor	Central Nervous System
+SKOV3	OV	GSE147123	SK-OV-3	0	29271825	Solid Tumor	Reproductive System
+SNU16	GC	GSE118391	SNU16	0	73295132	Solid Tumor	Digestive System
+SNU16_2	GC	GSE135941	SNU16	0	69305086	Solid Tumor	Digestive System
+SNU1750	GC	GSE135941	SNU1750	0	75686433	Solid Tumor	Digestive System
+SNU1967	GC	GSE135941	SNU1967	0	66512936	Solid Tumor	Digestive System
+SNU484	GC	GSE135941	SNU484	0	68325285	Solid Tumor	Digestive System
+SNU719	GC	GSE135941	SNU719	0	74619259	Solid Tumor	Digestive System
+SUM44	BRCA	GSE55634	SUM44	0	54137102	Solid Tumor	Reproductive System
+SW1088	GBM	GSE147123	SW1088	0	39402175	Solid Tumor	Central Nervous System
+SW480	CRC	GSE151970	SW480	0	17240021	Solid Tumor	Digestive System
+SW626	OV	GSE147123	SW626	0	37849555	Solid Tumor	Reproductive System
+SW780	BLCA	GSE148079	SW780	0	26410558	Solid Tumor	Urinary System
+T2000877	GC	GSE118391	T2000877	0	53603199	Solid Tumor	Digestive System
+T47D	BRCA	GSE105697	T47D	0	76414163	Solid Tumor	Reproductive System
+T47D_2	BRCA	GSE109229	T47D	0	180051097	Solid Tumor	Reproductive System
+T47D_3	BRCA	GSE147627	T47D-MTVL	0	46599257	Solid Tumor	Reproductive System
+T47D_4	BRCA	GSE167150	T47D-MTVL	0	61438271	Solid Tumor	Reproductive System
+T47D_5	BRCA	GSE172618	T47D-MTVL	0	96754928	Solid Tumor	Reproductive System
+T47D_6	BRCA	GSE247777	T47D	0	178276947	Solid Tumor	Reproductive System
+T47D_7	BRCA	GSE53463	T47D_HindIII	0	26898052	Solid Tumor	Reproductive System
+T47D_8	BRCA	GSE53463	T47D_NcoI	0	51921657	Solid Tumor	Reproductive System
+t8_21	AML	GSE108303	t8_21_cHiC	0	41281076	Hematological (Leukemia)	Hematological
+T990275	GC	GSE118391	T990275	0	84245055	Solid Tumor	Digestive System
+TALL_patient_xenograft	TALL	GSE130140	TALL_patient_xenograft	0	172295223	Hematological (Leukemia)	Hematological
+TAMR	BRCA	GSE118712	TAMR	0	108437819	Solid Tumor	Reproductive System
+TC32	ES	GSE242273	TC32	0	90870288	Solid Tumor	Mesenchymal tumors
+TC797	NUT	GSE133163	TC-797	0	529761764	Solid Tumor	Epithelial tumors
+Tcell	TALL	GSE130140	Tcell	1	94030547	Normal	Hematological
+Tcell_2	TALL	GSE134761	Tcell1	1	69124394	Normal	Hematological
+Tcell_3	TALL	GSE134761	Tcell2	1	39457036	Normal	Hematological
+Tcell_4	TALL	GSE134761	Tcell3	1	39130805	Normal	Hematological
+teloHAEC	ES	GSE242273	teloHAEC	1	45145793	Normal	Mesenchymal tumors
+THP1	AML	GSE208040	THP-1	0	1500187	Hematological (Leukemia)	Hematological
+thyroid_gland	MTC	GSE237300	thyroid_gland	1	487412318	Normal	Epithelial tumors
+TR14	NB	GSE175452	TR-14	0	41973787	Solid Tumor	Central Nervous System
+TT	MTC	GSE147123	TT	0	25294712	Solid Tumor	Epithelial tumors
+U118	GBM	GSE147123	U118	0	29348003	Solid Tumor	Central Nervous System
+U251	GBM	GSE125243	U251	0	21628461	Solid Tumor	Central Nervous System
+U251_2	GBM	GSE125243	U251_capHiC	0	9689942	Solid Tumor	Central Nervous System
+U266	MM	GSE100832	U266	0	29563908	Hematological (Leukemia)	Hematological
+U266_2	MM	GSE87585	U266_HindIII	0	40598928	Hematological (Leukemia)	Hematological
+U266_3	MM	GSE87585	U266_MboI	0	37963630	Hematological (Leukemia)	Hematological
+U2OS	OS	GSE141067	U2OS	0	115683067	Solid Tumor	Mesenchymal tumors
+U2OS_2	OS	GSE90003	U2OS	0	23745878	Solid Tumor	Mesenchymal tumors
+U343	GBM	GSE147123	U343	0	28529419	Solid Tumor	Central Nervous System
+U87	GBM	GSE147123	U87	0	24762692	Solid Tumor	Central Nervous System
+U937	AML	GSE165038	U937	0	317598524	Hematological (Leukemia)	Hematological
+uterine_smooth_muscle_cell	UCEC	GSE226015	uterine_smooth_muscle_cell	1	53231152	Normal	Reproductive System
+UWB1289	OV	GSE122154	UWB1.289	0	61777224	Solid Tumor	Reproductive System
+UWB1289_2	OV	GSE122154	UWB1.289_mut	0	29455284	Solid Tumor	Reproductive System
+VAESBJ	ES	GSE90634	VA-ES-BJ_BAF47	0	40918559	Solid Tumor	Mesenchymal tumors
+VAESBJ_2	ES	GSE90634	VA-ES-BJ_empty	0	40664483	Solid Tumor	Mesenchymal tumors
+VCaP	PRAD	GSE172097	VCaP	0	37763101	Solid Tumor	Reproductive System
+WERIRB1	RB	GSE230795	WERI-RB1	0	98932899	Solid Tumor	Central Nervous System
+WSU-DLCL2	DLBCL	GSE168470	WSU-DLCL2	0	26954446	Hematological (Lymphoma)	Hematological
+YCC10	GC	GSE135941	YCC10	0	66046099	Solid Tumor	Digestive System
+ZR7530	BRCA	GSE167150	ZR7530	0	70224806	Solid Tumor	Reproductive System

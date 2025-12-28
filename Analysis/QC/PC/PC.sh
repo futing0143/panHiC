@@ -1,38 +1,47 @@
 #!/bin/bash
-d=1016
+d=1218
 
 cd /cluster2/home/futing/Project/panCancer/Analysis/QC/PC
-output="cancer_327.bed"
->$output
+
 
 # outputmeta="/cluster2/home/futing/Project/panCancer/QC/cancer_meta.txt"
 # 检查 PC 100k 完成
 # input=/cluster2/home/futing/Project/panCancer/check/done_meta.txt
 # undonefile=/cluster2/home/futing/Project/panCancer/check/post/PCundone0918.txt
+annometa=/cluster2/home/futing/Project/panCancer/check/meta/panCan_annometa.txt
 outputmeta="/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC${d}.txt"
 >$outputmeta
 
 
 # 直接从post中找
-grep 'cis_100k.cis.vecs.tsv' /cluster2/home/futing/Project/panCancer/check/hic/hicdone${d}.txt \
-	| cut -f1-3 \
-	> ${outputmeta}
-
-
-awk -F',' 'BEGIN{FS=OFS="\t"}{
-    count[$3]++
-    if (count[$3]==1) {
-        uniq=$3
-    } else {
-        uniq=$3"_"count[$3]
-    }
-    print $0,uniq
-}' ${outputmeta} > tmp && mv tmp ${outputmeta}
-
+grep -w 'PC' /cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt \
+| cut -f1-3 | sort -u -k1 -k2 -k3 \
+> ${outputmeta}
+awk 'NR==FNR{
+    key=$1"\t"$2"\t"$3     # 前三列作为 key
+    val[key]=$NF           # 保存 file2 的最后一列
+    next
+}
+{
+    key=$1"\t"$2"\t"$3
+    print $0"\t"val[key]   # 输出 file1 + file2 最后一列
+}' ${annometa} ${outputmeta} | sort -k1 -k2 -k3 -u > tmp && mv tmp ${outputmeta}
 
 python /cluster2/home/futing/Project/panCancer/Analysis/QC/PC/merge.py $outputmeta 5
 
+# awk -F',' 'BEGIN{FS=OFS="\t"}{
+#     count[$3]++
+#     if (count[$3]==1) {
+#         uniq=$3
+#     } else {
+#         uniq=$3"_"count[$3]
+#     }
+#     print $0,uniq
+# }' ${outputmeta} > tmp && mv tmp ${outputmeta}
 
+# --------------------------
+# output="cancer_327.bed"
+# >$output
 # Extract first 3 columns from first file as base
 # awk 'BEGIN{OFS="\t"}{print $1,$2,$3}' "/cluster2/home/futing/Project/panCancer/CRC/GSE137188/11-51_Normal/anno/insul/11-51_Normal_5000.tsv" > "$output"
 # # insul:6, BS: , 

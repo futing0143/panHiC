@@ -8,7 +8,7 @@ blacklist10k='/cluster2/home/futing/Project/panCancer/check/unpost/loops/loops10
 err_file="/cluster2/home/futing/Project/panCancer/check/download/err_dir${d}.txt" # SRR对不上的
 alignfail=/cluster2/home/futing/Project/panCancer/check/aligned/unalign/unalign${d}.txt # splits 文件有问题的：CRC7个，AML3个，GBM NC28 & EGA21
 unalign=/cluster2/home/futing/Project/panCancer/check/unrun/unrun${d}.txt #没有splits
-aligndone=/cluster2/home/futing/Project/panCancer/check/${aligndone} # splits没有问题
+aligndone=/cluster2/home/futing/Project/panCancer/check/aligned/aligndone${d}.txt # splits没有问题
 unpost=/cluster2/home/futing/Project/panCancer/check/unpost/all/unpost_${d}.txt # 从aligndone挑选的
 postdone=/cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt
 
@@ -75,7 +75,7 @@ output_file=./unpost/loops/loops10k_${d}.txt
 >$output_file
 done_file=./post/loops/loops10k_done${d}.txt
 >$done_file
-total=$(wc -l < <(grep '\.cool' "./post/hicdone${d}.txt"))
+total=$(wc -l < <(grep '\.cool' "${postdone}"))
 progress_file=$(mktemp)
 echo 0 > "$progress_file"
 
@@ -133,7 +133,7 @@ check_one() {
 export -f check_one
 export output_file done_file progress_file total
 
-grep '\.cool' ./post/hicdone${d}.txt | cut -f1-3 |\
+grep '\.cool' ${postdone} | cut -f1-3 |\
 	xargs -n3 -P10 bash -c 'check_one "$1" "$2" "$3"' _
 
 echo "-----------------------------------"

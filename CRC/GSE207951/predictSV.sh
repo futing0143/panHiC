@@ -25,8 +25,9 @@ while read -r cell;do
     echo "Logfile: $logfile"
 
 	bash "$scripts" "/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}" \
-	"3reso" > "$logfile" 2>&1
-# done < <(sed -n '1,8p' /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt)
+	"4reso" > "$logfile" 2>&1
+done < <(sed -n '15,20p' /cluster2/home/futing/Project/panCancer/Analysis/SV/SV_unrun1217.txt | cut -f3)
+# done < <(sed -n '1,7p' /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt)
 # done < <(sed -n '9,16p' /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt)
 # done < <(sed -n '17,24p' /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt)
-done < <(sed -n '25,33p' /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt)
+# done < <(sed -n '25,33p' /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt)

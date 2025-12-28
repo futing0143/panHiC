@@ -8,7 +8,13 @@
 # 	echo "mv $logfile ${path}/debug"
 # 	mv $logfile ${path}/debug
 # done
-
+ls /cluster2/home/futing/Project/panCancer/CRC/GSE207951/debug/*.log | while read -r logfile;do
+	cell=$(grep 'Generating multi-resolution mcool for' $logfile| awk -F ' ' '{print $NF}' | sed 's/\.\.\.//g')
+	path="/cluster2/home/futing/Project/panCancer/CRC/GSE207951/${cell}"
+	# echo "Processing $path"
+	echo "mv $logfile ${path}/debug"
+	mv $logfile ${path}/debug
+done
 # --- check ctrl cool
 # mapfile -t ctrl_reso < <(cooler ls /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC26616/cool/CRC26616.mcool | awk -F'/' '{print $NF}' | sed 's/\n/ /g')
 # cat /cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt | while read -r cell;do

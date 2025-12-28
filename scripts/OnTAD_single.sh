@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 dir=$1
 reso=${2:-50000} # 默认分辨率为50000
 ischr=${3:-}
@@ -21,16 +20,20 @@ fi
 module load gcc/12.3.0
 JUICER_JAR="/cluster2/home/futing/software/juicer_CPU/scripts/common/juicer_tools.jar"
 echo "Checking chromosome naming convention for OnTAD..."
-check_output=$(java -Xms4G -jar ${JUICER_JAR} dump norm VC ${hicfile} chr1 BP ${reso} 2>&1 || true)
 
-if [[ "$check_output" == *"Invalid chromosome"* ]]; then
-    echo -e "Detected style: No 'chr' (e.g., 1, 2...)\n"
-    genome_file="/cluster2/home/futing/ref_genome/hg38_24_nochr.chrom.sizes"
-    add_prefix="chr"
-else
+if /cluster2/home/futing/software/OnTAD-master/src/OnTAD \
+        ${hicfile} \
+        -bedout chr1 248956422 ${reso} \
+        -o ./${name}_chr1 \
+        >/dev/null 2>&1; then
     echo -e "Detected style: With 'chr' (e.g., chr1, chr2...)\n"
     genome_file="/cluster2/home/futing/ref_genome/hg38.genome"
     add_prefix=""
+else
+
+    echo -e "Detected style: No 'chr' (e.g., 1, 2...)\n"
+    genome_file="/cluster2/home/futing/ref_genome/hg38_24_nochr.chrom.sizes"
+    add_prefix="chr"
 fi
 
 while IFS=$'\t' read -r chr length; do

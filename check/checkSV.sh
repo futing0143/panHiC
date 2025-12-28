@@ -9,7 +9,7 @@ hic_file=/cluster2/home/futing/Project/panCancer/check/post/SV/SVdone${d}.txt
 > "$hic_file"
 cd /cluster2/home/futing/Project/panCancer/check
 # 进度文件
-total=$(wc -l < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1206.txt")
+total=$(wc -l < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1209.txt")
 progress_file=$(mktemp)
 echo 0 > "$progress_file"
 
@@ -53,7 +53,7 @@ check_one() {
     local tmp_hic=$(mktemp)
 
     # 遍历文件列表安全调用 check_file
-    for f in "${dir}/anno/SV/${cell}.assemblies.txt"; do
+    for f in "${dir}/anno/SV/${cell}.neo-loops.txt"; do
         check_file "$f" "$cancer" "$gse" "$cell" "$tmp_output" "$tmp_hic"
     done
 
@@ -76,5 +76,5 @@ echo "✅ All done. Results:"
 echo "  - Unpost: $output_file"
 echo "  - Post:   $hic_file"
 # 最后修改 unpost 文件
-blacklist=/cluster2/home/futing/Project/panCancer/check/meta/blacklist.txt
+blacklist=/cluster2/home/futing/Project/panCancer/Analysis/SV/meta/blacklist.txt
 grep -F -v -w -f $blacklist $output_file | cut -f1-3 |grep -v 'GSE152136' | sort -u > /cluster2/home/futing/Project/panCancer/Analysis/SV/SV_unrun${d}.txt

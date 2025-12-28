@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p gpu
-#SBATCH --cpus-per-task=24
+#SBATCH --cpus-per-task=12
 #SBATCH --nodelist=node3
 #SBATCH --output=/cluster2/home/futing/Project/panCancer/check/dots_parallel-%j.log
 #SBATCH -J "dots"
@@ -27,28 +27,26 @@ parallel_execute() {
         return 1
     }
     
-    local log_file="${log_dir}/${tools}_${cell}-$(date +%Y%m%d_%H%M%S).log"
+    local log_file="${log_dir}/hiccups_${cell}-$(date +%Y%m%d_%H%M%S).log"
     
     # 使用代码块统一重定向
     {
         echo "Starting ${cell} at $(date)"
         
-		sh "/cluster2/home/futing/Project/panCancer/scripts/insul_single.sh" \
-			"${wkdir}/${cancer}/${gse}/${cell}" 50000 800000
-		# sh "/cluster2/home/futing/Project/panCancer/scripts/dots_single.sh" \
-		# 	"${wkdir}/${cancer}/${gse}/${cell}"
-		# sh "/cluster2/home/futing/Project/panCancer/scripts/fithic_single.sh" \
-		# 	"${wkdir}/${cancer}/${gse}/${cell}" 10000
+		bash "/cluster2/home/futing/Project/panCancer/scripts/hiccups_single.sh" \
+			"${wkdir}/${cancer}/${gse}/${cell}"
         echo "Finished ${cell} at $(date)"
     } >> "${log_file}" 2>&1
 }
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=6
+readonly PARALLEL_JOBS=5
+export LC_ALL=C
+export LANG=C
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/insul/insul50k_1115.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/meta/panCan_meta.txt"
 
 date

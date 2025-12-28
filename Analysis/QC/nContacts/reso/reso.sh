@@ -2,7 +2,7 @@
 shopt -s extglob
 IFS=$'\t'
 
-out="/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/res1124.txt"
+out="/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/res1219.txt"
 >$out
 wkdir=/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso
 while read -r cancer gse cell; do
@@ -34,7 +34,7 @@ while read -r cancer gse cell; do
         }
     ' "$logfile" >> "$out"
 
-done < "${wkdir}/reso1120.txt"
+done < "${wkdir}/reso1210.txt"
 
 
 
@@ -55,3 +55,4 @@ done < "${wkdir}/reso1120.txt"
 # 合并所有的res结果
 
 # cat res+([0-9]).txt | sort -k1 -k2 -u > res.txt
+

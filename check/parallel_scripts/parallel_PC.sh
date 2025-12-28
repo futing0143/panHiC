@@ -1,9 +1,8 @@
 #!/bin/bash
-#SBATCH -p gpu
-#SBATCH --cpus-per-task=45
-#SBATCH --nodelist=node2
-#SBATCH --output=/cluster2/home/futing/Project/panCancer/Analysis/SV/SV_parallel-%j.log
-#SBATCH -J "SVp3"
+#SBATCH -p normal
+#SBATCH --cpus-per-task=10
+#SBATCH --output=/cluster2/home/futing/Project/panCancer/check/post_parallel-%j.log
+#SBATCH -J "PC"
 ulimit -s unlimited
 ulimit -l unlimited
 
@@ -17,8 +16,9 @@ parallel_execute() {
 	local cancer="$1"
     local gse="$2"
     local cell="$3"
-    local wkdir="$4"  # 显式传递的工作目录
-    tools="SV"
+    local tools="$4"
+    local wkdir="$5"  # 显式传递的工作目录
+    
     # 确保日志目录存在
     local log_dir="${wkdir}/${cancer}/${gse}/${cell}/debug"
     mkdir -p "${log_dir}" || {
@@ -32,8 +32,10 @@ parallel_execute() {
     {
         echo "Starting ${cell} at $(date)"
         
-		sh "/cluster2/home/futing/Project/panCancer/scripts/SV_single.sh" \
-			"${cancer}" "${gse}" "${cell}"
+		# sh "/cluster2/home/futing/Project/panCancer/scripts/insul_single.sh" \
+		# 	"${wkdir}/${cancer}/${gse}/${cell}" 50000 800000
+		sh "/cluster2/home/futing/Project/panCancer/scripts/PC_single.sh" \
+			"${wkdir}/${cancer}/${gse}/${cell}"
         echo "Finished ${cell} at $(date)"
     } >> "${log_file}" 2>&1
 }
@@ -44,6 +46,6 @@ readonly PARALLEL_JOBS=3
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} '${WKDIR}'" :::: "${WKDIR}/check/hic/mcool1018p3.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/PC/PCundone1210.txt"
 
 date

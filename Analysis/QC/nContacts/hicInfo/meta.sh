@@ -14,7 +14,7 @@ awk 'NR==FNR{key=$1"\t"$2"\t"$3; data[key]=$0; next}
   key=$1"\t"$2"\t"$3
   if(key in data)
      print data[key]"\t"$4
-}' $mergemeta $donemeta  >  $outputmeta
+}' $mergemeta <(tail -n +2 $donemeta) >  $outputmeta
 
 
 

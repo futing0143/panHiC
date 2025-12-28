@@ -9,7 +9,7 @@ if len(sys.argv) != 3:
 outputmeta = sys.argv[1]
 base_file = "/cluster2/home/futing/Project/panCancer/AML/GSE93995/HL-60/anno/HL-60_cis_100k.cis.vecs.tsv"
 col_num = int(sys.argv[2]) - 1  # 转成 0-based index
-outfile = f"merged_col{col_num+1}.tsv"
+outfile = f"/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/merged_col{col_num+1}.tsv"
 
 # 读取 meta 文件
 meta = []

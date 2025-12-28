@@ -1,24 +1,25 @@
 #!/bin/bash
 #SBATCH -p gpu
-#SBATCH --array=1-33%6
+#SBATCH --array=1-16%3
+#SBATCH --nodelist=node2
 #SBATCH -J ZoomCool
 #SBATCH --cpus-per-task=5
-#SBATCH --distribution=cyclic
 #SBATCH -o /cluster2/home/futing/Project/panCancer/CRC/GSE207951/debug/ZoomCool-%A_%a.log
 
 
 scripts=/cluster2/home/futing/Project/panCancer/scripts/mcool_trans_reso.sh
-# input=/cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt
-# line=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$input")
-# read cell <<< "$line"
+input=/cluster2/home/futing/Project/panCancer/CRC/GSE207951/CRC.txt
+# 取第 1–16 行
+cell=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$input")
+bash "$scripts" "$cell"
 
-cell=A002C010
+# cell=A002C010
 
-bash /cluster2/home/futing/Project/panCancer/scripts/mcool2cool_single.sh \
-	5000 "/cluster2/home/futing/Project/panCancer/CRC/GSE207951/${cell}/cool/${cell}.mcool" \
-	/cluster2/home/futing/Project/panCancer/CRC/GSE207951/${cell}/cool/
+# bash /cluster2/home/futing/Project/panCancer/scripts/mcool2cool_single.sh \
+# 	5000 "/cluster2/home/futing/Project/panCancer/CRC/GSE207951/${cell}/cool/${cell}.mcool" \
+# 	/cluster2/home/futing/Project/panCancer/CRC/GSE207951/${cell}/cool/
 
-bash "$scripts" "/cluster2/home/futing/Project/panCancer/CRC/GSE207951/${cell}"
+# bash "$scripts" "/cluster2/home/futing/Project/panCancer/CRC/GSE207951/${cell}"
 
 
 # scripts=/cluster2/home/futing/Project/panCancer/scripts/SV_single.sh

@@ -51,7 +51,7 @@ readonly PARALLEL_JOBS=6
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' \
   --tmpdir /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/debug \
 	process_one :::: \
-  "/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/reso1120.txt"
+  "/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/reso1219.txt"
 
 # done < <(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/hic/hicdone1012nig.txt | cut -f1-3)
 
@@ -67,6 +67,14 @@ parallel -j "${PARALLEL_JOBS}" --colsep '\t' \
 
 
 # 第四次计算
-grep -w -v -F -f <(cut -f1-3 /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/res.txt) \
-<(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/hicdone1124.txt | cut -f1-3) \
-> /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/reso1126.txt
+# grep -w -v -F -f <(cut -f1-3 /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/res.txt) \
+# <(grep 'inter_30.hic' /cluster2/home/futing/Project/panCancer/check/post/hicdone1124.txt | cut -f1-3) \
+# > /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/reso1126.txt
+
+# 第五次计算
+# grep -v -w -F -f <(cut -f1-3 /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/res.txt) /cluster2/home/futing/Project/panCancer/check/meta/panCan_meta.txt \
+# 	| cut -f1-3 | grep -v 'PBMC' > /cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/reso1210.txt
+
+# 第六次计算
+# metafile=/cluster2/home/futing/Project/panCancer/check/meta/panCan_meta.txt
+# grep -w -v -F -f <(cut -f1-3 res.txt) $metafile | grep -v 'PBMC' > reso1219.txt

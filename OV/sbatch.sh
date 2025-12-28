@@ -20,7 +20,7 @@ submit_job() {
 sbatch <<- EOF | egrep -o -e "\b[0-9]+$"
 #!/bin/bash -l
 #SBATCH -p $queue
-#SBATCH --cpus-per-task=15
+#SBATCH --cpus-per-task=20
 #SBATCH --nodelist=node1
 #SBATCH --output=$debugdir/$name-%j.log
 #SBATCH -J "${name}"
