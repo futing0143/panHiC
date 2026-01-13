@@ -8,7 +8,7 @@ scripts=${wkdir}/hicInfo.py
 source activate /cluster2/home/futing/miniforge3/envs/juicer
 
 # find /cluster2/home/futing/Project/panCancer -name '*_50000.cool' | while read file;do
-grep -w -v -F -f <(tail -n+2 ${wkdir}/hicInfo_1210.txt | cut -f1-3) \
+grep -w -v -F -f <(tail -n+2 ${wkdir}/hicInfo_1218.txt | cut -f1-3) \
 	<(grep '\.cool' /cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt | cut -f1-3) \
 	> ${wkdir}/hicInfo_undone${d}.txt
 
@@ -19,7 +19,7 @@ while IFS=$'\t' read -r cancer gse cell ncell;do
 done < "${wkdir}/hicInfo_undone${d}.txt"
 
 python $scripts hicInfo_${d}.log hicInfo_${d}.txt "."
-cat hicInfo_1210.txt hicInfo_${d}.txt > tmp && mv tmp hicInfo_${d}.txt
+cat hicInfo_1218.txt hicInfo_${d}.txt > tmp && mv tmp hicInfo_${d}.txt
 
 bash meta.sh ${d}
 sed -i 's/,//g' hicInfocl_${d}.txt

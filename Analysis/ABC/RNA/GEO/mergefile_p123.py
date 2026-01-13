@@ -34,7 +34,8 @@ def merge_tpm_files(base_path, sep=',', end='_TPM.csv'):
         merged_df = merged_df.reset_index()
         if 'index' in merged_df.columns:
             merged_df = merged_df.rename(columns={'index': 'GeneID'})
-    
+
+    merged_df['GeneID'] = merged_df['GeneID'].astype(str)
     # 逐个合并其他文件
     for i, file in enumerate(files[1:], 1):
         print(f"合并第 {i+1}/{len(files)} 个文件: {os.path.basename(file)}")
@@ -46,7 +47,7 @@ def merge_tpm_files(base_path, sep=',', end='_TPM.csv'):
         
         # 从文件名提取样本名称并重命名列
         df.columns = [f"{col}" if col != 'GeneID' else col for col in df.columns]
-        
+        df['GeneID'] = df['GeneID'].astype(str)
         # 合并 (outer join保留所有GeneID)
         merged_df = pd.merge(merged_df, df, on='GeneID', how='outer')
     

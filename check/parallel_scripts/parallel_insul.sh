@@ -45,10 +45,10 @@ parallel_execute() {
 
 export -f parallel_execute
 export WKDIR
-readonly PARALLEL_JOBS=3
+readonly PARALLEL_JOBS=5
 
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
-    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/insul/insul50k_1211.txt"
+    "parallel_execute {1} {2} {3} {4} '${WKDIR}'" :::: "${WKDIR}/check/unpost/insul/insul50k_0104.txt"
 
 date

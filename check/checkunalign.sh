@@ -79,7 +79,7 @@ echo -e "AML\tGSE152136\tPBMC_BM1" >> ${aligndone}
 echo -e "AML\tGSE152136\tPBMC_BM2" >> ${aligndone}
 echo -e "AML\tGSE152136\tPBMC_BM3" >> ${aligndone}
 grep -E 'GBM|GSE207951' ${unalign} >> ${aligndone} # EGA 的有问题，直接修改
-grep -E 'GSE229962|GSE162976|GSE207951' ${unrun_file} >> ${aligndone} # NC;pHGG;CRC mHiC
+grep -E 'GSE229962|GSE162976|GSE207951|GM12878' ${unrun_file} >> ${aligndone} # NC;pHGG;CRC mHiC
 sort -k1 -k2 -k3 ${aligndone} > ./aligned/tmp && mv ./aligned/tmp ${aligndone}
 
 # ===== 去除不需要align的结果

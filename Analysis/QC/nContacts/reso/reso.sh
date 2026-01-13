@@ -5,6 +5,7 @@ IFS=$'\t'
 out="/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso/res1219.txt"
 >$out
 wkdir=/cluster2/home/futing/Project/panCancer/Analysis/QC/nContacts/reso
+cd $wkdir
 while read -r cancer gse cell; do
 
     logfile=$(ls ${wkdir}/debug/reso_${cancer}_${gse}_${cell}_*.log 2>/dev/null | sort | tail -1)
@@ -34,7 +35,7 @@ while read -r cancer gse cell; do
         }
     ' "$logfile" >> "$out"
 
-done < "${wkdir}/reso1210.txt"
+done < <(cut -f1-3 "${wkdir}/reso1219.txt")
 
 
 
@@ -54,5 +55,14 @@ done < "${wkdir}/reso1210.txt"
 
 # 合并所有的res结果
 
-# cat res+([0-9]).txt | sort -k1 -k2 -u > res.txt
-
+cat res+([0-9]).txt | sort -k1 -k2 -u > res.txt
+metadata=/cluster2/home/futing/Project/panCancer/check/meta/panCan_annometa.txt
+awk 'BEGIN{FS=OFS="\t"}NR==FNR{
+key=$1"\t"$2"\t"$3
+data[key]=$0;next
+}{
+key=$1"\t"$2"\t"$3
+if (key in data){
+print data[key]"\t"$4
+}
+}' $metadata res.txt > res_meta.txt

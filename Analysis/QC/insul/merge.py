@@ -7,7 +7,7 @@ if len(sys.argv) != 3:
     sys.exit(1)
 
 outputmeta = sys.argv[1]
-base_file = "/cluster2/home/futing/Project/panCancer/CRC/GSE137188/11-51_Normal/anno/insul/11-51_Normal_5000.tsv"
+base_file = "/cluster2/home/futing/Project/panCancer/CRC/GSE137188/11-51_Normal/anno/insul/11-51_Normal_50000.tsv"
 col_num = int(sys.argv[2]) - 1  # 转成 0-based index
 outfile = f"merged_col{col_num+1}.tsv"
 
@@ -18,7 +18,7 @@ with open(outputmeta) as f:
         if line.strip() == "" or line.startswith("cancer"):  # 跳过表头或空行
             continue
         cancer, gse, cell, ncell = line.strip().split("\t")[:4]
-        file = f"/cluster2/home/futing/Project/panCancer/{cancer}/{gse}/{cell}/anno/insul/{cell}_5000.tsv"
+        file = f"/cluster2/home/futing/Project/panCancer/{cancer}/{gse}/{cell}/anno/insul/{cell}_50000.tsv"
         if os.path.exists(file):
             meta.append((file, ncell))
         else:
@@ -44,8 +44,21 @@ with open(outfile, "w") as out:
         for line in bf:
             parts = line.strip().split("\t")
             base_cols = "\t".join(parts[:3])
-            extra_cols = "\t".join(next(f).strip().split("\t")[col_num] for f, _ in fps)
+
+            extra_cols_list = []
+            for f, _ in fps:
+                try:
+                    row = next(f).strip().split("\t")
+                    if len(row) > col_num:
+                        extra_cols_list.append(row[col_num])
+                    else:
+                        extra_cols_list.append("NA")  # 不够列数填NA
+                except StopIteration:
+                    extra_cols_list.append("NA")  # 文件提前结束也填NA
+
+            extra_cols = "\t".join(extra_cols_list)
             out.write(f"{base_cols}\t{extra_cols}\n")
+
 
 # 关闭所有文件
 for f, _ in fps:

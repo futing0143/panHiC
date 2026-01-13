@@ -14,6 +14,7 @@ grep -w -v -F -f <(cut -f1-3 $cldata) <(cut -f1-3 $panCan) \
 	| awk 'BEGIN{FS=OFS="\t"}{print $0,$3}'|sort -k1 -k2 -k3 >> $cldata
 # 02 处理ctrl信息
 # 看/cluster2/home/futing/Project/panCancer/Analysis/dchic/meta.sh 懒得改了
+# 2026.1.4 全部手动修改
 search_anno=/cluster2/home/futing/Project/panCancer/Analysis/dchic/meta/cell_list/cell_list_annotated.txt
 panmeta=/cluster2/home/futing/Project/panCancer/check/meta/panCan_meta.txt
 ctrl=/cluster2/home/futing/Project/panCancer/check/meta/panCan_ctrl.txt
@@ -36,6 +37,7 @@ awk 'NR==FNR{
 
 # 03 istreated 的信息
 # cut -f1-3,7 $panCan_annometa > $treated
+# 全记为0 ，然后全部手动修改
 grep -w -v -F -f <(cut -f1-3 $treated) <(cut -f1-3 $panCan) \
 	| awk 'BEGIN{FS=OFS="\t"}{print $0,"0"}' >> $treated
 
@@ -84,3 +86,8 @@ awk -F',' 'BEGIN{FS=OFS="\t"}{
     print $0,uniq
 }' $panCanmeta > tmp && mv tmp $panCanmeta
 
+# 再添加是不是captureHiC的信息
+grep 'captureHiC' $treated | cut -f1-3 > captureHiC_list.txt
+
+awk -F '\t' 'NR==FNR {key[$1,$2,$3]=1; next} 
+{print $0, (($1,$2,$3) in key ? 1 : 0)}'  captureHiC_list.txt $panCanmeta > tmp

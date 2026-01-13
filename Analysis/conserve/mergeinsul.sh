@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# 2026.1.2 
+python /cluster2/home/futing/Project/panCancer/Analysis/conserve/merge.py \
+/cluster2/home/futing/Project/panCancer/check/post/insul/insul50k_done0104.txt 8
 
+# 2026.1.2 legency
 cd /cluster2/home/futing/Project/panCancer/Analysis/conserve
 output="cancer_412.bed"
 >$output

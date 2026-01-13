@@ -9,7 +9,7 @@ hic_file=/cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt
 > "$hic_file"
 cd /cluster2/home/futing/Project/panCancer/check
 # 进度文件
-total=$(wc -l < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1218.txt")
+total=$(wc -l < "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone0104.txt")
 progress_file=$(mktemp)
 echo 0 > "$progress_file"
 
@@ -80,7 +80,7 @@ export -f check_one
 export output_file hic_file progress_file total
 
 # 并行执行
-xargs -a "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone1218.txt" -n3 -P10 bash -c 'check_one "$@"' _
+xargs -a "/cluster2/home/futing/Project/panCancer/check/aligned/aligndone0104.txt" -n3 -P10 bash -c 'check_one "$@"' _
 
 # 清理进度文件
 rm -f "$progress_file" "$progress_file.lock"

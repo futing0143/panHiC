@@ -8,8 +8,13 @@ cd $wkdir
 gunzip *.gz
 
 # ======== Raw Counts :合并 CCRF-CEM, GSE130140, GSE115895, GSE182680, GSE230588
-echo -e "GeneID\tCCRF-CEM_rep1\tCCRF-CEM_rep2\tCCRF-CEM_rep3" > CCRF-CEM_raw_counts_GRCh38.p13_NCBI.tsv
-tail -n +3 ${wkdir}/GSE275161_featureCounts_merged.txt | cut -f1,7-9 >> CCRF-CEM_raw_counts_GRCh38.p13_NCBI.tsv
+# echo -e "GeneID\tCCRF-CEM_rep1\tCCRF-CEM_rep2\tCCRF-CEM_rep3" > CCRF-CEM_raw_counts_GRCh38.p13_NCBI.tsv
+# tail -n +3 ${wkdir}/GSE275161_featureCounts_merged.txt | cut -f1,7-9 >> CCRF-CEM_raw_counts_GRCh38.p13_NCBI.tsv
+# 2026.1.2 上面的代码错误，这不是CCRF-CEM的数据
+echo -e "GeneID\tleukemia_Tcell_rep1\tleukemia_Tcell_rep2\tleukemia_Tcell_rep3"  > LeukemiaTcell_raw_counts_GRCh38.p13_NCBI.tsv
+tail -n +3 ${wkdir}/GSE275161_featureCounts_merged.txt | cut -f1,7-9 >> LeukemiaTcell_raw_counts_GRCh38.p13_NCBI.tsv
+
+# 2026.1.2 已经修改过了
 join -t $'\t' -1 1 -2 1 ${wkdir}/GSE130140_raw_counts_GRCh38.p13_NCBI.tsv \
 	${wkdir}/GSE115895_raw_counts_GRCh38.p13_NCBI.tsv | \
 	join -t $'\t' -1 1 -2 1 - ${wkdir}/GSE182680_raw_counts_GRCh38.p13_NCBI.tsv | \
@@ -17,7 +22,7 @@ join -t $'\t' -1 1 -2 1 ${wkdir}/GSE130140_raw_counts_GRCh38.p13_NCBI.tsv \
 	> ${wkdir}/TALLp_raw_counts_GRCh38.p13_NCBI.tsv
 
 python /cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/TALL/merge.py \
- ${wkdir}/TALLp_raw_counts_GRCh38.p13_NCBI.tsv ${wkdir}/CCRF-CEM_raw_counts_GRCh38.p13_NCBI.tsv \
+ ${wkdir}/TALLp_raw_counts_GRCh38.p13_NCBI.tsv ${wkdir}/LeukemiaTcell_raw_counts_GRCh38.p13_NCBI.tsv \
  ${wkdir}/TALL_raw_counts_GRCh38.p13_NCBI.tsv
 awk 'NR==FNR {meta[$1]=$2; next} 
      FNR==1 {for(i=2;i<=NF;i++) if($i in meta) $i=meta[$i]; print; next}

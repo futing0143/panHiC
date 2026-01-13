@@ -17,7 +17,7 @@ def merge_tpm_files(base_path, sep=',', end='_TPM.csv'):
     if not files:
         print(f"在 {base_path} 未找到 *{end} 文件")
         return None
-    
+    files = [f for f in files if '/01processed/' not in f]
     print(f"找到 {len(files)} 个文件:")
     for f in files:
         print(f"  - {os.path.basename(f)}")

@@ -1,5 +1,6 @@
 #!/bin/bash
-d=1218
+d=0104
+
 
 cd /cluster2/home/futing/Project/panCancer/Analysis/QC/PC
 
@@ -14,12 +15,14 @@ outputmeta="/cluster2/home/futing/Project/panCancer/Analysis/QC/PC/PC${d}.txt"
 
 
 # 直接从post中找
-grep -w 'PC' /cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt \
-| cut -f1-3 | sort -u -k1 -k2 -k3 \
+awk 'BEGIN{FS=OFS="\t"}{if ($4=="PC"){
+print $1,$2,$3}
+}' /cluster2/home/futing/Project/panCancer/check/post/all/hicdone${d}.txt \
+| sort -u -k1 -k2 -k3 \
 > ${outputmeta}
 awk 'NR==FNR{
     key=$1"\t"$2"\t"$3     # 前三列作为 key
-    val[key]=$NF           # 保存 file2 的最后一列
+    val[key]=$(NF-1)           # 保存 file2 的最后一列
     next
 }
 {

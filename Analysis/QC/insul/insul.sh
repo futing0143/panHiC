@@ -1,6 +1,14 @@
 #!/bin/bash
+# 2026.1.4
+grep -F -w -f <(cut -f1-3 /cluster2/home/futing/Project/panCancer/check/post/insul/insul50k_done0104.txt) \
+<(cut -f1-3,7 /cluster2/home/futing/Project/panCancer/check/meta/panCan_annometa.txt) > \
+/cluster2/home/futing/Project/panCancer/Analysis/QC/insul/insulmeta0104.txt
+
+python /cluster2/home/futing/Project/panCancer/Analysis/QC/insul/merge.py \
+/cluster2/home/futing/Project/panCancer/check/post/insul/insul50k_done0104.txt 6
 
 
+# 2026.1.4 discarded 旧的合并
 cd /cluster2/home/futing/Project/panCancer/QC/insul
 output="cancer_327.bed"
 >$output

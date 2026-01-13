@@ -64,6 +64,10 @@ for type in count tpm;do
 python ${split_script} ${wkdir}/GBM-${type}-matrix.txt
 done
 
+join -t $'\t' -1 1 -2 1 <(tr ',' '\t' < GBM_gene_count.csv |sort -k1) \
+<(sort -k1 /cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/GBM/sample/GSE229965_all_GSCs_RNAcounts_ID.txt) > tmp
+grep 'GeneID' tmp > GBM_all_gene_count.tsv
+grep -v 'GeneID' tmp >> GBM_all_gene_count.tsv
 
 mv ${wkdir}/GBM-count-matrix_ID.txt ${wkdir}/GBM_gene_count.tsv
 mv ${wkdir}/GBM-tpm-matrix_ID.txt ${wkdir}/GBM_TPM.tsv
