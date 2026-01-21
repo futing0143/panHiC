@@ -6,13 +6,30 @@
 ulimit -s unlimited
 ulimit -l unlimited
 
+# =================
+# 转换 srr.fastq.gz.sam 为 srr.fastq.gz.bam，并删除sam文件
+# 2024.1.14 by futing
+# =================
+
 # 定义包含SAM文件的根目录
 source activate /cluster2/home/futing/miniforge3/envs/juicer
 # samtools install samtools -y
-d=1207
+d=0114
 convertfile="/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_undone${d}.txt"
+find /cluster2/home/futing/Project/panCancer -type f -name '*fastq.gz.sam' | \
+awk -F'/' '
+{
+    cancer = $(NF-4)
+    gse    = $(NF-3)
+    cell   = $(NF-2)
+    srr    = $(NF)
+    sub(/\.fastq\.gz\.sam$/, "", srr)
+    print cancer, gse, cell, srr
+}' OFS='\t' > ${convertfile}
 
-: << 'EOF'
+
+
+:<< 'EOF'
 cp /cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_undone1111.txt \
 	/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_done1111.txt
 cat /cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_done+([0-9]).txt | sort -u > \

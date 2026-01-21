@@ -24,15 +24,8 @@ parallel_execute() {
     local cancer="$1"
     local gse="$2"
     local cell="$3"
-   
-    # 确保日志目录存在
-    local log_dir="${WKDIR}/debug"
-    mkdir -p "${log_dir}" || {
-        echo "Error: Failed to create log directory ${log_dir}" >&2
-        return 1
-    }
     
-    local log_file="${log_dir}/${cancer}_${gse}_${cell}-$(date +%Y%m%d_%H%M%S).log"
+    local log_file="/cluster2/home/futing/Project/panCancer/${cancer}/${gse}/${cell}/debug/gzip-$(date +%Y%m%d_%H%M%S).log"
     
     # 使用代码块统一重定向
     {
@@ -56,6 +49,6 @@ readonly PARALLEL_JOBS=10
 # 执行并行任务
 parallel -j "${PARALLEL_JOBS}" --colsep '\t' --progress --eta \
 	--tmpdir "${WKDIR}/debug" \
-    "parallel_execute {1} {2} {3}" :::: "${WKDIR}/gzip/gzip_1207.txt"
+    "parallel_execute {1} {2} {3}" :::: "/cluster2/home/futing/Project/panCancer/check/sam2bam/sam2bam_all.txt"
 
 date

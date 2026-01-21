@@ -1,8 +1,9 @@
 #!/bin/bash
 
-debugdir="/cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/download"
+debugdir="/cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/new"
 cd $debugdir
 
+source activate ~/miniforge3/envs/RNA
 
 mkdir -p "${debugdir}/debug"
 submit_job() {
@@ -21,23 +22,22 @@ date
 source activate RNA
 cd $debugdir
 export TMPDIR=${debugdir}/debug
-echo -e "parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip"
+echo -e "parallel-fastq-dump --sra-id ./${name} --threads 40 --outdir ./ --split-3 --gzip"
 parallel-fastq-dump --sra-id ./${name} --threads 40 --outdir ./ --split-3 --gzip
 date
 EOF
 }
 
-while read -r name;do
+while read name; do
     # source activate RNA
-	name=$(echo "$name" | tr -d '\r' | xargs)
+
 	echo "Processing SRR: ${name}"
-	echo $name > tmp1
+	echo $name > tmp
 	# prefetch -p -X 150GB ${name}
 
-	/cluster2/home/futing/pipeline/Ascp/ascp2.sh tmp1 ./ 40M
+	/cluster2/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 20M
 	if [ -f "${name}" ];then
 		jid=$(submit_job "${name}")
 	fi
-# done < "/cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/download/srr_undonep1.txt"
-done < "srr_undone0117.txt"
+done < "srr0120undone.txt"
 

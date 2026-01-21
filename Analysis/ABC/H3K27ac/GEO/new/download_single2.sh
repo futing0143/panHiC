@@ -1,8 +1,9 @@
 #!/bin/bash
 
-debugdir="/cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/download"
+debugdir="/cluster2/home/futing/Project/panCancer/Analysis/ABC/H3K27ac/GEO/new"
 cd $debugdir
 
+source activate ~/miniforge3/envs/RNA
 
 mkdir -p "${debugdir}/debug"
 submit_job() {
@@ -21,21 +22,22 @@ date
 source activate RNA
 cd $debugdir
 export TMPDIR=${debugdir}/debug
-echo -e "parallel-fastq-dump --sra-id ${name} --threads 40 --outdir ./ --split-3 --gzip"
+echo -e "parallel-fastq-dump --sra-id ./${name} --threads 40 --outdir ./ --split-3 --gzip"
 parallel-fastq-dump --sra-id ./${name} --threads 40 --outdir ./ --split-3 --gzip
 date
 EOF
 }
 
-for name in $(cat "/cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/GSE_metadata0104_srrp3.txt");do
-    source activate RNA
+while read name; do
+    # source activate RNA
+
 	echo "Processing SRR: ${name}"
 	echo $name > tmp
 	# prefetch -p -X 150GB ${name}
 
-	/cluster2/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 20M
+	/cluster2/home/futing/pipeline/Ascp/ascp2.sh tmp ./ 30M
 	if [ -f "${name}" ];then
 		jid=$(submit_job "${name}")
 	fi
-done
+done < "srr0120.txt"
 

@@ -1,14 +1,15 @@
 #!/bin/bash
 
 
-cd /cluster2/home/futing/Project/panCancer/Analysis/mutation_load
-loopbedpe=/cluster2/home/futing/Project/panCancer/Analysis/mutation_load/BRCA.consensus_loops.bedpe
+cd /cluster2/home/futing/Project/panCancer/Analysis/mutation_load/BRCA/Cancer
+loopbedpe=/cluster2/home/futing/Project/panCancer/Analysis/mutation_load/BRCA/Cancer/BRCACancer.consensus_loops.bedpe
+
 snp=/cluster2/home/futing/Project/panCancer/Analysis/mutation_load/PCAWG/BRCA_noncodeSNP.tsv
 snpbed=/cluster2/home/futing/Project/panCancer/Analysis/mutation_load/PCAWG/BRCA_noncodeSNP.bed
 gene_tss=/cluster2/home/futing/ref_genome/hg38_gencode/genebed/gencode.v43.gene.tss.bed
 gene_tss_updown2k=/cluster2/home/futing/Project/panCancer/Analysis/mutation_load/anno/gencode.v43.gene.tss.up2k.bed
-
-
+ENSG_tss_updown2k=/cluster2/home/futing/Project/panCancer/Analysis/mutation_load/anno/gencode.v43.ENSG.tss.up2k.bed
+# --- 处理 SNP & gene TSS
 awk 'BEGIN{OFS="\t"}{
   if($6=="+"){
     start = ($2-2000 > 0) ? $2-2000 : 0
@@ -21,20 +22,35 @@ awk 'BEGIN{OFS="\t"}{
   }
 }' "${gene_tss}" > "${gene_tss_updown2k}"
 
+awk 'BEGIN{OFS="\t"}{
+  # 先处理第四列，去掉点号及其后面的内容
+  sub(/\..*/, "", $4)
+  
+  if($6=="+"){
+    start = ($2-2000 > 0) ? $2-2000 : 0
+    end = $2+2000
+    print $1, start, end, $4,$7
+  } else {
+    start = ($3-2000 > 0) ? $3-2000 : 0
+    end = $3+2000
+    print $1, start, end, $4,$7
+  }
+}' "${gene_tss}" | sort -k1,1d -k2,2n -k3,3n -u > "${ENSG_tss_updown2k}"
+
 tail -n +2 ${snp} > ${snpbed}
 
 # SNP 在 A 端，gene 在 B 端
 bedtools pairtobed \
-  -a ${loopbedpe} \
+  -a <(cut -f2-8 ${loopbedpe}) \
   -b ${snpbed} \
   -type both \
   -f 1e-9 \
 | bedtools pairtobed \
   -a stdin \
-  -b ${gene_tss_updown2k} \
+  -b ${ENSG_tss_updown2k} \
   -type both \
   -f 1e-9 \
-> BRCA_loop_SNP_A_gene_B.bedpe
+> /cluster2/home/futing/Project/panCancer/Analysis/mutation_load/BRCA/Cancer/BRCACancer_loop_SNP_ENSG.bedpe
 
 awk 'BEGIN{OFS="\t"}{
   # overlap conditions
@@ -46,7 +62,7 @@ awk 'BEGIN{OFS="\t"}{
 
   if ( (snp_in_A && gene_in_B) || (snp_in_B && gene_in_A) )
     print
-}' BRCA_loop_SNP_gene.bedpe > loop_SNP_gene.trans.bedpe
+}' BRCACancer_loop_SNP_ENSG.bedpe > BRCACancer_loop_SNP_ENSG.AB.bedpe
 
 # ======== 提取出 SNP 和 gene 信息 ========
 '''
@@ -77,13 +93,14 @@ awk 'BEGIN{OFS="\t"}{
     $11,        # snp_id
     $8,         # snp_chr
     $9,         # snp_pos
-    $20,        # gene_3D (loop target)
+    $20,        # gene_3D (loop target),ENSG
+	$21,        # gene_3D (loop target),SYMBOL
     $13,        # gene_linear
     $7,         # loop_id
     $12,        # sample
     $14         # snp_function
-}' loop_SNP_gene.trans.bedpe \
-> SNP_gene_3D.tsv
+}' BRCACancer_loop_SNP_ENSG.AB.bedpe \
+> BRCACancer_SNP_ENSG_3D.tsv
 
 # 3D gene 和 线性基因 对比
 awk '$4 != $5' SNP_gene_3D.tsv | wc -l #16432
