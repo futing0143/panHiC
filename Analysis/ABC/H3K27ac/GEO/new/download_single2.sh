@@ -39,5 +39,5 @@ while read name; do
 	if [ -f "${name}" ];then
 		jid=$(submit_job "${name}")
 	fi
-done < "srr0120.txt"
+done < "srr0120undone.txt"
 

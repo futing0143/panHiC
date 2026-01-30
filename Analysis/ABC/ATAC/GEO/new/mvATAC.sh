@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/new
 
-downsrr=/cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/new/srr0118.txt
+downsrr=/cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/new/srr0121done.txt
 metadata=/cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/new/ATACtest.tsv
 
 # 检查参数
@@ -11,7 +11,7 @@ if [ ! -f "${downsrr}" ] || [ ! -f "${metadata}" ]; then
 fi
 
 # 读取已下载的 SRR（示例：第21–24行）
-mapfile -t downloaded_srrs < <(sed -n "21,24p" "${downsrr}")
+mapfile -t downloaded_srrs < "${downsrr}"
 
 # 构建 SRR -> 1 的关联数组，用于快速查找
 declare -A downloaded_srr_map
@@ -75,6 +75,7 @@ for gsm in "${!gsm_srrs[@]}"; do
     
     # 写入GSM号到srr.txt文件
     srr_file="${target_dir}/srr.txt"
+	> "${srr_file}"
     echo "${gsm}" >> "${srr_file}"
     echo "Written GSM to: ${srr_file}"
     

@@ -67,7 +67,7 @@ python /cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/mergefile.py
 # 为什么不和mergedp1合并？ TPM 和 ENSG
 # MB /cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/MB/MB_ENSEMBL_TPM.csv
 # CCRF-CEM /cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/TALL/CCRF-CEM_ENSEMBL_TPM.csv
-# 2026.1.2 MB 直接从 SYMBOL 合并，CCRF 实际上是 leukemia T cell 不用这个数据了
+# 2026.1.2: MB 直接从 SYMBOL 合并，CCRF 实际上是 leukemia T cell 不用这个数据了
 python /cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/mergefile.py \
     /cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO \
     --end _ENSEMBL_TPM.csv \

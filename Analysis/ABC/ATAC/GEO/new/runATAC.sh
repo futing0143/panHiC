@@ -48,47 +48,55 @@ get_running_jobs() {
 # 数组保存已提交的job IDs
 declare -a job_ids=()
 
-# 提交所有任务
 submitted=0
+nodes=(node1 node4 node5)
+n_nodes=${#nodes[@]}
+
 for i in "${!cancers[@]}"; do
     cancer="${cancers[$i]}"
     gse="${gses[$i]}"
     id="${ids[$i]}"
-    
-    # 等待直到运行任务数少于最大值
+
     while true; do
         current=$(get_running_jobs)
-        if [ ${current} -lt ${max_jobs} ]; then
+        if [ "$current" -lt "$max_jobs" ]; then
             break
         fi
         echo "[$(date '+%H:%M:%S')] 当前有 ${current} 个任务运行中，等待空位..."
-        sleep 5
+        sleep 600
     done
-    
-    # 设置目录 - 每个cancer/gse组合有独立目录
-    dir=/cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/${cancer}/${gse}/
-    log_dir=${dir}/debug
-    mkdir -p ${log_dir}
-    
-    # 提交任务并获取job ID
-    job_name="${ID}"
-    job_output=$(sbatch --job-name=${job_name} \
-		   --partition=gpu \
-           --output=${log_dir}/${ID}_%j.log \
-           --cpus-per-task=${CPUS} \
-           --time=${TIME} \
-           --wrap="echo 'Cancer: ${cancer}'; echo 'GSE: ${gse}'; echo 'ID: ${id}'; echo 'Directory: ${dir}'; echo 'Start: \$(date)'; bash ${script} -d ${dir} -n ${id} -s ${dir}/srr.txt; echo 'End: \$(date)'")
-    
-    job_id=$(echo ${job_output} | awk '{print $4}')
+
+    # ===== 核心：轮流选节点 =====
+    node="${nodes[$((submitted % n_nodes))]}"
+
+    dir="/cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/${cancer}/${gse}/${id}"
+    log_dir="${dir}/debug"
+    mkdir -p "${log_dir}"
+
+    job_output=$(sbatch \
+        --job-name="${id}" \
+        --nodelist="${node}" \
+        --output="${log_dir}/${id}_%j.log" \
+        --cpus-per-task="${CPUS}" \
+        --time="${TIME}" \
+        --wrap="echo 'Cancer: ${cancer}';
+                echo 'GSE: ${gse}';
+                echo 'ID: ${id}';
+                echo 'Directory: ${dir}';
+                echo 'Start: \$(date)';
+                bash ${script} -d ${dir} -n ${id} -s ${dir}/srr.txt -p yes;
+                echo 'End: \$(date)'")
+
+    job_id=$(echo "$job_output" | awk '{print $4}')
     job_ids+=("${job_id}")
-    
+
     ((submitted++))
-    current=$(get_running_jobs)
-    echo "[$(date '+%H:%M:%S')] ✓ 已提交 ${cancer}/${gse} (ID: ${id}, JobID: ${job_id}) - 进度: ${submitted}/${#cancers[@]} - 运行中: ${current}"
-    
-    # 短暂延迟，确保任务状态更新
+
+    echo "[$(date '+%H:%M:%S')] ✓ 已提交 ${cancer}/${gse} (ID: ${id}, Node: ${node}, JobID: ${job_id})"
+
     sleep 2
 done
+
 
 echo ""
 echo "=== 提交完成 ==="
@@ -105,5 +113,5 @@ for i in "${!cancers[@]}"; do
     cancer="${cancers[$i]}"
     gse="${gses[$i]}"
     dir=/cluster2/home/futing/Project/panCancer/Analysis/ABC/ATAC/GEO/${cancer}/${gse}/
-    echo "  ${cancer}/${gse}: tail -f ${dir}/debug/${ID}_*.log"
+    echo "  ${cancer}/${gse}: tail -f ${dir}/debug/${id}_*.log"
 done

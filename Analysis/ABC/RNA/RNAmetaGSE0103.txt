@@ -1,0 +1,473 @@
+header	clcell	Datasource	isctrl	cancer	Cancer_Category	Origin	gse	group	treatment
+22RV1	22RV1	CCLE	0	PRAD	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+42MGBA	42MGBA	CCLE	0	GBM	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+697	697	CCLE	0	B-ALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+786O	786O	CCLE	0	RCC	Solid Tumor	Urinary System	CCLE	CCLE	CCLE
+A172	A172	CCLE	0	GBM	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+A2058	A2058	CCLE	0	MEL	Solid Tumor	Neural crest derived	CCLE	CCLE	CCLE
+A375	A375	CCLE	0	MEL	Solid Tumor	Neural crest derived	CCLE	CCLE	CCLE
+A549	A549	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+A673	A673	CCLE	0	ES	Solid Tumor	Mesenchymal derived	CCLE	CCLE	CCLE
+ACHN	ACHN	CCLE	0	RCC	Solid Tumor	Urinary System	CCLE	CCLE	CCLE
+BC1	BC1	CCLE	0	B-ALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+BC3	BC3	CCLE	0	B-ALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+BLCA_5637-WT-1	5637	GEO	0	BLCA	Solid Tumor	Urinary System	GSE267762	ENSG_count	unknown
+BLCA_5637-WT-2	5637	GEO	0	BLCA	Solid Tumor	Urinary System	GSE267762	ENSG_count	unknown
+BLCA_5637-WT-3	5637	GEO	0	BLCA	Solid Tumor	Urinary System	GSE267762	ENSG_count	unknown
+BLCA_5637-WT2-1	5637	GEO	0	BLCA	Solid Tumor	Urinary System	GSE267762	ENSG_count	unknown
+BLCA_5637-WT2-3	5637	GEO	0	BLCA	Solid Tumor	Urinary System	GSE267762	ENSG_count	unknown
+BL_CA46_1	CA46	GEO	0	BL	Hematological (Lymphoma)	Hematological	GSE294864	ENSG_count	unknown
+BL_CA46_2	CA46	GEO	0	BL	Hematological (Lymphoma)	Hematological	GSE294864	ENSG_count	unknown
+BL_RAJI_1	RAJI	GEO	0	BL	Hematological (Lymphoma)	Hematological	GSE294864	ENSG_count	unknown
+BL_RAJI_2	RAJI	GEO	0	BL	Hematological (Lymphoma)	Hematological	GSE294864	ENSG_count	unknown
+BT20	BT20	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+BT474	BT474	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+BT483	BT483	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+BT549	BT549	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+CACO2	CACO2	CCLE	0	CRC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+CALU3_CCLE	CALU3	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+CALU3_ENCODE	CALU3	ENCODE	0	NSCLC	Solid Tumor	Epithelial derived	ENCODE	ENCODE	ENCODE
+CAOV3	CAOV3	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+CHLA9	CHLA9	CCLE	0	ES	Solid Tumor	Mesenchymal derived	CCLE	CCLE	CCLE
+CLL_CLL_102	CLL_102	GEO	0	CLL	Hematological (Leukemia)	Hematological	GSE163896	ENTREZ_TPM	featureCounts
+CLL_CLL_312	CLL_312	GEO	0	CLL	Hematological (Leukemia)	Hematological	GSE163896	ENTREZ_TPM	featureCounts
+CLL_CLL_344	CLL_344	GEO	0	CLL	Hematological (Leukemia)	Hematological	GSE163896	ENTREZ_TPM	featureCounts
+CLL_CLL_401	CLL_401	GEO	0	CLL	Hematological (Leukemia)	Hematological	GSE163896	ENTREZ_TPM	featureCounts
+CLL_CLL_484	CLL_484	GEO	0	CLL	Hematological (Leukemia)	Hematological	GSE163896	ENTREZ_TPM	featureCounts
+CML_HAP1-WT-rep1	HAP1	GEO	0	CML	Hematological (Leukemia)	Hematological	GSE137374	ENTREZ_TPM	featureCounts
+CML_HAP1-WT-rep2	HAP1	GEO	0	CML	Hematological (Leukemia)	Hematological	GSE137374	ENTREZ_TPM	featureCounts
+CRC_A001C007	A001C007	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A001C011	A001C011	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A001C013	A001C013	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A001C019	A001C019	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A002C001	A002C001	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A002C002	A002C002	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A002C006	A002C006	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A002C010	A002C010	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A002C013	A002C013	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A002C122	A002C122	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A002C212	A002C212	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A014C012	A014C012	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A014C040	A014C040	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A014C041	A014C041	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A014C046	A014C046	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A014C053	A014C053	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A014C054	A014C054	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A015C004	A015C004	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_A015C010	A015C010	GEO	1	CRC	Normal Tissue	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_CRC15157	CRC15157	GEO	0	CRC	Solid Tumor	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_CRC19779	CRC19779	GEO	0	CRC	Solid Tumor	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_CRC25135	CRC25135	GEO	0	CRC	Solid Tumor	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_CRC26616	CRC26616	GEO	0	CRC	Solid Tumor	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+CRC_CRC8396	CRC8396	GEO	0	CRC	Solid Tumor	Digestive System	GSE207949	ENTREZ_TPM	featureCounts
+D458	D458	CCLE	0	MB	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+DAUDI	DAUDI	CCLE	0	BL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+DLBCL_WSU-DLCL2_RNASeq_rep1	WSU-DLCL2	GEO	0	DLBCL	Hematological (Lymphoma)	Hematological	GSE168471	ENTREZ_TPM	featureCounts
+DLBCL_WSU-DLCL2_RNASeq_rep2	WSU-DLCL2	GEO	0	DLBCL	Hematological (Lymphoma)	Hematological	GSE168471	ENTREZ_TPM	featureCounts
+DLBCL_WSU-DLCL2_RNASeq_rep3_run1	WSU-DLCL2	GEO	0	DLBCL	Hematological (Lymphoma)	Hematological	GSE168471	ENTREZ_TPM	featureCounts
+DLBCL_WSU-DLCL2_RNASeq_rep3_run2	WSU-DLCL2	GEO	0	DLBCL	Hematological (Lymphoma)	Hematological	GSE168471	ENTREZ_TPM	featureCounts
+DLBCL_WSU-DLCL2_RNASeq_rep3_run3	WSU-DLCL2	GEO	0	DLBCL	Hematological (Lymphoma)	Hematological	GSE168471	ENTREZ_TPM	featureCounts
+DLD1	DLD1	CCLE	0	CRC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+DND41	DND41	CCLE	0	TALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+DU145	DU145	CCLE	0	PRAD	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+DU4475	DU4475	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+ES_EWS_6647_p2	6647	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+ES_EWS_6647_p3	6647	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+ES_EWS_6647_p5	6647	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+ES_EWS_6647_p6	6647	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+ES_EWS_TC-71_p2	TC71	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+ES_EWS_TC-71_p3	TC71	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+ES_EWS_TC-71_p4	TC71	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+ES_EWS_TC-71_p6	TC71	GEO	0	ES	Solid Tumor	Mesenchymal derived	GSE248354	ENSG_count	unknown
+G1	G1	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G120	G120	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G148	G148	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G163	G163	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G171	G171	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G181	G181	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G208	G208	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G213	G213	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G23	G23	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G275	G275	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G275R	G275R	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G28	G28	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G318	G318	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G323	G323	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G351	G351	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G390	G390	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G394	G394	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G402R	G402R	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G402_ENCODE	G402	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G412	G412	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G412R	G412R	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G450	G450	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G452C	G452C	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G452P	G452P	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G457	G457	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G61	G61	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G62	G62	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+G83	G83	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE229965	ENSG_TPM	RSEM
+GBM_42MGBA	42MGBA	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE240343	ENSG_TPM	RSEM
+GBM_42MGBA_2	42MGBA	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE240343	ENSG_TPM	RSEM
+GBM_42MGBA_3	42MGBA	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE240343	ENSG_TPM	RSEM
+GBM_A172	A172	GEO	0	GBM	Solid Tumor	Central Nervous System	PRJNA532762	ENSG_TPM	RSEM
+GBM_A172_2	A172	GEO	0	GBM	Solid Tumor	Central Nervous System	PRJNA532762	ENSG_TPM	RSEM
+GBM_A172_3	A172	GEO	0	GBM	Solid Tumor	Central Nervous System	PRJNA532762	ENSG_TPM	RSEM
+GBM_H4	H4	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE240343	ENSG_TPM	RSEM
+GBM_H4_2	H4	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE240343	ENSG_TPM	RSEM
+GBM_H4_3	H4	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE240343	ENSG_TPM	RSEM
+GBM_NHA	NHA	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE162976	ENSG_TPM	RSEM
+GBM_NHA_2	NHA	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE162976	ENSG_TPM	RSEM
+GBM_NHA_3	NHA	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE162976	ENSG_TPM	RSEM
+GBM_NPC	NPC	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE185192	ENSG_TPM	RSEM
+GBM_NPC_2	NPC	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE185192	ENSG_TPM	RSEM
+GBM_NPC_3	NPC	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE185192	ENSG_TPM	RSEM
+GBM_P455_SF11901v1	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v10	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v2	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v3	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v4	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v5	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v6	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v7	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v8	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P455_SF11901v9	P455_SF11901	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001005222	ENSG_TPM	RSEM
+GBM_P475_SF12180v1	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P475_SF12180v2	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P475_SF12180v3	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P475_SF12180v4	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P475_SF12180v5	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P475_SF12180v6	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P475_SF12180v7	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P475_SF12180v8	P475_SF12180	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v1	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v10	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v2	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v3	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v4	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v5	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v7	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v8	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P498_SF12251v9	P498_SF12251	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v1	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v10	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v2	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v3	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v4	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v5	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v6	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v7	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v8	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P503_SF12518v9	P503_SF12518	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v1	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v10	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v2	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v3	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v4	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v5	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v6	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v7	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v8	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P519_SF12601v9	P519_SF12601	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P521_SF12631v1	P521_SF12631	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P521_SF12631v2	P521_SF12631	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P521_SF12631v3	P521_SF12631	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P521_SF12631v4	P521_SF12631	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P521_SF12631v5	P521_SF12631	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P521_SF12631v7	P521_SF12631	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P521_SF12631v8	P521_SF12631	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001009497	ENSG_TPM	RSEM
+GBM_P524_SF12681v1	P524_SF12681v1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v10	P524_SF12681v10	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v2	P524_SF12681v2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v4	P524_SF12681v4	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v5	P524_SF12681v5	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v6	P524_SF12681v6	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v7	P524_SF12681v7	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v8	P524_SF12681v8	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P524_SF12681v9	P524_SF12681v9	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v1-1	P529_SF12794v1-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v1-2	P529_SF12794v1-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v10-1	P529_SF12794v10-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v10-2	P529_SF12794v10-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v2	P529_SF12794v2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v3-1	P529_SF12794v3-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v3-2	P529_SF12794v3-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v4-1	P529_SF12794v4-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v4-2	P529_SF12794v4-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v5	P529_SF12794v5	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v6-1	P529_SF12794v6-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v6-2	P529_SF12794v6-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v7-1	P529_SF12794v7-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v7-2	P529_SF12794v7-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v8-1	P529_SF12794v8-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v8-2	P529_SF12794v8-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v9-1	P529_SF12794v9-1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P529_SF12794v9-2	P529_SF12794v9-2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v1	P530_SF12822v1	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v10	P530_SF12822v10	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v11	P530_SF12822v11	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v12	P530_SF12822v12	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v13	P530_SF12822v13	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v14	P530_SF12822v14	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v15	P530_SF12822v15	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v16	P530_SF12822v16	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v17	P530_SF12822v17	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v18	P530_SF12822v18	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v19	P530_SF12822v19	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v2	P530_SF12822v2	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v3	P530_SF12822v3	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v4	P530_SF12822v4	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v5	P530_SF12822v5	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v6	P530_SF12822v6	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v7	P530_SF12822v7	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v8	P530_SF12822v8	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_P530_SF12822v9	P530_SF12822v9	GEO	0	GBM	Solid Tumor	Central Nervous System	EGAD00001010290	ENSG_TPM	RSEM
+GBM_SF9427	SF9427	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE162976	ENSG_TPM	RSEM
+GBM_SF9427_2	SF9427	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE162976	ENSG_TPM	RSEM
+GBM_SF9427_3	SF9427	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE162976	ENSG_TPM	RSEM
+GBM_SW1088	SW1088	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE147123	ENSG_TPM	RSEM
+GBM_U118	U118	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE147123	ENSG_TPM	RSEM
+GBM_U251	U251	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE125243	ENSG_TPM	RSEM
+GBM_U251_2	U251	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE125243	ENSG_TPM	RSEM
+GBM_U343	U343	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE151155	ENSG_TPM	RSEM
+GBM_U343_2	U343	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE151155	ENSG_TPM	RSEM
+GBM_U343_3	U343	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE151155	ENSG_TPM	RSEM
+GBM_U87	U87	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE147123	ENSG_TPM	RSEM
+GBM_U87_2	U87	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE178471	ENSG_TPM	RSEM
+GBM_U87_3	U87	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE178471	ENSG_TPM	RSEM
+GBM_U87_4	U87	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE178471	ENSG_TPM	RSEM
+GBM_U87_5	U87	GEO	0	GBM	Solid Tumor	Central Nervous System	GSE202362	ENSG_TPM	RSEM
+GBM_iPSC	iPSC	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE185192	ENSG_TPM	RSEM
+GBM_iPSC_2	iPSC	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE185192	ENSG_TPM	RSEM
+GBM_iPSC_3	iPSC	GEO	1	GBM	Normal Tissue	Central Nervous System	GSE185192	ENSG_TPM	RSEM
+GC_GES1_rep1	GES1	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GC_GES1_rep2	GES1	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GC_NCC24_rep1	NCC24	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GC_NCC24_rep2	NCC24	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GC_SNU719_rep1	SNU719	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GC_SNU719_rep2	SNU719	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GC_YCC10_rep1	YCC10	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GC_YCC10_rep2	YCC10	GEO	0	GC	Solid Tumor	Digestive System	GSE147152	ENTREZ_TPM	featureCounts
+GIMEN	GIMEN	CCLE	0	NB	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+GM12878	GM12878	CCLE	1	DLBCL	Normal Tissue	Hematological	CCLE	CCLE	CCLE
+GM12878_GM12878_CC_rep1	GM12878	GEO	1	DLBCL	Normal Tissue	Hematological	GSE145997	ENSG_TPM	unknown
+GM12878_GM12878_CC_rep2	GM12878	GEO	1	DLBCL	Normal Tissue	Hematological	GSE145997	ENSG_TPM	unknown
+GRANTA452	GRANTA452	CCLE	0	MCL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+H4	H4	CCLE	0	GBM	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+HAP1	HAP1	CCLE	0	CML	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+HCC1187	HCC1187	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC1569	HCC1569	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC1599	HCC1599	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC1806	HCC1806	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC1937	HCC1937	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC1954	HCC1954	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC2157	HCC2157	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC2218	HCC2218	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC364	HCC364	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+HCC38	HCC38	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC70	HCC70	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HCC_97L-sgEV	97L	GEO	0	HCC	Solid Tumor	Digestive System	GSE303623	ENSG_TPM	EBSeq
+HCC_PLC-SAMv	PLC	GEO	0	HCC	Solid Tumor	Digestive System	GSE303623	ENSG_TPM	EBSeq
+HCT116	HCT116	CCLE	0	CRC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+HEK293	HEK293	CCLE	1	RCC	Normal Tissue	Urinary System	CCLE	CCLE	CCLE
+HELA	HELA	CCLE	0	CESC	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HEPG2_CCLE	HEPG2	CCLE	0	HCC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+HEPG2_ENCODE	HEPG2	ENCODE	0	HCC	Solid Tumor	Digestive System	ENCODE	ENCODE	ENCODE
+HEYA8	HEYA8	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HL60	HL60	CCLE	0	AML	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+HS578T	HS578T	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+HT1080	HT1080	CCLE	0	FSA	Solid Tumor	Mesenchymal derived	CCLE	CCLE	CCLE
+HT1376	HT1376	CCLE	0	BLCA	Solid Tumor	Urinary System	CCLE	CCLE	CCLE
+HumanBcell_HB_913613	HB_913613	GEO	1	DLBCL	Normal Tissue	Hematological	GSE294864	ENSG_count	unknown
+HumanBcell_HB_913614	HB_913614	GEO	1	DLBCL	Normal Tissue	Hematological	GSE294864	ENSG_count	unknown
+HumanBcell_HB_913615	HB_913615	GEO	1	DLBCL	Normal Tissue	Hematological	GSE294864	ENSG_count	unknown
+IM95	IM95	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+JEKO1	JEKO1	CCLE	0	MCL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+JURKAT	JURKAT	CCLE	0	TALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+KNS42	KNS42	CCLE	0	GBM	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+KURAMOCHI	KURAMOCHI	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+LNCAPCLONEFGC	LNCAPCLONEFGC	CCLE	0	PRAD	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+MAVER1	MAVER1	CCLE	0	MCL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+DAOY_rep1	DAOY	GEO	0	MB	Solid Tumor	Central Nervous System	GSE131347	p4	unknown
+DAOY_rep2	DAOY	GEO	0	MB	Solid Tumor	Central Nervous System	GSE131347	p4	unknown
+MCF10A	MCF10A	ENCODE	1	BRCA	Normal Tissue	Reproductive System	ENCODE	ENCODE	ENCODE
+MCF7	MCF7	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+MDAMB231	MDAMB231	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+MDAMB436	MDAMB436	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+MDAMB468	MDAMB468	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+MEL_M14_rep1	M14	GEO	0	MEL	Solid Tumor	Neural crest derived	GSE156770	ENTREZ_TPM	featureCounts
+MEL_M14_rep2	M14	GEO	0	MEL	Solid Tumor	Neural crest derived	GSE156770	ENTREZ_TPM	featureCounts
+MEL_M14_rep3	M14	GEO	0	MEL	Solid Tumor	Neural crest derived	GSE156770	ENTREZ_TPM	featureCounts
+MG63_ENCODE	MG63	ENCODE	0	OS	Solid Tumor	Mesenchymal derived	ENCODE	ENCODE	ENCODE
+MG63_CCLE	MG63	CCLE	0	OS	Solid Tumor	Mesenchymal derived	CCLE	CCLE	CCLE
+MINO	MINO	CCLE	0	MCL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+MKN1	MKN1	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+MKN7	MKN7	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+MM_NSD2_High_1	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_High_2	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_High_3	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_High_4	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_Low_1	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_Low_2	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_Low_3	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_Low_4	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MM_NSD2_Low_5	NSD2	GEO	0	MM	Hematological (Leukemia)	Hematological	GSE131651	ENTREZ_TPM	featureCounts
+MOLM13	MOLM13	CCLE	0	AML	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+MV411	MV411	CCLE	0	AML	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+NALM6	NALM6	CCLE	0	B-ALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+NAMALWA	NAMALWA	CCLE	0	BL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+NB4	NB4	CCLE	0	AML	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+NCIH1437	NCIH1437	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH1563	NCIH1563	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH1573	NCIH1573	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH1975	NCIH1975	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH2087	NCIH2087	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH358	NCIH358	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH441	NCIH441	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH460_ENCODE	NCIH460	ENCODE	0	NSCLC	Solid Tumor	Epithelial derived	ENCODE	ENCODE	ENCODE
+NCIH460_CCLE	NCIH460	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NCIH596	NCIH596	CCLE	0	NSCLC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+NPC_HK1_1	HK1_1	GEO	1	NPC	Normal Tissue	Epithelial derived	GSE268996	ENSG_TPM	unknown
+NPC_HK1_2	HK1_2	GEO	1	NPC	Normal Tissue	Epithelial derived	GSE268996	ENSG_TPM	unknown
+NPC_HK1_3	HK1_3	GEO	1	NPC	Normal Tissue	Epithelial derived	GSE268996	ENSG_TPM	unknown
+NUGC3	NUGC3	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+NUT_10-15_rep1	10-15	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+NUT_10-15_rep2	10-15	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+NUT_10-15_rep3	10-15	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+NUT_10-15_rep4	10-15	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+NUT_293TRex-Flp_rep1	293TRex	GEO	1	NUT	Normal Tissue	Epithelial derived	GSE189729	ENTREZ_TPM	featureCounts
+NUT_293TRex-Flp_rep2	293TRex	GEO	1	NUT	Normal Tissue	Epithelial derived	GSE189729	ENTREZ_TPM	featureCounts
+NUT_TC-797_rep1	TC-797	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+NUT_TC-797_rep2	TC-797	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+NUT_TC-797_rep3	TC-797	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+NUT_TC-797_rep4	TC-797	GEO	0	NUT	Solid Tumor	Epithelial derived	GSE179693	ENTREZ_TPM	featureCounts
+OCILY7_ENCODE	OCILY7	ENCODE	0	DLBCL	Hematological (Lymphoma)	Hematological	ENCODE	ENCODE	ENCODE
+OCILY7_CCLE	OCILY7	CCLE	0	DLBCL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+OCUM1	OCUM1	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+OVCAR4	OVCAR4	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+OV_FT282_rep1	FT282	GEO	1	OV	Normal Tissue	Reproductive System	GSE171453	ENTREZ_TPM	featureCounts
+OV_FT282_rep2	FT282	GEO	1	OV	Normal Tissue	Reproductive System	GSE171453	ENTREZ_TPM	featureCounts
+PBMC_PBMC_rep1_x	PBMC	GEO	1	AML	Normal Tissue	Hematological	GSE152136	ENSG_TPM	RSEM
+PBMC_PBMC_rep1_y	PBMC	GEO	1	AML	Normal Tissue	Hematological	GSE152136	ENSG_count	RSEM
+PBMC_PBMC_rep2_x	PBMC	GEO	1	AML	Normal Tissue	Hematological	GSE152136	ENSG_TPM	RSEM
+PBMC_PBMC_rep2_y	PBMC	GEO	1	AML	Normal Tissue	Hematological	GSE152136	ENSG_count	RSEM
+PBMC_PBMC_rep3_x	PBMC	GEO	1	AML	Normal Tissue	Hematological	GSE152136	ENSG_TPM	RSEM
+PBMC_PBMC_rep3_y	PBMC	GEO	1	AML	Normal Tissue	Hematological	GSE152136	ENSG_count	RSEM
+PC3_ENCODE	PC3	ENCODE	0	PRAD	Solid Tumor	Reproductive System	ENCODE	ENCODE	ENCODE
+PC3_CCLE	PC3	CCLE	0	PRAD	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+PEO1	PEO1	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+PRAD_C42B_rep1	C42B	GEO	0	PRAD	Solid Tumor	Reproductive System	GSE204999	ENTREZ_TPM	featureCounts
+PRAD_C42B_rep2	C42B	GEO	0	PRAD	Solid Tumor	Reproductive System	GSE204999	ENTREZ_TPM	featureCounts
+PRAD_C42B_rep3	C42B	GEO	0	PRAD	Solid Tumor	Reproductive System	GSE204999	ENTREZ_TPM	featureCounts
+PRECLH	PRECLH	CCLE	1	PRAD	Normal Tissue	Reproductive System	CCLE	CCLE	CCLE
+RAJI	RAJI	CCLE	0	BL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+RB_ARPE1	ARPE1	GEO	1	RB	Normal Tissue	Central Nervous System	GSE230797	ENTREZ_TPM	featureCounts
+RB_WERI-RB1	WERIRB1	GEO	0	RB	Solid Tumor	Central Nervous System	GSE230797	ENTREZ_TPM	featureCounts
+RCC_786-M1A_1	786M1A	GEO	0	RCC	Solid Tumor	Urinary System	GSE97928	ENTREZ_TPM	featureCounts
+RCC_786-M1A_2	786M1A	GEO	0	RCC	Solid Tumor	Urinary System	GSE97928	ENTREZ_TPM	featureCounts
+RCC_786-O_1	786O	GEO	0	RCC	Solid Tumor	Urinary System	GSE97928	ENTREZ_TPM	featureCounts
+RCC_786-O_2	786O	GEO	0	RCC	Solid Tumor	Urinary System	GSE97928	ENTREZ_TPM	featureCounts
+REC1	REC1	CCLE	0	MCL	Hematological (Lymphoma)	Hematological	CCLE	CCLE	CCLE
+REH	REH	CCLE	0	B-ALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+RPMI7951	RPMI7951	CCLE	0	MEL	Solid Tumor	Neural crest derived	CCLE	CCLE	CCLE
+RPMI8226	RPMI8226	CCLE	0	MM	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+RPMI8402	RPMI8402	CCLE	0	TALL	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+RT4	RT4	CCLE	0	BLCA	Solid Tumor	Urinary System	CCLE	CCLE	CCLE
+SCABER	SCABER	CCLE	0	BLCA	Solid Tumor	Urinary System	CCLE	CCLE	CCLE
+SHSY5Y	SHSY5Y	CCLE	0	NB	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+SJCRH30	SJCRH30	ENCODE	0	RMS	Solid Tumor	Mesenchymal derived	ENCODE	ENCODE	ENCODE
+SKBR3	SKBR3	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+SKNDZ	SKNDZ	CCLE	0	NB	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+SKNMC	SKNMC	CCLE	0	NB	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+SKNSH	SKNSH	CCLE	0	NB	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+SKOV3	SKOV3	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+SNU16	SNU16	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+SNU1750	SNU1750	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+SNU719	SNU719	CCLE	0	GC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+SW1088	SW1088	CCLE	0	GBM	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+SW480	SW480	CCLE	0	CRC	Solid Tumor	Digestive System	CCLE	CCLE	CCLE
+SW626	SW626	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+SW780	SW780	CCLE	0	BLCA	Solid Tumor	Urinary System	CCLE	CCLE	CCLE
+T47D	T47D	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+TALL_CUTLL1_Control_24hr_replicate_1	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_CUTLL1_Control_24hr_replicate_2	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_CUTLL1_Control_24hr_replicate_3	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_CUTLL1_Control_replicate_1	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_CUTLL1_Control_replicate_2	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_CUTLL1_Control_replicate_3	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_CUTLL1_DMSO_rep1	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_CUTLL1_DMSO_rep2	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_DND41_DMSO_48hr_replicate_1	DND41	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_DND41_DMSO_48hr_replicate_2	DND41	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_DND41_DMSO_48hr_replicate_3	DND41	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_DND41_DMSO_72hr_replicate_1	DND41	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_DND41_DMSO_72hr_replicate_2	DND41	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_DND41_DMSO_72hr_replicate_3	DND41	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE182680	ENTREZ_TPM	featureCounts
+TALL_DND42_Rep1	DND42	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE230588	ENTREZ_TPM	featureCounts
+TALL_DND42_Rep2	DND42	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE230588	ENTREZ_TPM	featureCounts
+TALL_ETP-ALL1	ETP-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_ETP-ALL2	ETP-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_ETP-ALL3	ETP-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_ETP-ALL4	ETP-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_Jurkat_DMSO_rep1	JURKAT	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Jurkat_DMSO_rep2	JURKAT	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Jurkat_rep1	JURKAT	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Jurkat_rep2	JURKAT	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Jurkat_rep3	JURKAT	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_MOLT4_Rep1	MOLT4	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE230588	ENTREZ_TPM	featureCounts
+TALL_MOLT4_Rep2	MOLT4	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE230588	ENTREZ_TPM	featureCounts
+TALL_Patient1_rep1	Patient1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Patient1_rep2	Patient1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Patient2	Patient2	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_RNA-seq_CUTLL1_shControl_rep1	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_RNA-seq_CUTLL1_shControl_rep2	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_RNA-seq_CUTLL1_shControl_rep3	CUTLL1	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_T-ALL1	T-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_T-ALL2	T-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_T-ALL3	T-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_T-ALL4	T-ALL	GEO	0	TALL	Hematological (Leukemia)	Hematological	GSE115895	ENTREZ_TPM	featureCounts
+TALL_Tcell_rep1	Tcell	GEO	1	TALL	Normal Tissue	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Tcell_rep2	Tcell	GEO	1	TALL	Normal Tissue	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Tcell_rep3	Tcell	GEO	1	TALL	Normal Tissue	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+TALL_Tcell_rep4	Tcell	GEO	1	TALL	Normal Tissue	Hematological	GSE130140	ENTREZ_TPM	featureCounts
+THP1	THP1	CCLE	0	AML	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+TT	TT	CCLE	0	MTC	Solid Tumor	Epithelial derived	CCLE	CCLE	CCLE
+U2OS	U2OS	CCLE	0	OS	Solid Tumor	Mesenchymal derived	CCLE	CCLE	CCLE
+U343	U343	CCLE	0	GBM	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+U937	U937	CCLE	0	AML	Hematological (Leukemia)	Hematological	CCLE	CCLE	CCLE
+UCEC_LEIO_PT728	LEIOPT728	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO_PT758	LEIOPT758	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT1063	LEIOPT1063	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT1113	LEIOPT1113	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT1119	LEIOPT1119	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT1123	LEIOPT1123	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT1151	LEIOPT1151	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT354	LEIOPT354	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT563	LEIOPT563	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT845	LEIOPT845	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT848	LEIOPT848	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT886	LEIOPT886	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT916	LEIOPT916	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PT967	LEIOPT967	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_LEIO-PTc57	LEIOPTc57	GEO	0	UCEC	Solid Tumor	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO_PT728	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO_PT758	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT1063	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT1113	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT1119	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT1123	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT1151	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT354	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT563	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT845	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT848	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT886	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT916	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PT967	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UCEC_MYO-PTc57	Myometrium	GEO	1	UCEC	Normal Tissue	Reproductive System	GSE128229	ENTREZ_TPM	featureCounts
+UWB1289	UWB1289	CCLE	0	OV	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+VAESBJ	VAESBJ	CCLE	0	ES	Solid Tumor	Mesenchymal derived	CCLE	CCLE	CCLE
+WERIRB1	WERIRB1	CCLE	0	RB	Solid Tumor	Central Nervous System	CCLE	CCLE	CCLE
+ZR7530	ZR7530	CCLE	0	BRCA	Solid Tumor	Reproductive System	CCLE	CCLE	CCLE
+mammary_epithelial	mammary_epithelial	ENCODE	1	BRCA	Normal Tissue	Reproductive System	ENCODE	ENCODE	ENCODE
+thyroid_gland	thyroid_gland	ENCODE	1	MTC	Normal Tissue	Epithelial derived	ENCODE	ENCODE	ENCODE

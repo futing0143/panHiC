@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ========== 配置参数 ==========
-metafile=/cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/00meta/RNAcancerlist.txt
-script=/cluster2/home/futing/pipeline/RNA/rna_pe_v2.sh
+metafile=/cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/00meta/RNAcancerlist_se.txt
+script=/cluster2/home/futing/pipeline/RNA/rna_se_v2.sh
 max_jobs=6  # 最多同时运行的任务数
 
 # SLURM资源配置
@@ -42,6 +42,8 @@ declare -a job_ids=()
 
 # 提交所有任务
 submitted=0
+nodes=(node1 node4 node5)
+n_nodes=${#nodes[@]}
 for cancer in "${cancers[@]}"; do
     # 等待直到运行任务数少于最大值
     while true; do
@@ -57,9 +59,12 @@ for cancer in "${cancers[@]}"; do
     dir=/cluster2/home/futing/Project/panCancer/Analysis/ABC/RNA/GEO/${cancer}/
     log_dir=${dir}/debug
     mkdir -p ${log_dir}
-    
+    # ===== 核心：轮流选节点 =====
+    node="${nodes[$((submitted % n_nodes))]}"
+
     # 提交任务并获取job ID
     job_output=$(sbatch --job-name=${cancer} \
+	       --nodelist="${node}" \
            --output=${log_dir}/${cancer}_%j.log \
            --cpus-per-task=${CPUS} \
            --time=${TIME} \

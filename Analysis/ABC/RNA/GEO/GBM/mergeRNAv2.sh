@@ -13,7 +13,8 @@ while read -r newprefix oldname;do
 	mv $oldname $newname
 done < <(cut -f2,6 ${wkdir}/sample/EGA_RNAmeta.txt)
 
-# ------- 02 处理metafile
+# ------- 02 获得 ncell srr clcell path 对应关系，存入metadata
+# 获得 srr clcell path 三列
 metadata_file="${wkdir}/srrmeta.tsv"
 >$metadata_file
 while read -r file; do
@@ -25,7 +26,7 @@ while read -r file; do
     echo -e "$srr\t$group\t$file" >> "$metadata_file"
 done < <(find -L ${wkdir}/sample -name '*genes.results')
 
-# 将第二列是GBM行的替换为第一列，将 cell name 重命名，添加新的一列
+# 获得 ncell 
 awk 'BEGIN{FS=OFS="\t"}{
     if($2=="GBM") $2=$1
     count[$2]++
